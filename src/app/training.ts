@@ -21,7 +21,7 @@ interface IUser {
 
 //создать интерфейс унаследованный от IUser
 interface IStudent extends IUser {
-  evaluations: number
+  evaluations: number;
 }
 
 //создать функцию которая  которая принимает строку и вариант,
@@ -32,9 +32,9 @@ function format(str: string, option: string): string {
   } if (textFormat == 'capitalize') {
     return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
   } if (textFormat == 'lowercase') {
-    return str.toLowerCase()
+    return str.toLowerCase();
   }
-  return str
+  return str;;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
 function removeChar(str: string, char: string): string[] {
@@ -58,4 +58,4 @@ let users: IUser[] = [
   }
 ]
 
-let filterObject = users.filter(user => user.age < 25)
+let filterObject = users.filter(user => user.age < 25);
