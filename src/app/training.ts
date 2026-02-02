@@ -1,12 +1,11 @@
 //создвть функцию которая возвращает сумму двух чисел. полностью типизировать
-function sum(a:number, b:number):number {
+function sumNumbers(a:number, b:number): number {
   return a + b;
 }
 
-
 //создать переменную которая может быть только:
 //"loading", "success", "error".
-let statuss: "loading" | "success" | "error";
+let uploadStatus: "loading" | "success" | "error";
 
 //создать переменную которая может быть только:
 //'uppercase', 'lowercase', 'capitalize'".
@@ -26,18 +25,20 @@ interface IStudent extends IUser {
 
 //создать функцию которая  которая принимает строку и вариант,
 //как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
-function format(str: string, option: string): string {
+function formatString(str: string, option: string): string {
   if (textFormat == 'uppercase') {
     return str.toUpperCase();
-  } if (textFormat == 'capitalize') {
+  }
+  if (textFormat == 'capitalize') {
     return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
-  } if (textFormat == 'lowercase') {
+  }
+  if (textFormat == 'lowercase') {
     return str.toLowerCase();
   }
-  return str;;
+  return str;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
-function removeChar(str: string, char: string): string[] {
+function getWithoutSymbol(str: string, char: string): string[] {
     return str.split(char);
 }
 
@@ -54,8 +55,8 @@ let users: IUser[] = [
   },
   {
     name: 'alex',
-    age:28
+    age:38
   }
 ]
 
-let filterObject = users.filter(user => user.age < 25);
+let removeElders: IUser[] = users.filter(user => user.age < 30);
