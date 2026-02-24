@@ -25,20 +25,20 @@ interface IStudent extends IUser {
 
 //создать функцию которая  которая принимает строку и вариант,
 //как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
-function formatString(str: string, option: string): string {
+function updateString(str: string, option: string): string {
   if (textFormat == 'uppercase') {
     return str.toUpperCase();
-  }
+  };
   if (textFormat == 'capitalize') {
     return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
-  }
+  };
   if (textFormat == 'lowercase') {
     return str.toLowerCase();
-  }
+  };
   return str;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
-function getWithoutSymbol(str: string, char: string): string[] {
+function deleteChar(str: string, char: string): string[] {
     return str.split(char);
 }
 
@@ -51,12 +51,12 @@ let users: IUser[] = [
   },
   {
     name: 'vladislav',
-    age:20,
+    age: 20,
   },
   {
     name: 'alex',
-    age:38
+    age: 38,
   }
 ]
 
-let removeElders: IUser[] = users.filter(user => user.age < 30);
+let removeElders: IUser[] = users.filter((user: IUser) => user.age < 30);
