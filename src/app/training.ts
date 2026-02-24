@@ -49,7 +49,7 @@ function removeChar(str: string, char: string): string[] {
 let users: IUser[] = [
   {
     name: 'ibragim',
-    age: 15, 
+    age: 15,
   },
   {
     name: 'vladislav',
