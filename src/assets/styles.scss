@@ -1,0 +1,57 @@
+@use './fonts';
+
+* {
+  font-family: 'Nunito sans';
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  display: block;
+  width: 1080px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.wi-270 {
+  width: 270px;
+}
+
+.he-52 {
+  height: 52px;
+}
+
+.white {
+  color: var(--white-color);
+  margin-top: 8px;
+}
+
+:root {
+  --primari-color: #000;
+  --secondary-color: #F2BE22;
+  --white-color: #fff;
+  --green-color: rgba(26, 62, 62, 1);
+
+}

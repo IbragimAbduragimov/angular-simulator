@@ -1,3 +1,5 @@
+import { Color } from "../enums/Color";
+
 //создвть функцию которая возвращает сумму двух чисел. полностью типизировать
 function sum(a:number, b:number):number {
   return a + b;
@@ -25,15 +27,17 @@ interface IStudent extends IUser {
 
 //создать функцию которая  которая принимает строку и вариант,
 //как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
-function format(str: string, option: string): string {
+function getFormatString(str: string, textFormat: string): string {
   if (textFormat == 'uppercase') {
     return str.toUpperCase();
-  } if (textFormat == 'capitalize') {
+  };
+  if (textFormat == 'capitalize') {
     return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
-  } if (textFormat == 'lowercase') {
-    return str.toLowerCase()
-  }
-  return str
+  };
+  if (textFormat == 'lowercase') {
+    return str.toLowerCase();
+  };
+  return str;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
 function removeChar(str: string, char: string): string[] {
@@ -49,12 +53,49 @@ let users: IUser[] = [
   },
   {
     name: 'vladislav',
-    age:20,
+    age: 20,
   },
   {
     name: 'alex',
-    age:28
+    age: 38,
   }
 ]
 
 let filterObject = users.filter(user => user.age < 25)
+
+
+function checkColor(color: string) {
+  color == Color.BLUE || Color.GREEN || Color.RED;
+}
+class Local {
+
+  constructor() {
+    this.saveLastVisitDate();
+  }
+
+  saveLastVisitDate(): void {
+  const date = new Date();
+  const dateString = date.toString();
+  localStorage.setItem('date', dateString)
+ }
+}
+
+const local = new Local;
+local.saveLastVisitDate();
+
+function saveVisitCount(): void {
+  const currentCount = localStorage.getItem('visitCount');
+  
+  let newCount: number;
+  
+  if (currentCount) {
+    newCount = Number(currentCount) + 1;
+    console.log('visitCount', newCount);
+  } else {
+    newCount = 1;
+  }
+
+  localStorage.setItem('visitCount', newCount.toString());
+}
+
+saveVisitCount();
