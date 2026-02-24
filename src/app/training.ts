@@ -61,7 +61,7 @@ let users: IUser[] = [
   }
 ]
 
-let filterObject = users.filter(user => user.age < 25)
+let filterObject = users.filter(user => user.age < 25);
 
 
 function checkColor(color: string) {
