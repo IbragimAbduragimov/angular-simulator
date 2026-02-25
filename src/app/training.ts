@@ -22,7 +22,7 @@ interface IUser {
 
 //создать интерфейс унаследованный от IUser
 interface IStudent extends IUser {
-  evaluations: number
+  evaluations: number;
 }
 
 //создать функцию которая  которая принимает строку и вариант,
@@ -30,13 +30,13 @@ interface IStudent extends IUser {
 function getFormatString(str: string, textFormat: string): string {
   if (textFormat == 'uppercase') {
     return str.toUpperCase();
-  };
+  }
   if (textFormat == 'capitalize') {
     return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
-  };
+  }
   if (textFormat == 'lowercase') {
     return str.toLowerCase();
-  };
+  }
   return str;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
@@ -61,12 +61,13 @@ let users: IUser[] = [
   }
 ]
 
-let filterObject = users.filter(user => user.age < 25)
+let filterObject = users.filter(user => user.age < 25);
 
 
 function checkColor(color: string) {
   color == Color.BLUE || Color.GREEN || Color.RED;
 }
+
 class Local {
 
   constructor() {
@@ -76,7 +77,7 @@ class Local {
   saveLastVisitDate(): void {
   const date = new Date();
   const dateString = date.toString();
-  localStorage.setItem('date', dateString)
+  localStorage.setItem('date', dateString);
  }
 }
 

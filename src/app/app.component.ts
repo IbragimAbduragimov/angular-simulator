@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import './training.ts'
+import './training.ts';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,5 @@ import './training.ts'
 export class AppComponent {
   title = 'angular-simulator';
 
-  companyName: string = 'Р У М Т И Б Е Т'
+  companyName: string = 'Р У М Т И Б Е Т';
 }
