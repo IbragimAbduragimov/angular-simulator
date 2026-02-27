@@ -25,21 +25,21 @@ interface IStudent extends IUser {
 
 //создать функцию которая  которая принимает строку и вариант,
 //как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
-function formatString(str: string, option: string): string {
+function formatText(text: string, option: string): string {
   if (textFormat == 'uppercase') {
-    return str.toUpperCase();
+    return text.toUpperCase();
   }
   if (textFormat == 'capitalize') {
-    return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
+    return text.charAt(0).toUpperCase() + text.charAt(1).toLowerCase();
   }
   if (textFormat == 'lowercase') {
-    return str.toLowerCase();
+    return text.toLowerCase();
   }
-  return str;
+  return text;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
-function removeChar(str: string, char: string): string[] {
-    return str.split(char);
+function removeChar(text: string, char: string): string[] {
+    return text.split(char);
 }
 
 // Создать массив объектов на основе интерфейса с задания №6.
