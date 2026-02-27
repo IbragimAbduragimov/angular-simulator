@@ -7,7 +7,33 @@ import './training.ts';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-simulator';
 
-  companyName: string = 'Р У М Т И Б Е Т';
+  companyName: string = 'Румтибет';
+
+  constructor() {
+    this.saveLastVisitDate();
+    this.saveVisitCount();
+  }
+
+  saveLastVisitDate(): void {
+    const date = new Date();
+    const dateString = date.toString();
+    localStorage.setItem('date', dateString);
+  }
+
+
+  saveVisitCount(): void {
+  const currentCount = localStorage.getItem('visitCount');
+  
+  let newCount: number;
+  
+  if (currentCount) {
+    newCount = Number(currentCount) + 1;
+  } else {
+    newCount = 1;
+  }
+
+  localStorage.setItem('visitCount', newCount.toString());
+ }
 }
+
