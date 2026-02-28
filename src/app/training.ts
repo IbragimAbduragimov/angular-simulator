@@ -22,13 +22,12 @@ function getFormatString(str: string, textFormat: string): string {
   if (textFormat == 'uppercase') {
     return str.toUpperCase();
   }
-  if (textFormat == 'capitalize') {
+  else if (textFormat == 'capitalize') {
     return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
   }
-  if (textFormat == 'lowercase') {
+  else {
     return str.toLowerCase();
   }
-  return str;
 }
 
 function removeChar(str: string, char: string): string[] {
@@ -50,5 +49,5 @@ let users: IUser[] = [
   }
 ]
 
-let filterObject = users.filter(user => user.age < 25);
+let youngUsers: IUser[] = users.filter((user: IUser) => user.age < 30);
 

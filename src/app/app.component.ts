@@ -16,14 +16,14 @@ export class AppComponent {
   }
 
   saveLastVisitDate(): void {
-    const date = new Date();
-    const dateString = date.toString();
+    const date: Date = new Date();
+    const dateString: string = date.toString();
     localStorage.setItem('date', dateString);
   }
 
 
   saveVisitCount(): void {
-  const currentCount = localStorage.getItem('visitCount');
+  const currentCount: string | null = localStorage.getItem('visit-count');
   
   let newCount: number;
   
@@ -33,7 +33,7 @@ export class AppComponent {
     newCount = 1;
   }
 
-  localStorage.setItem('visitCount', newCount.toString());
+  localStorage.setItem('visit-count', newCount.toString());
  }
 }
 

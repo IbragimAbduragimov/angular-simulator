@@ -7,7 +7,6 @@
 }
 
 .container {
-  display: block;
   width: 1080px;
 }
 
@@ -27,12 +26,20 @@
   font-size: 20px;
 }
 
+.fs-24 {
+  font-size: 24px;
+}
+
 .semi-bold {
   font-weight: 600;
 }
 
 .bold {
   font-weight: 700;
+}
+
+.very-bold {
+  font-weight: 800;
 }
 
 .wi-270 {
@@ -54,4 +61,17 @@
   --white-color: #fff;
   --green-color: rgba(26, 62, 62, 1);
 
+}
+
+.primeri-btn {
+  border-radius: 4px;
+  opacity: 1;
+  gap: 10px;
+  padding-top: 16px;
+  padding-right: 36px;
+  padding-bottom: 16px;
+  padding-left: 36px;
+  background-color: var(--green-color);
+  color: var(--white-color);
+  font-size: 16px;
 }

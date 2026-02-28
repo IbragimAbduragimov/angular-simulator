@@ -1,15 +1,9 @@
 export class Collecton<T> {
 
   collection: T;
-  index: number;
-  none: null;
-  newMeaning: T;
 
-  constructor(collection: T, index: number, none: null, newMeaning: T) {
+  constructor(collection: T) {
     this.collection = collection
-    this.index = index;
-    this.none = none;
-    this.newMeaning = newMeaning 
   }
 
   getCollection<T>(collection: T): T {
