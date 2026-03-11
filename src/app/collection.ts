@@ -3,7 +3,7 @@ export class Collecton<T> {
   collection: T;
 
   constructor(collection: T) {
-    this.collection = collection
+    this.collection = collection;
   }
 
   getCollection<T>(collection: T): T {
@@ -11,7 +11,7 @@ export class Collecton<T> {
   }
 
   getElement<T>(index: number, collection: T[]): T {
-    return collection[index]
+    return collection[index];
   }
 
   clearCollection<T>(collection: T, none: T): void {
