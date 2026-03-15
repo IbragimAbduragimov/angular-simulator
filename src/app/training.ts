@@ -1,11 +1,11 @@
 //создвть функцию которая возвращает сумму двух чисел. полностью типизировать
-function sum(a:number, b:number):number {
+function sumNumbers(a:number, b:number): number {
   return a + b;
 }
 
 //создать переменную которая может быть только:
 //"loading", "success", "error".
-let statuss: "loading" | "success" | "error";
+let uploadStatus: "loading" | "success" | "error";
 
 //создать переменную которая может быть только:
 //'uppercase', 'lowercase', 'capitalize'".
@@ -20,24 +20,26 @@ interface IUser {
 
 //создать интерфейс унаследованный от IUser
 interface IStudent extends IUser {
-  evaluations: number
+  evaluations: number;
 }
 
 //создать функцию которая  которая принимает строку и вариант,
 //как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
-function format(str: string, option: string): string {
+function formatText(text: string, option: string): string {
   if (textFormat == 'uppercase') {
-    return str.toUpperCase();
-  } if (textFormat == 'capitalize') {
-    return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
-  } if (textFormat == 'lowercase') {
-    return str.toLowerCase()
+    return text.toUpperCase();
   }
-  return str
+  if (textFormat == 'capitalize') {
+    return text.charAt(0).toUpperCase() + text.charAt(1).toLowerCase();
+  }
+  if (textFormat == 'lowercase') {
+    return text.toLowerCase();
+  }
+  return text;
 }
 // Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
-function removeChar(str: string, char: string): string[] {
-    return str.split(char);
+function removeChar(text: string, char: string): string[] {
+    return text.split(char);
 }
 
 // Создать массив объектов на основе интерфейса с задания №6.
@@ -49,12 +51,12 @@ let users: IUser[] = [
   },
   {
     name: 'vladislav',
-    age:20,
+    age: 20,
   },
   {
     name: 'alex',
-    age:28
+    age: 38,
   }
 ]
 
-let filterObject = users.filter(user => user.age < 25)
+let youngUsers: IUser[] = users.filter((user: IUser) => user.age < 30);
