@@ -7,18 +7,14 @@ function sumNumbers(a:number, b:number): number {
 //"loading", "success", "error".
 let uploadStatus: "loading" | "success" | "error";
 
-//создать переменную которая может быть только:
-//'uppercase', 'lowercase', 'capitalize'".
 let textFormat: 'uppercase' | 'capitalize' | 'lowercase';
 
-// Создать интерфейс, который описывает юзера.
 interface IUser {
   name: string;
   age: number;
   status?: string;
 }
 
-//создать интерфейс унаследованный от IUser
 interface IStudent extends IUser {
   evaluations: number;
 }
@@ -42,8 +38,6 @@ function removeChar(text: string, char: string): string[] {
     return text.split(char);
 }
 
-// Создать массив объектов на основе интерфейса с задания №6.
-// Отфильтровать его по одному из параметров
 let users: IUser[] = [
   {
     name: 'ibragim',
