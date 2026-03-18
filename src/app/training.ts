@@ -17,7 +17,6 @@ interface IUser {
 
 interface IStudent extends IUser {
   evaluations: number;
-  evaluations: number;
 }
 
 //создать функцию которая  которая принимает строку и вариант,
@@ -47,11 +46,9 @@ let users: IUser[] = [
   {
     name: 'vladislav',
     age: 20,
-    age: 20,
   },
   {
     name: 'alex',
-    age: 38,
     age: 38,
   }
 ]
