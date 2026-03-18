@@ -1,10 +1,11 @@
-import { Color } from "../enums/Color";
-
-function sum(a:number, b:number):number {
+//создвть функцию которая возвращает сумму двух чисел. полностью типизировать
+function sumNumbers(a:number, b:number): number {
   return a + b;
 }
 
-let statuss: "loading" | "success" | "error";
+//создать переменную которая может быть только:
+//"loading", "success", "error".
+let uploadStatus: "loading" | "success" | "error";
 
 let textFormat: 'uppercase' | 'capitalize' | 'lowercase';
 
@@ -18,20 +19,23 @@ interface IStudent extends IUser {
   evaluations: number;
 }
 
-function getFormatString(str: string, textFormat: string): string {
+//создать функцию которая  которая принимает строку и вариант,
+//как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
+function formatText(text: string, option: string): string {
   if (textFormat == 'uppercase') {
-    return str.toUpperCase();
+    return text.toUpperCase();
   }
-  else if (textFormat == 'capitalize') {
-    return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
+  if (textFormat == 'capitalize') {
+    return text.charAt(0).toUpperCase() + text.charAt(1).toLowerCase();
   }
-  else {
-    return str.toLowerCase();
+  if (textFormat == 'lowercase') {
+    return text.toLowerCase();
   }
+  return text;
 }
-
-function removeChar(str: string, char: string): string[] {
-    return str.split(char);
+// Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
+function removeChar(text: string, char: string): string[] {
+    return text.split(char);
 }
 
 let users: IUser[] = [
@@ -50,4 +54,3 @@ let users: IUser[] = [
 ]
 
 let youngUsers: IUser[] = users.filter((user: IUser) => user.age < 30);
-
