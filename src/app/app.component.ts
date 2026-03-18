@@ -3,15 +3,15 @@ import './training.ts';
 import { IAdvantage } from './interfaces/IAdvantag.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
-import { IParticipant } from './interfaces/IParticipant.js';
+import { IParticipant } from './interfaces/IParticipant.js'
 import { NgTemplateOutlet } from '@angular/common';
+import { IWidget, Widget } from './interfaces/Widget.js';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule, NgTemplateOutlet],
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: []
 })
 export class AppComponent {
 
@@ -29,6 +29,8 @@ export class AppComponent {
   isLoading: boolean = false;
   underline: boolean = false;
   selectedUnderline!: number;
+  currentWidget: IWidget = 'clicker';
+  
 
 
   locations: ILocation[] = [
@@ -75,7 +77,6 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     }
   ]
-
 
   constructor() {
     this.saveLastVisitDate();
@@ -133,6 +134,9 @@ export class AppComponent {
     return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
+  toggleWidget(widget: Widget) {
+    this.currentWidget = widget;
+  }
+
   
 }
-

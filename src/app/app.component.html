@@ -1,51 +1,81 @@
-<div class="main-information"> 
-   <header>
-    <div class="centering-device">
-      <div class="header">
-        <div class="company-icon column">
-          <img src="/images/logo-company.svg" alt="mountains" width="137">
-          <span class="company-name fs-18">{{companyName}}</span>
-        </div>
-        <div class="main-crossings fs-18 semi-bold">
-          <a>Главная</a>
-          <a>Про гида</a>
-          <a>Программа тура</a>
-          <a>Стоимость</a>
-          <a>Блог</a>
-          <a>Контакты</a>
-          <div>
-            <button class="consutation-button fs-16">Консультация</button>
+@if (isLoading == false) {
+  <div class="loading-container">
+    <img class="loading-icon" src="images/loading-icon.svg" alt="" >
+  </div>
+} @else {
+  <section class="first-section">
+  <div class="main-information">
+    <header class="bg-header">
+      <div class="centering-device">
+        <div class="header">
+          <div class="company-icon column">
+            <img src="/images/logo-company.svg" alt="mountains" width="137">
+            <span class="company-name fs-18">{{companyName}}</span>
+          </div>
+          <div class="main-crossings fs-18 semi-bold">
+            <a id="home">Главная</a>
+            <a id="about-gid">Про гида</a>
+            <a id="programes">Программа тура</a>
+            <a id="price">Стоимость</a>
+            <a id="blog">Блог</a>
+            <a id="contacts">Контакты</a>
+            <div>
+              <button class="consutation-button fs-16">Консультация</button>
+            </div>
+            <div class="clicker">
+              @if (currentWidget === 'data') {
+                <div>
+                  <button (click)="toggleWidget('clicker')">показать дату</button>
+                  <button class="plus" (click)="plus()">+</button>
+                  <input [(ngModel)]="clicker">
+                  <button [disabled]="clicker == zero" class="minus" (click)="minus()">-</button>
+                </div>
+              } @else {
+              <div>
+                <button (click)="toggleWidget('data')">показать кликер</button>
+                <input class="input-time" [(ngModel)]="dataText">
+              </div>
+              }
+            </div>
           </div>
         </div>
       </div>
+    </header>
+    <div>
+      <h1 class="title">Насладись прогулкой в горах с командой единомышленников</h1>
     </div>
-  </header>
-  <div>
-    <h1 class="title">Насладись прогулкой в горах с командой единомышленников</h1>
-  </div>
-  <div>
-    <form class="tour-filter">
-      <div  class="column">
-        <select class="wi-270 he-52 select-main">
-          <option value="value" selected>Локация для тура</option>
-        </select>
-        <p class="white">выберите из списка</p>
+    <div>
+      <form class="tour-filter">
+        <div class="column">
+          <select name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
+            @for (location of locations; track $index) {
+              <option>{{ location.name }}</option>
+            }
+          </select>
+          <p class="white">выберите из списка</p>
+        </div>
+        <div class="column">
+          <input name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода" [(ngModel)]="selectedDate">
+          <img class="calendar-icon" src="/images/calendar-icon.svg" alt="calendar" width="18px">
+          <label class="white">укажите дату</label>
+        </div>
+        <div class="column"> 
+          <select name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
+            @for (participant of participants; track $index) {
+              <option>{{ participant.quantity }}</option>
+            }
+          </select>
+          <p class="white">выберите из списка</p>
+        </div>
+        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
+      </form>
+      <div class="live-input">
+        <input class="live-input-i" [(ngModel)]="liveInput" type="text">
+        <p>{{liveInput}}</p>
       </div>
-      <div class="column">
-        <input type="text" class="wi-270 he-52 select-main" placeholder="Дата похода">
-        <img class="calendar-icon" src="/images/calendar-icon.svg" alt="calendar" width="18px">
-        <label class="white">укажите дату</label>
-      </div> 
-      <div class="column">
-        <select class="wi-270 he-52 select-main">
-          <option value="value" selected>Участники</option>
-        </select>
-        <p class="white">выберите из списка</p>
-      </div>
-      <button class="search-btn he-52 bold fs-16">Найти программу</button> 
-    </form>
+    </div>
   </div>
-</div>
+</section>
 <section class="hike-description-section">
   <div class="hike-description">
     <div class="container hike-description-container">
@@ -65,7 +95,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p>
-        <button class="primeri-btn">программа тура</button>
+        <button class="primeri-btn" (click)="MessageService.addMessage(MessageService.currentCondition.INFO)">программа тура</button>
       </div>
     </div>
   </div>
@@ -78,7 +108,7 @@
     <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
     <div class="advantage-list">
       @for (advantag of advantages; track advantag.id) {
-        <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'">
+        <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'" (click)="selectService(advantag.id)">
           <div class="icon-container">
             @if (advantag.id == 1) {
               <img src="images/tourists-icon.svg" alt="" width="50px">
@@ -95,7 +125,7 @@
         </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn">Стоимость программ</button>
+    <button class=" primeri-btn prise-programm-btn" (click)="MessageService.addMessage(MessageService.currentCondition.ERROR)">Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
@@ -104,3 +134,81 @@
     <img src="images/river.png" alt="river" width="250px" height="250px">
   </div>
 </section>
+<section class="popular-destinations">
+  <div class="container-column">
+    <div class="destinations-title">
+      <p class="explanation">по версии отдыхающих</p>
+      <h2 class="title-popular very-bold">Популярные направления</h2>
+    </div>
+    <div class="container directions">
+      @for (direction of directions; track $index) {
+        <div class="direction">
+          <div><img class="direction-bg" [src]="'/images/' + direction.image + '.png'" alt="" width= "380px" height="500px"></div>
+          <div class="estimation">
+            <img src="images/star-icon.svg" alt="">
+            <p class="estimation-number fs-14 bold">{{ direction.estimation }}</p>
+          </div>
+          <div class="description-direction">
+            <div class="bg-overlay"></div>
+            <div class="footer">
+              <p class="title-direction bold">{{ direction.title }}</p>
+              <p class="description-text fs-14">{{ direction.description }}</p>
+            </div>
+            <div class="price-container fs-20 bold">
+              <p>{{ direction.price }} $</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="primeri-btn rating ">
+      Рейтинг направнений
+    </button>
+  </div>
+</section>
+<section class="about-blogs">
+  <div class="blogs-container">
+    <div class="title-container">
+      <p class="subtitle-blog">делимся впечатлениями</p>
+      <h2 class="title-blog boldng">Блог о путешествиях</h2>
+    </div>
+    <div class="blogs container">
+      @for (blog of blogs; track $index) {
+        <div class="blog">
+          <div>
+            <img [src]="'images/' + blog.image + '.png'" alt="">
+          </div>
+          <div class="description-blog-container">
+            <div class="titles">
+              <h2 [class]="blog.id == selectedUnderline? 'main-title bold underline' : 'main-title bold'" (mousemove)="selectedUnderline = blog.id" class="main-title bold">{{ blog.title }}</h2>
+              <p class="description-blog fs-14">{{ blog.description }}</p>
+            </div>
+            <div class="bold fs-14 links">
+              <p class="data-blog">01/04/2023</p>
+              <p>читать статью</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="primeri-btn materials-btn" (click)="MessageService.addMessage(MessageService.currentCondition.WARN)">Другие материалы</button>
+  </div>
+</section>
+}
+<ng-template #service  let-name="name">
+<div class="service">
+  <img src="images/envelope-icon.svg" alt="calendar" width="40px" height="40px">
+  <div class="bold condition-container">
+    <h2 class="condition fs-16">{{ name }}</h2>
+    <p class="message-content fs-14">Message Content</p>
+  </div>
+</div>
+</ng-template>
+<div class="ddd">
+  @for (condition of MessageService.conditions; track $index) {
+    <div>
+      <img class="close-X" src="images/close-X-icon.svg" alt="close-X" width="20px" height="20px" (click)="MessageService.closeButton($index)">
+      <ng-container [ngTemplateOutlet]="service" [ngTemplateOutletContext]="{ name: condition.condition}"></ng-container> 
+    </div>
+  }
+</div>
