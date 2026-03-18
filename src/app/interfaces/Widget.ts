@@ -1,3 +1,1 @@
-export interface IWidget { 
-  currentWidget: string; 
-}
+export type Widget = 'data' | 'clicker';

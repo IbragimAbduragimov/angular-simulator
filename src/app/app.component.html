@@ -95,7 +95,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p>
-        <button class="primeri-btn" (click)="MessageService.addMessage(MessageService.currentCondition.INFO)">программа тура</button>
+        <button class="primeri-btn">программа тура</button>
       </div>
     </div>
   </div>
@@ -125,7 +125,7 @@
         </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn" (click)="MessageService.addMessage(MessageService.currentCondition.ERROR)">Стоимость программ</button>
+    <button class=" primeri-btn prise-programm-btn">Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
@@ -134,81 +134,4 @@
     <img src="images/river.png" alt="river" width="250px" height="250px">
   </div>
 </section>
-<section class="popular-destinations">
-  <div class="container-column">
-    <div class="destinations-title">
-      <p class="explanation">по версии отдыхающих</p>
-      <h2 class="title-popular very-bold">Популярные направления</h2>
-    </div>
-    <div class="container directions">
-      @for (direction of directions; track $index) {
-        <div class="direction">
-          <div><img class="direction-bg" [src]="'/images/' + direction.image + '.png'" alt="" width= "380px" height="500px"></div>
-          <div class="estimation">
-            <img src="images/star-icon.svg" alt="">
-            <p class="estimation-number fs-14 bold">{{ direction.estimation }}</p>
-          </div>
-          <div class="description-direction">
-            <div class="bg-overlay"></div>
-            <div class="footer">
-              <p class="title-direction bold">{{ direction.title }}</p>
-              <p class="description-text fs-14">{{ direction.description }}</p>
-            </div>
-            <div class="price-container fs-20 bold">
-              <p>{{ direction.price }} $</p>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-    <button class="primeri-btn rating ">
-      Рейтинг направнений
-    </button>
-  </div>
-</section>
-<section class="about-blogs">
-  <div class="blogs-container">
-    <div class="title-container">
-      <p class="subtitle-blog">делимся впечатлениями</p>
-      <h2 class="title-blog boldng">Блог о путешествиях</h2>
-    </div>
-    <div class="blogs container">
-      @for (blog of blogs; track $index) {
-        <div class="blog">
-          <div>
-            <img [src]="'images/' + blog.image + '.png'" alt="">
-          </div>
-          <div class="description-blog-container">
-            <div class="titles">
-              <h2 [class]="blog.id == selectedUnderline? 'main-title bold underline' : 'main-title bold'" (mousemove)="selectedUnderline = blog.id" class="main-title bold">{{ blog.title }}</h2>
-              <p class="description-blog fs-14">{{ blog.description }}</p>
-            </div>
-            <div class="bold fs-14 links">
-              <p class="data-blog">01/04/2023</p>
-              <p>читать статью</p>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-    <button class="primeri-btn materials-btn" (click)="MessageService.addMessage(MessageService.currentCondition.WARN)">Другие материалы</button>
-  </div>
-</section>
 }
-<ng-template #service  let-name="name">
-<div class="service">
-  <img src="images/envelope-icon.svg" alt="calendar" width="40px" height="40px">
-  <div class="bold condition-container">
-    <h2 class="condition fs-16">{{ name }}</h2>
-    <p class="message-content fs-14">Message Content</p>
-  </div>
-</div>
-</ng-template>
-<div class="ddd">
-  @for (condition of MessageService.conditions; track $index) {
-    <div>
-      <img class="close-X" src="images/close-X-icon.svg" alt="close-X" width="20px" height="20px" (click)="MessageService.closeButton($index)">
-      <ng-container [ngTemplateOutlet]="service" [ngTemplateOutletContext]="{ name: condition.condition}"></ng-container> 
-    </div>
-  }
-</div>

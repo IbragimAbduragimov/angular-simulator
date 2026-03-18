@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js'
 import { NgTemplateOutlet } from '@angular/common';
-import { IWidget, Widget } from './interfaces/Widget.js';
+import { Widget } from './interfaces/Widget.js';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +29,7 @@ export class AppComponent {
   isLoading: boolean = false;
   underline: boolean = false;
   selectedUnderline!: number;
-  currentWidget: IWidget = 'clicker';
+  currentWidget: Widget = 'clicker';
   
 
 
