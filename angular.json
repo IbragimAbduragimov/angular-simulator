@@ -37,7 +37,6 @@
             ],
             "styles": [
               "src/assets/styles.scss"
-              "src/assets/styles.scss"
             ],
             "polyfills": [
               "zone.js"

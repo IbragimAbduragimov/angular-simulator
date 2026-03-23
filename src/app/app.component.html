@@ -1,9 +1,9 @@
 @if (isLoading == false) {
-  <div class="loading-container">
-    <img class="loading-icon" src="images/loading-icon.svg" alt="" >
-  </div>
+<div class="loading-container">
+  <img class="loading-icon" src="images/loading-icon.svg" alt="">
+</div>
 } @else {
-  <section class="first-section">
+<section class="first-section">
   <div class="main-information">
     <header class="bg-header">
       <div class="centering-device">
@@ -20,20 +20,22 @@
             <a id="blog">Блог</a>
             <a id="contacts">Контакты</a>
             <div>
-              <button class="consutation-button fs-16">Консультация</button>
+              <button class="consutation-button fs-16" id="consutation-button">Консультация</button>
             </div>
             <div class="clicker">
               @if (currentWidget === 'data') {
-                <div>
-                  <button (click)="toggleWidget('clicker')">показать дату</button>
-                  <button class="plus" (click)="plus()">+</button>
-                  <input [(ngModel)]="clicker">
-                  <button [disabled]="clicker == zero" class="minus" (click)="minus()">-</button>
-                </div>
+              <div>
+                <button id="get-date-btn" (click)="toggleWidget('clicker')">показать дату</button>
+                <button id="get-clicker-btn" (click)="toggleWidget('data')">показать кликер</button>
+                <button id="plus-btn" class="plus" (click)="plus()">+</button>
+                <input id="clicker-input" [(ngModel)]="clicker">
+                <button id="minus-btn" [disabled]="clicker == zero" class="minus" (click)="minus()">-</button>
+              </div>
               } @else {
               <div>
-                <button (click)="toggleWidget('data')">показать кликер</button>
-                <input class="input-time" [(ngModel)]="dataText">
+                <button id="get-date-btn" (click)="toggleWidget('clicker')">показать дату</button>
+                <button id="get-clicker-btn" (click)="toggleWidget('data')">показать кликер</button>
+                <input id="time-input" class="input-time" [(ngModel)]="dataText">
               </div>
               }
             </div>
@@ -47,30 +49,31 @@
     <div>
       <form class="tour-filter">
         <div class="column">
-          <select name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
+          <select id="location-select" name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
             @for (location of locations; track $index) {
-              <option>{{ location.name }}</option>
+            <option>{{ location.name }}</option>
             }
           </select>
           <p class="white">выберите из списка</p>
         </div>
         <div class="column">
-          <input name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода" [(ngModel)]="selectedDate">
+          <input id="hike-data-input" name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода"
+            [(ngModel)]="selectedDate">
           <img class="calendar-icon" src="/images/calendar-icon.svg" alt="calendar" width="18px">
           <label class="white">укажите дату</label>
         </div>
-        <div class="column"> 
-          <select name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
+        <div class="column">
+          <select id="participants-select" name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
             @for (participant of participants; track $index) {
-              <option>{{ participant.quantity }}</option>
+            <option>{{ participant.quantity }}</option>
             }
           </select>
           <p class="white">выберите из списка</p>
         </div>
-        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
+        <button id="search-programm-btn" class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
       </form>
       <div class="live-input">
-        <input class="live-input-i" [(ngModel)]="liveInput" type="text">
+        <input id="live-input" class="live-input-i" [(ngModel)]="liveInput" type="text">
         <p>{{liveInput}}</p>
       </div>
     </div>
@@ -95,7 +98,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p>
-        <button class="primeri-btn">программа тура</button>
+        <button id="programm-btn" class="primeri-btn">программа тура</button>
       </div>
     </div>
   </div>
@@ -105,27 +108,21 @@
   <div class="description-container">
     <p class="proposal fs-24 ">наше предложение</p>
     <h2 class="recommendations very-bold">Лучшие программы для тебя</h2>
-    <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+    <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более
+      двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
     <div class="advantage-list">
       @for (advantag of advantages; track advantag.id) {
-        <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'" (click)="selectService(advantag.id)">
-          <div class="icon-container">
-            @if (advantag.id == 1) {
-              <img src="images/tourists-icon.svg" alt="" width="50px">
-            } 
-            @else if (advantag.id == 2) {
-                <img src="images/shield-icon.svg" alt="" width="50px">
-            } 
-            @else {
-                <img src="images/yellow-clock-icon.svg" alt="" width="50px">
-            }
-          </div>
-          <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
-          <p class="advantag-description fs-14 ">{{ advantag.description }}</p>
+      <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'"
+        (click)="selectService(advantag.id)">
+        <div class="icon-container">
+          <img [src]="'images/' + advantag.image + '.svg'" alt="" width="50px">
         </div>
+        <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
+        <p class="advantag-description fs-14 ">{{ advantag.description }}</p>
+      </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn">Стоимость программ</button>
+    <button id="prise-programm-btn" class="primeri-btn prise-programm-btn">Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">

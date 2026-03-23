@@ -3,9 +3,8 @@ import './training.ts';
 import { IAdvantage } from './interfaces/IAdvantag.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
-import { IParticipant } from './interfaces/IParticipant.js'
+import { IParticipant } from './interfaces/IParticipant.js';
 import { NgTemplateOutlet } from '@angular/common';
-import { Widget } from './interfaces/Widget.js';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +13,6 @@ import { Widget } from './interfaces/Widget.js';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
-
   companyName: string = 'Румтибет';
   selectedAdvantagId?: number;
   selectedLocation!: boolean;
@@ -29,7 +26,7 @@ export class AppComponent {
   isLoading: boolean = false;
   underline: boolean = false;
   selectedUnderline!: number;
-  currentWidget: Widget = 'clicker';
+  currentWidget: 'clicker' | 'data' = 'clicker';
   
 
 
@@ -63,16 +60,19 @@ export class AppComponent {
   advantages: IAdvantage[] = [
     {
       id: 1,
+      image: 'tourists-icon',
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     },
     {
       id: 2,
+      image: 'shield-icon',
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     },
     {
       id: 3,
+      image: 'yellow-clock-icon',
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
     }
@@ -134,7 +134,7 @@ export class AppComponent {
     return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
-  toggleWidget(widget: Widget) {
+  toggleWidget(widget: 'clicker'| 'data') {
     this.currentWidget = widget;
   }
 

@@ -25,4 +25,5 @@ export class Collecton<T> {
   deleteElement<T>(index: number, collection: T[], none: T): void {
     collection[index] = none;
   }
+  
 }
