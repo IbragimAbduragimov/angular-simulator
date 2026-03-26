@@ -1,0 +1,1 @@
+export type CurrentWidget = 'clicker' | 'data';

@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import './training.ts';
-import { IAdvantage } from './interfaces/IAdvantag.js';
+import { IAdvantage } from './interfaces/IAdvantage.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js';
 import { NgTemplateOutlet } from '@angular/common';
+import { CurrentWidget } from './types.js';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent {
   isLoading: boolean = false;
   underline: boolean = false;
   selectedUnderline!: number;
-  currentWidget: 'clicker' | 'data' = 'clicker';
+  currentWidget!: CurrentWidget
   
 
 
@@ -134,7 +135,7 @@ export class AppComponent {
     return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
-  toggleWidget(widget: 'clicker'| 'data') {
+  toggleWidget(widget: CurrentWidget) {
     this.currentWidget = widget;
   }
 
