@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js';
 import { NgTemplateOutlet } from '@angular/common';
-import { CurrentWidget } from './types.js';
+import { Widget } from './types/widget.js';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,7 @@ export class AppComponent {
   isLoading: boolean = false;
   underline: boolean = false;
   selectedUnderline!: number;
-  currentWidget!: CurrentWidget
+  currentWidget!: Widget;
   
 
 
@@ -135,7 +135,7 @@ export class AppComponent {
     return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
-  toggleWidget(widget: CurrentWidget) {
+  toggleWidget(widget: Widget): void {
     this.currentWidget = widget;
   }
 
