@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js';
 import { NgTemplateOutlet } from '@angular/common';
-import { Widget } from './types/widget.js';
+import { Widget } from './types/Widget.js';
 
 @Component({
   selector: 'app-root',
@@ -108,11 +108,7 @@ export class AppComponent {
   
   let newCount: number;
   
-  if (currentCount) {
-    newCount = Number(currentCount) + 1;
-  } else {
-    newCount = 1;
-  }
+  currentCount? newCount = Number(currentCount) + 1: newCount = 1;
 
   localStorage.setItem('visit-count', newCount.toString());
  }
