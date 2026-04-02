@@ -15,7 +15,7 @@ import { Widget } from './types/Widget.js';
 })
 export class AppComponent {
   companyName: string = 'Румтибет';
-  selectedAdvantagId?: number;
+  selectedAdvantagId!: number;
   selectedLocation!: boolean;
   selectedParticipant!: boolean;
   selectedDate!: boolean;
@@ -25,8 +25,6 @@ export class AppComponent {
   private data!: Date;
   liveInput!: string | number;
   isLoading: boolean = false;
-  underline: boolean = false;
-  selectedUnderline!: number;
   currentWidget!: Widget;
   
 
@@ -108,7 +106,7 @@ export class AppComponent {
   
   let newCount: number;
   
-  currentCount? newCount = Number(currentCount) + 1: newCount = 1;
+  currentCount? newCount = Number(currentCount) + 1 : newCount = 1;
 
   localStorage.setItem('visit-count', newCount.toString());
  }
