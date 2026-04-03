@@ -4,6 +4,8 @@ import { IAdvantage } from './interfaces/IAdvantage.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js';
+import { IDirection } from './interfaces/IDirection.js';
+import { IBlog } from './interfaces/IBlog.js';
 import { NgTemplateOutlet } from '@angular/common';
 import { Widget } from './types/Widget.js';
 
