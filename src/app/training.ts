@@ -1,10 +1,7 @@
-//создвть функцию которая возвращает сумму двух чисел. полностью типизировать
 function sumNumbers(a:number, b:number): number {
   return a + b;
 }
 
-//создать переменную которая может быть только:
-//"loading", "success", "error".
 let uploadStatus: "loading" | "success" | "error";
 
 let textFormat: 'uppercase' | 'capitalize' | 'lowercase';
@@ -19,21 +16,18 @@ interface IStudent extends IUser {
   evaluations: number;
 }
 
-//создать функцию которая  которая принимает строку и вариант,
-//как именно форматировать строку (задание №5) и на основе этого возвращает форматированную строку.
 function formatText(text: string, option: string): string {
   if (textFormat == 'uppercase') {
     return text.toUpperCase();
   }
-  if (textFormat == 'capitalize') {
+  else if (textFormat == 'capitalize') {
     return text.charAt(0).toUpperCase() + text.charAt(1).toLowerCase();
   }
-  if (textFormat == 'lowercase') {
+  else {
     return text.toLowerCase();
   }
-  return text;
 }
-// Создать функцию, которая принимает строку и символ, возвращает строку без переданного символа.
+
 function removeChar(text: string, char: string): string[] {
     return text.split(char);
 }
