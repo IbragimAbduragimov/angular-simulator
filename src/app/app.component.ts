@@ -12,6 +12,7 @@ import { MessageService } from '../message.service.js';
 import { ICondition } from './interfaces/ICondition.js';
 import { IbBusinessServices } from './interfaces/IBusinessServices.js';
 import { IImportant } from './interfaces/IImportant.js';
+import { Widget } from './types/Widget.js';
 @Component({
   selector: 'app-root',
   imports: [FormsModule, NgTemplateOutlet],
@@ -192,7 +193,8 @@ export class AppComponent {
     return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
-  toggleWidget(widget: any) {
+
+  toggleWidget(widget: Widget) {
     this.currentWidget = widget;
   }
 
