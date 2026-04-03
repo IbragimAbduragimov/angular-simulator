@@ -1,9 +1,9 @@
 @if (isLoading == false) {
-<div class="loading-container">
-  <img class="loading-icon" src="images/loading-icon.svg" alt="">
-</div>
+  <div class="loading-container">
+    <img class="loading-icon" src="images/loading-icon.svg" alt="" >
+  </div>
 } @else {
-<section class="first-section">
+  <section class="first-section">
   <div class="main-information">
     <header class="bg-header">
       <div class="centering-device">
@@ -20,22 +20,20 @@
             <a id="blog">Блог</a>
             <a id="contacts">Контакты</a>
             <div>
-              <button class="consutation-button fs-16" id="consutation-button">Консультация</button>
+              <button class="consutation-button fs-16" (click)="MessageService.addMessage(MessageService.currentCondition.SUCCESS)">Консультация</button>
             </div>
             <div class="clicker">
               @if (currentWidget === 'data') {
-              <div>
-                <button id="get-date-btn" (click)="toggleWidget('clicker')">показать дату</button>
-                <button id="get-clicker-btn" (click)="toggleWidget('data')">показать кликер</button>
-                <button id="plus-btn" class="plus" (click)="plus()">+</button>
-                <input id="clicker-input" [(ngModel)]="clicker">
-                <button id="minus-btn" [disabled]="clicker == zero" class="minus" (click)="minus()">-</button>
-              </div>
+                <div>
+                  <button (click)="toggleWidget('clicker')">показать дату</button>
+                  <button class="plus" (click)="plus()">+</button>
+                  <input [(ngModel)]="clicker">
+                  <button [disabled]="clicker == zero" class="minus" (click)="minus()">-</button>
+                </div>
               } @else {
               <div>
-                <button id="get-date-btn" (click)="toggleWidget('clicker')">показать дату</button>
-                <button id="get-clicker-btn" (click)="toggleWidget('data')">показать кликер</button>
-                <input id="time-input" class="input-time" [(ngModel)]="dataText">
+                <button (click)="toggleWidget('data')">показать кликер</button>
+                <input class="input-time" [(ngModel)]="dataText">
               </div>
               }
             </div>
@@ -49,31 +47,30 @@
     <div>
       <form class="tour-filter">
         <div class="column">
-          <select id="location-select" name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
+          <select name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
             @for (location of locations; track $index) {
-            <option>{{ location.name }}</option>
+              <option>{{ location.name }}</option>
             }
           </select>
           <p class="white">выберите из списка</p>
         </div>
         <div class="column">
-          <input id="hike-data-input" name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода"
-            [(ngModel)]="selectedDate">
+          <input name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода" [(ngModel)]="selectedDate">
           <img class="calendar-icon" src="/images/calendar-icon.svg" alt="calendar" width="18px">
           <label class="white">укажите дату</label>
         </div>
-        <div class="column">
-          <select id="participants-select" name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
+        <div class="column"> 
+          <select name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
             @for (participant of participants; track $index) {
-            <option>{{ participant.quantity }}</option>
+              <option>{{ participant.quantity }}</option>
             }
           </select>
           <p class="white">выберите из списка</p>
         </div>
-        <button id="search-programm-btn" class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
+        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
       </form>
       <div class="live-input">
-        <input id="live-input" class="live-input-i" [(ngModel)]="liveInput" type="text">
+        <input class="live-input-i" [(ngModel)]="liveInput" type="text">
         <p>{{liveInput}}</p>
       </div>
     </div>
@@ -98,7 +95,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p>
-        <button id="programm-btn" class="primeri-btn">программа тура</button>
+        <button class="primeri-btn" (click)="MessageService.addMessage(MessageService.currentCondition.INFO)">программа тура</button>
       </div>
     </div>
   </div>
@@ -108,21 +105,27 @@
   <div class="description-container">
     <p class="proposal fs-24 ">наше предложение</p>
     <h2 class="recommendations very-bold">Лучшие программы для тебя</h2>
-    <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более
-      двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+    <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
     <div class="advantage-list">
       @for (advantag of advantages; track advantag.id) {
-      <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'"
-        (click)="selectService(advantag.id)">
-        <div class="icon-container">
-          <img [src]="'images/' + advantag.image + '.svg'" alt="" width="50px">
+        <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'" (click)="selectService(advantag.id)">
+          <div class="icon-container">
+            @if (advantag.id == 1) {
+              <img src="images/tourists-icon.svg" alt="" width="50px">
+            } 
+            @else if (advantag.id == 2) {
+                <img src="images/shield-icon.svg" alt="" width="50px">
+            } 
+            @else {
+                <img src="images/yellow-clock-icon.svg" alt="" width="50px">
+            }
+          </div>
+          <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
+          <p class="advantag-description fs-14 ">{{ advantag.description }}</p>
         </div>
-        <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
-        <p class="advantag-description fs-14 ">{{ advantag.description }}</p>
-      </div>
       }
     </div>
-    <button id="prise-programm-btn" class="primeri-btn prise-programm-btn">Стоимость программ</button>
+    <button class=" primeri-btn prise-programm-btn" (click)="MessageService.addMessage(MessageService.currentCondition.ERROR)">Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
@@ -131,4 +134,163 @@
     <img src="images/river.png" alt="river" width="250px" height="250px">
   </div>
 </section>
+<section class="popular-destinations">
+  <div class="container-column">
+    <div class="destinations-title">
+      <p class="explanation">по версии отдыхающих</p>
+      <h2 class="title-popular very-bold">Популярные направления</h2>
+    </div>
+    <div class="container directions">
+      @for (direction of directions; track $index) {
+        <div class="direction">
+          <div><img class="direction-bg" [src]="'/images/' + direction.image + '.png'" alt="" width= "380px" height="500px"></div>
+          <div class="estimation">
+            <img src="images/star-icon.svg" alt="">
+            <p class="estimation-number fs-14 bold">{{ direction.estimation }}</p>
+          </div>
+          <div class="description-direction">
+            <div class="bg-overlay"></div>
+            <div class="footerr">
+              <p class="title-direction bold">{{ direction.title }}</p>
+              <p class="description-text fs-14">{{ direction.description }}</p>
+            </div>
+            <div class="price-container fs-20 bold">
+              <p>{{ direction.price }} $</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="primeri-btn rating ">
+      Рейтинг направнений
+    </button>
+  </div>
+</section>
+<section class="about-blogs">
+  <div class="blogs-container">
+    <div class="title-container">
+      <p class="subtitle-blog">делимся впечатлениями</p>
+      <h2 class="title-blog boldng">Блог о путешествиях</h2>
+    </div>
+    <div class="blogs container">
+      @for (blog of blogs; track $index) {
+        <div class="blog">
+          <div>
+            <img [src]="'images/' + blog.image + '.png'" alt="">
+          </div> <footer></footer>
+          <div class="description-blog-container">
+            <div class="titles">
+              <h2 [class]="blog.id == selectedUnderline? 'main-title bold underline' : 'main-title bold'" (mousemove)="selectedUnderline = blog.id" class="main-title bold">{{ blog.title }}</h2>
+              <p class="description-blog fs-14">{{ blog.description }}</p>
+            </div>
+            <div class="bold fs-14 links">
+              <p class="data-blog">01/04/2023</p>
+              <p>читать статью</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="primeri-btn materials-btn" (click)="MessageService.addMessage(MessageService.currentCondition.WARN)">Другие материалы</button>
+  </div>
+</section>
+
+
+
+<section class="photo-report">
+ <div>
+   <div>
+    <p class="subtitle-report">фото-отчет</p>
+    <h2 class="title-report very-bold">Делимся впечатлениями</h2>
+   </div>
+   <div class="photo-report-container">
+    <img src="images/balloons-in-the-forest.png" alt="balloons-in-the-forest">
+    <img src="images/tools.png" alt="tools">
+    <img src="images/building-by-the-sea.png" alt="building-by-the-sea">
+    <img src="images/boats.png" alt="boats">
+    <img src="images/canyon.png" alt="canyon">
+    <img src="images/map-is-ancient.png" alt="map-is-ancient">
+   </div>
+   <button class="primeri-btn">Наш pinterest</button>
+ </div>
+</section>
+
+<footer class="footer">
+  <div class="current">
+    <div class="title-current-container">
+      <p class="subtitle-current fs-18">актуально</p>
+      <h2 class="title-current very-bold">Получайте полезные рассылки о путешествиях</h2>
+    </div>
+    <div class="connection">
+      <div class="connection-email">
+        <p class="subtitle-email semi-bold fs-16">Введите e-mail адрес</p>
+        <input id="email-input" class="email-input" type="text" placeholder="name@domain.com">
+        <button class="primeri-btn subscribe-news">Подписаться на новости</button>
+      </div>
+      <div class="connection-news-container">
+        <a class="connection-news semi-bold fs-14" href="">подписываясь на новости, вы автоматически соглашаетесь с условиями обработки персональных данных и правилами рекламных рассылок</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="description-company">
+    <div class="about-company">
+      <h2 class="company-name-title bold fs-20">Компания «РумТибет»</h2>
+      <p class="description-company-name fs-14">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney.</p>
+      <div class="href-container">
+        <a href="mailto:info@domain.com">info@domain.com</a>
+        <a href="tel:+71234567890">+7 (123) 456-78-90</a>
+      </div>
+      <div class="images-container-icons">
+        <img src="images/telegram-icon.svg" alt="">
+        <img src="images/vk-icon.svg" alt="">
+        <img src="images/pinterest-icon.svg" alt="">
+        <img src="images/skype-icon.svg " alt="">
+      </div>
+    </div>
+    <div class="our-services">
+      <h2 class="our-services-title bold fs-20">Наши услуги</h2>
+      @for (businessService of businessServices; track $index) {
+        <div class="services">
+          <img src="images/arrow-icon.svg" alt="">
+          <p class="description-service fs-14">{{ businessService.service }}</p>
+        </div>
+      }
+    </div>
+    <div class="important-information">
+      <h2 class="important-title bold fs-20">Важно для путешествий</h2>
+      @for (important of importants; track $index) {
+        <div class="services">
+          <img src="images/arrow-icon.svg" alt="">
+          <p class="description-service">{{ important.important }}</p>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="politics-container">
+    <div class="flex">
+      <p class="">ИП Константинопольский К.К., 2023</p>
+      <a class="politics" href="">Политика обработки персональных данных</a>
+    </div>
+  </div>
+</footer>
+
+
 }
+<ng-template #service  let-name="name">
+<div class="service">
+  <img src="images/envelope-icon.svg" alt="calendar" width="40px" height="40px">
+  <div class="bold condition-container">
+    <h2 class="condition fs-16">{{ name }}</h2>
+    <p class="message-content fs-14">Message Content</p>
+  </div>
+</div>
+</ng-template>
+<div class="ddd">
+  @for (condition of MessageService.conditions; track $index) {
+    <div>
+      <img class="close-X" src="images/close-X-icon.svg" alt="close-X" width="20px" height="20px" (click)="MessageService.closeButton($index)">
+      <ng-container [ngTemplateOutlet]="service" [ngTemplateOutletContext]="{ name: condition.condition}"></ng-container> 
+    </div>
+  }
+</div>
