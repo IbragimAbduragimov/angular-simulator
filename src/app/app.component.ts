@@ -4,7 +4,6 @@ import { IAdvantage } from './interfaces/IAdvantag.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js';
-import { Widget } from '../Widget.js';
 import { IDirection } from './interfaces/IDirection.js';
 import { IBlog } from './interfaces/IBlog.js';
 import { NgTemplateOutlet } from '@angular/common';
@@ -13,6 +12,7 @@ import { MessageService } from '../message.service.js';
 import { ICondition } from './interfaces/ICondition.js';
 import { IbBusinessServices } from './interfaces/IBusinessServices.js';
 import { IImportant } from './interfaces/IImportant.js';
+import { Widget } from './types/widget.js';
 @Component({
   selector: 'app-root',
   imports: [FormsModule, NgTemplateOutlet],
@@ -36,7 +36,7 @@ export class AppComponent {
   private data!: Date;
   liveInput!: string | number;
   isLoading: boolean = false;
-  currentWidget: Widget = 'data';
+  currentWidget = 'data';
   underline: boolean = false;
   selectedUnderline!: number;
 
