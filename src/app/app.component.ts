@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import './training.ts';
 import { IAdvantage } from './interfaces/IAdvantag.js';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
@@ -12,7 +11,6 @@ import { MessageService } from '../message.service.js';
 import { ICondition } from './interfaces/ICondition.js';
 import { IbBusinessServices } from './interfaces/IBusinessServices.js';
 import { IImportant } from './interfaces/IImportant.js';
-import { Widget } from './types/Widget.js';
 @Component({
   selector: 'app-root',
   imports: [FormsModule, NgTemplateOutlet],
@@ -193,8 +191,7 @@ export class AppComponent {
     return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
-
-  toggleWidget(widget: Widget) {
+  toggleWidget(widget: any) {
     this.currentWidget = widget;
   }
 
