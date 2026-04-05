@@ -23,9 +23,9 @@ export class AppComponent {
 
   MessageService: MessageService = inject(MessageService);
  
-  currentCondition? = Condition;
+  currentCondition = Condition;
   companyName: string = 'Румтибет'; 
-  selectedAdvantagId?: number;
+  selectedAdvantagId!: number;
   selectedLocation!: boolean;
   selectedParticipant!: boolean; 
   selectedDate!: boolean;
@@ -165,11 +165,7 @@ export class AppComponent {
    
   let newCount: number; 
   
-  if (currentCount) { 
-    newCount = Number(currentCount) + 1;
-  } else {
-    newCount = 1;
-  } 
+  currentCount? newCount = Number(currentCount) + 1 : newCount = 1;
  
   localStorage.setItem('visit-count', newCount.toString());
  } 
