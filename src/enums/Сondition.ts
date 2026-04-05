@@ -1,6 +1,6 @@
 export enum Condition {
-  SUCCESS = 'Seccess',
-  INFO = 'Info',
-  WARN = 'Warn',
-  ERROR = 'Error'
-}
+  SUCCESS = 'Seccess', 
+  INFO = 'Info', 
+  WARN = 'Warn', 
+  ERROR = 'Error' 
+} 

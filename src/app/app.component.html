@@ -214,78 +214,18 @@
    <button class="primeri-btn">Наш pinterest</button>
  </div>
 </section>
-
-<footer class="footer">
-  <div class="current">
-    <div class="title-current-container">
-      <p class="subtitle-current fs-18">актуально</p>
-      <h2 class="title-current very-bold">Получайте полезные рассылки о путешествиях</h2>
-    </div>
-    <div class="connection">
-      <div class="connection-email">
-        <p class="subtitle-email semi-bold fs-16">Введите e-mail адрес</p>
-        <input id="email-input" class="email-input" type="text" placeholder="name@domain.com">
-        <button class="primeri-btn subscribe-news">Подписаться на новости</button>
-      </div>
-      <div class="connection-news-container">
-        <a class="connection-news semi-bold fs-14" href="">подписываясь на новости, вы автоматически соглашаетесь с условиями обработки персональных данных и правилами рекламных рассылок</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="description-company">
-    <div class="about-company">
-      <h2 class="company-name-title bold fs-20">Компания «РумТибет»</h2>
-      <p class="description-company-name fs-14">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney.</p>
-      <div class="href-container">
-        <a href="mailto:info@domain.com">info@domain.com</a>
-        <a href="tel:+71234567890">+7 (123) 456-78-90</a>
-      </div>
-      <div class="images-container-icons">
-        <img src="images/telegram-icon.svg" alt="">
-        <img src="images/vk-icon.svg" alt="">
-        <img src="images/pinterest-icon.svg" alt="">
-        <img src="images/skype-icon.svg " alt="">
-      </div>
-    </div>
-    <div class="our-services">
-      <h2 class="our-services-title bold fs-20">Наши услуги</h2>
-      @for (businessService of businessServices; track $index) {
-        <div class="services">
-          <img src="images/arrow-icon.svg" alt="">
-          <p class="description-service fs-14">{{ businessService.service }}</p>
-        </div>
-      }
-    </div>
-    <div class="important-information">
-      <h2 class="important-title bold fs-20">Важно для путешествий</h2>
-      @for (important of importants; track $index) {
-        <div class="services">
-          <img src="images/arrow-icon.svg" alt="">
-          <p class="description-service">{{ important.important }}</p>
-        </div>
-      }
-    </div>
-  </div>
-  <div class="politics-container">
-    <div class="flex">
-      <p class="">ИП Константинопольский К.К., 2023</p>
-      <a class="politics" href="">Политика обработки персональных данных</a>
-    </div>
-  </div>
-</footer>
-
-
 }
+
 <ng-template #service  let-name="name">
-<div class="service">
-  <img src="images/envelope-icon.svg" alt="calendar" width="40px" height="40px">
-  <div class="bold condition-container">
-    <h2 class="condition fs-16">{{ name }}</h2>
-    <p class="message-content fs-14">Message Content</p>
+  <div class="service">
+    <img src="images/envelope-icon.svg" alt="calendar" width="40px" height="40px">
+    <div class="bold condition-container">
+      <h2 class="condition fs-16">{{ name }}</h2>
+      <p class="message-content fs-14">Message Content</p>
+    </div>
   </div>
-</div>
 </ng-template>
+
 <div class="ddd">
   @for (condition of MessageService.conditions; track $index) {
     <div>
