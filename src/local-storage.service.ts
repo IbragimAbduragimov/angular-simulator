@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
  
-  addKey<T>(key: string, newCount: T[]): void {
-    const newCountString: string = newCount.toString();
+  addKey<T>(key: string, newCount: T): void {
+    const newCountString: string = JSON.stringify(newCount);
     localStorage.setItem(key, newCountString); 
   }
 

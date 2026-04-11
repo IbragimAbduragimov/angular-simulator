@@ -6,11 +6,8 @@ import { IParticipant } from './interfaces/IParticipant.js';
 import { IDirection } from './interfaces/IDirection.js'; 
 import { IBlog } from './interfaces/IBlog.js';
 import { NgTemplateOutlet } from '@angular/common';
-import { Message } from '../enums/Сondition.js'; 
+import { Message } from '../enums/Message.js'; 
 import { MessageService } from '../message.service.js';
-import { ICondition } from './interfaces/ICondition.js';
-import { IbBusinessServices } from './interfaces/IBusinessServices.js';
-import { IImportant } from './interfaces/IImportant.js'; 
 import { Widget } from './types/Widget.js';
 @Component({ 
   selector: 'app-root',
@@ -21,9 +18,8 @@ import { Widget } from './types/Widget.js';
 })
 export class AppComponent { 
 
-  MessageService: MessageService = inject(MessageService);
- 
-  Condition: typeof Message = Message;
+  messageService: MessageService = inject(MessageService);
+
   companyName: string = 'Румтибет'; 
   selectedAdvantagId!: number;
   selectedLocation!: boolean;
@@ -31,13 +27,13 @@ export class AppComponent {
   selectedDate!: boolean;
   clicker: number = 0; 
   readonly zero: number = 0;
-  dateText!: string | number;
   private date!: Date;
   liveInput!: string | number; 
   isLoading: boolean = false;
   currentWidget = 'data';
   selectedUnderline!: number;
   message: typeof Message  = Message;
+  dateText!: string
 
 
   locations: ILocation[] = [
@@ -139,14 +135,11 @@ export class AppComponent {
   constructor() { 
     this.saveLastVisitDate(); 
     this.saveVisitCount();
-    this.plus(); 
-    this.dateText; 
-    this.date;
+    this.plus();
     this.clicker = 0;
 
-    setInterval(() => { 
-      this.date = new Date();
-      this.dateText = this.date.toString();
+    setInterval(() => {
+      this.dateText = new Date().toString();
     }, 1000); 
   
    
@@ -155,8 +148,7 @@ export class AppComponent {
     }, 2000);
   }
   saveLastVisitDate(): void {
-    const date: Date = new Date(); 
-    const dateString: string = date.toString();
+    const dateString: string = new Date().toString();
     localStorage.setItem('date', dateString);
   }
  
