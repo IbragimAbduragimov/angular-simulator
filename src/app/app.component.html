@@ -20,7 +20,7 @@
             <a id="blog">Блог</a>
             <a id="contacts">Контакты</a>
             <div>
-              <button class="consutation-button fs-16" (click)="MessageService.addMessage(MessageService.currentCondition.SUCCESS)">Консультация</button>
+              <button class="consutation-button fs-16">Консультация</button>
             </div>
             <div class="clicker">
               @if (currentWidget === 'data') {
@@ -33,7 +33,7 @@
               } @else {
               <div>
                 <button (click)="toggleWidget('data')">показать кликер</button>
-                <input class="input-time" [(ngModel)]="dataText">
+                <input class="input-time" [(ngModel)]="dateText">
               </div>
               }
             </div>
@@ -67,7 +67,7 @@
           </select>
           <p class="white">выберите из списка</p>
         </div>
-        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
+        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()" (click)="MessageService.addMessage({ type: message.SUCCESS, text: 'Стоимость отправлена на почту'})" >Найти программу</button>
       </form>
       <div class="live-input">
         <input class="live-input-i" [(ngModel)]="liveInput" type="text">
@@ -95,7 +95,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p> 
-        <button class="primeri-btn" (click)="MessageService.addMessage(MessageService.currentCondition.INFO)">программа тура</button>
+        <button class="primeri-btn" (click)="MessageService.addMessage({ type: message.ERROR, text: 'Материалы недоступны' })" >программа тура</button>
       </div>
     </div>
   </div>
@@ -125,7 +125,7 @@
         </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn" (click)="MessageService.addMessage(MessageService.currentCondition.ERROR)">Стоимость программ</button>
+    <button class=" primeri-btn prise-programm-btn" (click)="MessageService.addMessage({ type: message.SUCCESS, text: 'Стоимость отправлена на почту'})" >Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
@@ -161,7 +161,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn rating ">
+    <button class="primeri-btn rating " (click)="MessageService.addMessage({ type: message.WARN, text: 'Программа не доступна'})" >
       Рейтинг направнений
     </button>
   </div>
@@ -191,7 +191,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn materials-btn" (click)="MessageService.addMessage(MessageService.currentCondition.WARN)">Другие материалы</button>
+    <button class="primeri-btn materials-btn" (click)="MessageService.addMessage({ type:  message.INFO, text: 'Стоимость отправлена на почту'})" >Другие материалы</button>
   </div>
 </section>
 
@@ -216,21 +216,26 @@
 </section>
 }
 
-<ng-template #service  let-name="name">
-  <div class="service">
-    <img src="images/envelope-icon.svg" alt="calendar" width="40px" height="40px">
-    <div class="bold condition-container">
-      <h2 class="condition fs-16">{{ name }}</h2>
-      <p class="message-content fs-14">Message Content</p>
+      <ng-template #messages let-message="currentMessage">
+        <div class="message">
+          <img src="images/envelope-icon.svg" width="40px" height="40px">
+        <div class="bold condition-container">
+          <h2 class="condition fs-16">{{ message.type }}</h2>
+          <p class="message-content fs-14">{{ message.text }}</p>
+        </div>
+          <img
+            (click)="MessageService.closeMessage(message)" 
+            class="close-X" src="images/close-X-icon.svg"
+            id="clossse-message" 
+            width="20px" 
+            height="20px">
+        </div>
+      </ng-template>
+    <div class="ddd">
+      @for (message of MessageService.messages; track $index) {
+        <ng-container 
+          [ngTemplateOutlet]="messages" 
+          [ngTemplateOutletContext]="{ currentMessage: message }">
+        </ng-container>
+      }
     </div>
-  </div>
-</ng-template>
-
-<div class="ddd">
-  @for (condition of MessageService.conditions; track $index) {
-    <div>
-      <img class="close-X" src="images/close-X-icon.svg" alt="close-X" width="20px" height="20px" (click)="MessageService.closeButton($index)">
-      <ng-container [ngTemplateOutlet]="service" [ngTemplateOutletContext]="{ name: condition.condition}"></ng-container> 
-    </div>
-  }
-</div>

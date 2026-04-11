@@ -6,7 +6,7 @@ import { IParticipant } from './interfaces/IParticipant.js';
 import { IDirection } from './interfaces/IDirection.js'; 
 import { IBlog } from './interfaces/IBlog.js';
 import { NgTemplateOutlet } from '@angular/common';
-import { Condition } from '../enums/Сondition.js'; 
+import { Message } from '../enums/Сondition.js'; 
 import { MessageService } from '../message.service.js';
 import { ICondition } from './interfaces/ICondition.js';
 import { IbBusinessServices } from './interfaces/IBusinessServices.js';
@@ -23,7 +23,7 @@ export class AppComponent {
 
   MessageService: MessageService = inject(MessageService);
  
-  currentCondition = Condition;
+  Condition: typeof Message = Message;
   companyName: string = 'Румтибет'; 
   selectedAdvantagId!: number;
   selectedLocation!: boolean;
@@ -31,13 +31,13 @@ export class AppComponent {
   selectedDate!: boolean;
   clicker: number = 0; 
   readonly zero: number = 0;
-  dataText!: string | number;
-  private data!: Date;
+  dateText!: string | number;
+  private date!: Date;
   liveInput!: string | number; 
   isLoading: boolean = false;
   currentWidget = 'data';
-  underline: boolean = false;  
   selectedUnderline!: number;
+  message: typeof Message  = Message;
 
 
   locations: ILocation[] = [
@@ -136,17 +136,17 @@ export class AppComponent {
     },
   ]
 
-  constructor(MessageService: MessageService) { 
+  constructor() { 
     this.saveLastVisitDate(); 
     this.saveVisitCount();
     this.plus(); 
-    this.dataText; 
-    this.data;
+    this.dateText; 
+    this.date;
     this.clicker = 0;
 
     setInterval(() => { 
-      this.data = new Date();
-      this.dataText = this.data.toString();
+      this.date = new Date();
+      this.dateText = this.date.toString();
     }, 1000); 
   
    
