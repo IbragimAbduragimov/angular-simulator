@@ -26,14 +26,14 @@ export class AppComponent {
   selectedParticipant!: boolean; 
   selectedDate!: boolean;
   clicker: number = 0; 
-  readonly zero: number = 0;
-  private date!: Date;
+  zero: number = 0;
   liveInput!: string | number; 
   isLoading: boolean = false;
   currentWidget = 'data';
   selectedUnderline!: number;
   message: typeof Message  = Message;
-  dateText!: string
+  dateText!: string;
+  private date!: Date;
 
 
   locations: ILocation[] = [
