@@ -165,13 +165,13 @@ export class AppComponent {
     this.selectedAdvantagId = advantagId;
   }
  
-  plus(clicker: number) {
-    this.clicker = clicker
+  increment(): void {
+    this.clicker + 1;
   }
 
-  minus(clicker: number): void {
+  decrement(): void {
     if (this.clicker > 0) {  
-      this.clicker = clicker
+      this.clicker - 1;
     }
   }
 

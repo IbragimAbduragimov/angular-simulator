@@ -5,10 +5,10 @@ import { Message } from './enums/Message';
 @Injectable()
 export class MessageService {
 
-  messages: IMessage[] = []
+  messages: IMessage[] = [];
 
   addMessage(type: Message, text: string): void {
-    const currentMessage = {type: type, text: text}
+    const currentMessage: IMessage = {text: text, type: type};
     this.messages = [currentMessage, ...this.messages];
     
 

@@ -26,9 +26,9 @@
               @if (currentWidget === 'data') {
                 <div>
                   <button (click)="toggleWidget('clicker')">показать дату</button>
-                  <button class="plus" (click)="plus(clicker + 1)">+</button>
+                  <button class="plus" (click)="increment()">+</button>
                   <input [(ngModel)]="clicker">
-                  <button [disabled]="clicker == zero" class="minus" (click)="minus(clicker - 1)">-</button>
+                  <button [disabled]="clicker == zero" class="minus" (click)="decrement()">-</button>
                 </div>
               } @else {
               <div>
