@@ -26,9 +26,9 @@
               @if (currentWidget === 'data') {
                 <div>
                   <button (click)="toggleWidget('clicker')">показать дату</button>
-                  <button class="plus" (click)="plus()">+</button>
+                  <button class="plus" (click)="plus(clicker + 1)">+</button>
                   <input [(ngModel)]="clicker">
-                  <button [disabled]="clicker == zero" class="minus" (click)="minus()">-</button>
+                  <button [disabled]="clicker == zero" class="minus" (click)="minus(clicker - 1)">-</button>
                 </div>
               } @else {
               <div>
@@ -67,7 +67,7 @@
           </select>
           <p class="white">выберите из списка</p>
         </div>
-        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()" (click)="messageService.addMessage({ type: message.SUCCESS, text: 'Стоимость отправлена на почту'})" >Найти программу</button>
+      <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()" (click)="messageService.addMessage(message.SUCCESS, 'Стоимость отправлена на почту')" >Найти программу</button>
       </form>
       <div class="live-input">
         <input class="live-input-i" [(ngModel)]="liveInput" type="text">
@@ -95,7 +95,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p> 
-        <button class="primeri-btn" (click)="messageService.addMessage({ type: message.ERROR, text: 'Материалы недоступны' })" >программа тура</button>
+      <button class="primeri-btn" (click)="messageService.addMessage(message.ERROR, 'Материалы недоступны')" >программа тура</button>
       </div>
     </div>
   </div>
@@ -125,7 +125,7 @@
         </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn" (click)="messageService.addMessage({ type: message.SUCCESS, text: 'Стоимость отправлена на почту'})" >Стоимость программ</button>
+    <button class=" primeri-btn prise-programm-btn" (click)="messageService.addMessage(message.SUCCESS,'Стоимость отправлена на почту')" >Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
@@ -161,7 +161,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn rating " (click)="messageService.addMessage({ type: message.WARN, text: 'Программа не доступна'})" >
+    <button class="primeri-btn rating " (click)="messageService.addMessage(message.WARN,'Программа не доступна')" >
       Рейтинг направнений
     </button>
   </div>
@@ -191,7 +191,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn materials-btn" (click)="messageService.addMessage({ type:  message.INFO, text: 'Стоимость отправлена на почту'})" >Другие материалы</button>
+    <button class="primeri-btn materials-btn" (click)="messageService.addMessage(message.INFO, 'Стоимость отправлена на почту')" >Другие материалы</button>
   </div>
 </section>
 

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from './app/interfaces/IMessage';
+import { Message } from './enums/Message';
 
 @Injectable()
 export class MessageService {
 
-  messages: IMessage[] = [];
+  messages: IMessage[] = []
 
-  addMessage(currentMessage: IMessage): void {
+  addMessage(type: Message, text: string): void {
+    const currentMessage = {type: type, text: text}
     this.messages = [currentMessage, ...this.messages];
+    
 
     setTimeout(() => {
       this.closeMessage(currentMessage);

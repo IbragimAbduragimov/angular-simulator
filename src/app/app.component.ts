@@ -135,7 +135,6 @@ export class AppComponent {
   constructor() { 
     this.saveLastVisitDate(); 
     this.saveVisitCount();
-    this.plus();
     this.clicker = 0;
 
     setInterval(() => {
@@ -153,26 +152,26 @@ export class AppComponent {
   }
  
   saveVisitCount(): void {
-  const currentCount: string | null = localStorage.getItem('visit-count');
-   
-  let newCount: number; 
-  
-  currentCount? newCount = Number(currentCount) + 1 : newCount = 1;
- 
-  localStorage.setItem('visit-count', newCount.toString());
- } 
+    const currentCount: string | null = localStorage.getItem('visit-count');
+      
+    let newCount: number; 
 
-  selectService(advantagId: number): void { 
-      this.selectedAdvantagId = advantagId;
-    }
- 
-  plus() {
-    this.clicker += 1;
+    currentCount? newCount = Number(currentCount) + 1 : newCount = 1;
+
+    localStorage.setItem('visit-count', newCount.toString());
   }
 
-  minus(): void {
+  selectService(advantagId: number): void { 
+    this.selectedAdvantagId = advantagId;
+  }
+ 
+  plus(clicker: number) {
+    this.clicker = clicker
+  }
+
+  minus(clicker: number): void {
     if (this.clicker > 0) {  
-      this.clicker -= 1;
+      this.clicker = clicker
     }
   }
 
