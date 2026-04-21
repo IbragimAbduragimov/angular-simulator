@@ -33,7 +33,6 @@ export class AppComponent {
   selectedUnderline!: number;
   message: typeof Message  = Message;
   dateText!: string;
-  private date!: Date;
 
 
   locations: ILocation[] = [
@@ -133,9 +132,6 @@ export class AppComponent {
   ]
 
   constructor() { 
-    this.saveLastVisitDate(); 
-    this.saveVisitCount();
-    this.clicker = 0;
 
     setInterval(() => {
       this.dateText = new Date().toString();

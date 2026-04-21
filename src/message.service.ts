@@ -8,7 +8,7 @@ export class MessageService {
   messages: IMessage[] = [];
 
   addMessage(type: Message, text: string): void {
-    const currentMessage: IMessage = {text: text, type: type};
+    const currentMessage: IMessage = { text: text, type: type };
     this.messages = [currentMessage, ...this.messages];
     
 

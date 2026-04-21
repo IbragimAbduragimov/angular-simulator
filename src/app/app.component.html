@@ -27,13 +27,13 @@
                 <div>
                   <button (click)="toggleWidget('clicker')">показать дату</button>
                   <button class="plus" (click)="increment()">+</button>
-                  <input [(ngModel)]="clicker">
+                  <p>{{ clicker }}</p>
                   <button [disabled]="clicker == zero" class="minus" (click)="decrement()">-</button>
                 </div>
-              } @else {
+              } @else { 
               <div>
                 <button (click)="toggleWidget('data')">показать кликер</button>
-                <input class="input-time" [(ngModel)]="dateText">
+                <p class="input-time">{{ dateText }}</p>
               </div>
               }
             </div>
@@ -71,7 +71,7 @@
       </form>
       <div class="live-input">
         <input class="live-input-i" [(ngModel)]="liveInput" type="text">
-        <p>{{liveInput}}</p>
+        <p>{{ liveInput }}</p>
       </div>
     </div>
   </div>
