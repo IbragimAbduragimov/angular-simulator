@@ -1,5 +1,5 @@
- <div class="bg-main"></div>
- <div class="main-information">
+<div class="bg-main"></div>
+  <div class="main-information">
     <div>
       <h1 class="title">Насладись прогулкой в горах с командой единомышленников</h1>
     </div>
@@ -53,7 +53,7 @@
           двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
           одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
           литературе.</p>
-        <button class="primeri-btn">программа тура</button>
+        <button class="primeri-btn" (click)="messageService.showError()">программа тура</button>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
         </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn">Стоимость программ</button>
+    <button class=" primeri-btn prise-programm-btn" (click)="messageService.showInfo()">Стоимость программ</button>
   </div>
   <div class="images-container-four">
     <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
@@ -119,9 +119,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn rating ">
-      Рейтинг направнений
-    </button>
+    <button class="primeri-btn rating" (click)="messageService.showSuccess()">Рейтинг направнений</button>
   </div>
 </section>
 <section class="about-blogs">
@@ -139,7 +137,6 @@
           <div class="description-blog-container">
             <div class="titles">
               <h2 [class]="blog.id == selectedUnderline? 'main-title bold underline' : 'main-title bold'" (mousemove)="selectedUnderline = blog.id" class="main-title bold">{{ blog.title }}</h2>
-              <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()" (click)="messageService.addMessage(message.SUCCESS, 'Стоимость отправлена на почту')" >Найти программу</button>
               <p class="description-blog fs-14">{{ blog.description }}</p>
             </div>
             <div class="bold fs-14 links">
@@ -150,7 +147,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn materials-btn" >Другие материалы</button>
+    <button class="primeri-btn materials-btn" (click)="messageService.addMessage(message.ERROR, 'ds')">Другие материалы</button>
   </div>
 </section>
 
@@ -173,3 +170,19 @@
    <button class="primeri-btn">Наш pinterest</button>
  </div>
 </section>
+
+<ng-template #messages let-message="currentMessage">
+  <div class="message">
+    <img src="images/envelope-icon.svg" width="40px" height="40px">
+  <div class="bold condition-container">
+    <h2 class="condition fs-16">{{ message.type }}</h2>
+    <p class="message-content fs-14">{{ message.text }}</p>
+  </div>
+    <img
+      (click)="messageService.closeMessage(message)" 
+      class="close-X" src="images/close-X-icon.svg"
+      id="clossse-message" 
+      width="20px" 
+      height="20px">
+  </div>
+</ng-template>
