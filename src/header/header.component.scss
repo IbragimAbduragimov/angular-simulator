@@ -1,11 +1,4 @@
-.main-information{
-  background-image: url('/images/main-bg.png');
-  width: 1920px;
-  height: 985px;
-  position: absolute;
-
-
-  .bg-header {
+ .bg-header {
     height: 120px;
     background-color: rgba(24, 18, 30, 0.5);
     padding-top: 24px;
@@ -51,65 +44,7 @@
       }
     }
   }
-}
 
-  .company-name {
-    width: 130px;
-    height: 11px;
-
-  }
-
-  .first-section {
-    width: 1920px;
-    height: 985px;
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-  }
-
-.title {
-  font-weight: 400;
-  font-size: 50px;
-  line-height: 150%;
-  text-transform: uppercase;
-  display: flex;
-  flex-wrap: wrap;
-  width: 1080px;
-  height: 150px;
-  margin-top: 463px;
-  margin-left: 370px;
-  color: var(--white-color);
-}
-
-.tour-filter {
-  gap: 24px;
-  align-items: center;
-  width: 1180px;
-  height: 161px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
-  margin-left: 370px;
-  margin-top: 41px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  .search-btn {
-    width: 213px;
-    margin-bottom: 30px;
-  }
-
-  .select-main {
-    opacity: 1;
-    gap: 8px;
-    border-radius: 8px;
-    padding-right: 16px;
-    padding-left: 16px;
-    border-width: 1px;
-    background-color: rgba(255, 255, 255, 0);
-    color: var(--white-color);
-    border-color: aliceblue;
-  }
+.active {
+  color: red;
 }
