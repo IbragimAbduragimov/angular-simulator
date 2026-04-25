@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IBlog } from '../app/interfaces/IBlog';
 import { IDirection } from '../app/interfaces/IDirection';
 import { IAdvantage } from '../app/interfaces/IAdvantag';
@@ -6,6 +6,8 @@ import { IParticipant } from '../app/interfaces/IParticipant';
 import { ILocation } from '../app/interfaces/ILocation';
 import { Widget } from '../Widget';
 import { FormsModule } from '@angular/forms';
+import { MessageService } from '../message.service';
+import { Message } from '../enums/Message';
 
 @Component({
   selector: 'app-home-page',
@@ -29,6 +31,8 @@ export class HomePageComponent {
   currentWidget: Widget = 'data';
   underline: boolean = false;
   selectedUnderline!: number;
+  messageService: MessageService = inject(MessageService);
+  message: typeof Message  = Message;
 
     locations: ILocation[] = [
       {

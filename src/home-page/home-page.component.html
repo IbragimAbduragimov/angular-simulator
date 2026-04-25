@@ -139,6 +139,7 @@
           <div class="description-blog-container">
             <div class="titles">
               <h2 [class]="blog.id == selectedUnderline? 'main-title bold underline' : 'main-title bold'" (mousemove)="selectedUnderline = blog.id" class="main-title bold">{{ blog.title }}</h2>
+              <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()" (click)="messageService.addMessage(message.SUCCESS, 'Стоимость отправлена на почту')" >Найти программу</button>
               <p class="description-blog fs-14">{{ blog.description }}</p>
             </div>
             <div class="bold fs-14 links">
@@ -149,7 +150,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn materials-btn">Другие материалы</button>
+    <button class="primeri-btn materials-btn" >Другие материалы</button>
   </div>
 </section>
 
