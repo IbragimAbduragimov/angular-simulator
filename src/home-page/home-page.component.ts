@@ -7,7 +7,6 @@ import { ILocation } from '../app/interfaces/ILocation';
 import { Widget } from '../Widget';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../message.service';
-import { Message } from '../enums/Message';
 
 @Component({
   selector: 'app-home-page',
@@ -17,22 +16,17 @@ import { Message } from '../enums/Message';
 })
 export class HomePageComponent {
   
-  companyName: string = 'Румтибет';
   selectedAdvantagId?: number;
   selectedLocation!: boolean;
   selectedParticipant!: boolean;
   selectedDate!: boolean;
   clicker: number = 0;
-  readonly zero: number = 0;
-  dataText!: string | number;
-  private data!: Date;
   liveInput!: string | number;
   isLoading: boolean = false;
   currentWidget: Widget = 'data';
   underline: boolean = false;
   selectedUnderline!: number;
   messageService: MessageService = inject(MessageService);
-  message: typeof Message  = Message;
 
     locations: ILocation[] = [
       {

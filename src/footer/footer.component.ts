@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { IImportant } from '../app/interfaces/IImportant';
-import { IbBusinessServices } from '../app/interfaces/IBusinessServices';
 
 @Component({
   selector: 'app-footer',
@@ -10,7 +8,7 @@ import { IbBusinessServices } from '../app/interfaces/IBusinessServices';
 })
 export class FooterComponent {
    
-    businessServices: IbBusinessServices[] = [
+    businessServices: { service: string }[] = [
       {
         service: 'Прогулки в горы летом'
       },
@@ -31,7 +29,7 @@ export class FooterComponent {
       },
     ]
   
-    importants: IImportant[] = [
+    articles: { important: string }[] = [
       {
         important: 'Как собрать в долгий поход?'
       },

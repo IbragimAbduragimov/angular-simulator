@@ -7,7 +7,6 @@ export class MessageService {
 
 
   messages: IMessage[] = [];
-  message: typeof Message = Message;
 
    addMessage(type: Message, text: string): void {
     const currentMessage: IMessage = { text: text, type: type };
@@ -20,19 +19,19 @@ export class MessageService {
   }
 
   showWarn(): void {
-    this.addMessage(this.message.WARN,'Программа не доступна');
+    this.addMessage(Message.WARN,'Программа не доступна');
   }
 
   showError(): void {
-    this.addMessage(this.message.ERROR, 'Материалы недоступны');
+    this.addMessage(Message.ERROR, 'Материалы недоступны');
   }
 
   showSuccess(): void {
-    this.addMessage(this.message.SUCCESS,'Стоимость отправлена на почту');
+    this.addMessage(Message.SUCCESS,'Стоимость отправлена на почту');
   }
 
   showInfo(): void {
-    this.addMessage(this.message.INFO, 'Стоимость отправлена на почту');
+    this.addMessage(Message.INFO, 'Стоимость отправлена на почту');
   }
 
   closeMessage(currentMessage: IMessage): void {
