@@ -6,9 +6,8 @@
       </div>
       <div class="main-crossings fs-18 semi-bold">
         @for (navigation of navigations; track $index) {
-          <a [routerLink]="navigation.routerLink" routerLinkActive="active">{{ navigation.text }}</a>
+          <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="navigation.routerLink" routerLinkActive="active">{{ navigation.text }}</a>
         }
-
       </div>
     </div>
   </div>

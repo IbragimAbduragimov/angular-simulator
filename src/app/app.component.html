@@ -8,6 +8,15 @@
   <app-footer></app-footer>
 }
 
+<div class="messages-container">
+  @for (message of messageService.messages; track $index) {
+    <ng-container 
+      [ngTemplateOutlet]="messages" 
+      [ngTemplateOutletContext]="{ currentMessage: message }">
+    </ng-container>
+  }
+</div>
+
 <ng-template #messages let-message="currentMessage">
   <div class="message">
     <img src="images/envelope-icon.svg" width="40px" height="40px">

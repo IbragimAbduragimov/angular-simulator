@@ -147,7 +147,7 @@
         </div>
       }
     </div>
-    <button class="primeri-btn materials-btn" (click)="messageService.addMessage(message.ERROR, 'ds')">Другие материалы</button>
+    <button class="primeri-btn materials-btn" (click)="messageService.showError()">Другие материалы</button>
   </div>
 </section>
 
@@ -170,19 +170,3 @@
    <button class="primeri-btn">Наш pinterest</button>
  </div>
 </section>
-
-<ng-template #messages let-message="currentMessage">
-  <div class="message">
-    <img src="images/envelope-icon.svg" width="40px" height="40px">
-  <div class="bold condition-container">
-    <h2 class="condition fs-16">{{ message.type }}</h2>
-    <p class="message-content fs-14">{{ message.text }}</p>
-  </div>
-    <img
-      (click)="messageService.closeMessage(message)" 
-      class="close-X" src="images/close-X-icon.svg"
-      id="clossse-message" 
-      width="20px" 
-      height="20px">
-  </div>
-</ng-template>
