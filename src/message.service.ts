@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Condition } from './enums/Сondition';
-import { ICondition } from './app/interfaces/ICondition';
+import { IMessage } from './app/interfaces/IMessage';
+import { Message } from './enums/Message';
 
 @Injectable()
 export class MessageService {
-  currentCondition = Condition;
-  conditions: ICondition[] = [];
 
-  
-  
-  addMessage(currentCondition: Condition) {
-    this.conditions.push({condition: currentCondition});
+  messages: IMessage[] = [];
+
+  addMessage(type: Message, text: string): void {
+    const currentMessage: IMessage = { text: text, type: type };
+    this.messages = [currentMessage, ...this.messages];
+    
 
     setTimeout(() => {
-      this.conditions.shift();
+      this.closeMessage(currentMessage);
     }, 5000);
   }
 
-  closeButton(index: number) {
-    this.conditions.splice(index, 1);
+  closeMessage(currentMessage: IMessage): void {
+    this.messages = this.messages.filter((messageToRemove: IMessage) => messageToRemove !== currentMessage);
   }
-}
+
+};
