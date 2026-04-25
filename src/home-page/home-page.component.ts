@@ -5,15 +5,11 @@ import { IAdvantage } from '../app/interfaces/IAdvantag';
 import { IParticipant } from '../app/interfaces/IParticipant';
 import { ILocation } from '../app/interfaces/ILocation';
 import { Widget } from '../Widget';
-import { FooterComponent } from '../footer/footer.component';
-import { HeaderComponent } from '../header/header.component';
-import { NgTemplateOutlet } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, NgTemplateOutlet, HeaderComponent, FooterComponent, RouterOutlet],
+  imports: [FormsModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })

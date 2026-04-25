@@ -14,7 +14,7 @@ import { HeaderComponent } from "../header/header.component";
 import { RouterOutlet } from '@angular/router';
 @Component({ 
   selector: 'app-root',
-  imports: [FormsModule, NgTemplateOutlet, FooterComponent, HeaderComponent, RouterOutlet],
+  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet],
   templateUrl: 'app.component.html', 
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]
