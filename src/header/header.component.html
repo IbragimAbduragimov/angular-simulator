@@ -1,0 +1,36 @@
+<header class="bg-header">
+  <div class="centering-device">
+    <div class="header">
+      <div class="company-icon column">
+        <img src="/images/logo-company.svg" alt="mountains" width="137">
+        <span class="company-name fs-18">{{ companyName }}</span>
+      </div>
+      <div class="main-crossings fs-18 semi-bold">
+        <a id="home">Главная</a>
+        <a id="about-gid">Про гида</a>
+        <a id="programes">Программа тура</a>
+        <a id="price">Стоимость</a>
+        <a id="blog">Блог</a>
+        <a id="contacts">Контакты</a>
+        <div>
+          <button class="consutation-button fs-16">Консультация</button>
+        </div>
+        <div class="clicker">
+          @if (currentWidget === 'data') {
+            <div>
+              <button (click)="toggleWidget('clicker')">показать дату</button>
+              <button class="plus" (click)="increment()">+</button>
+              <p>{{ clicker }}</p>
+              <button [disabled]="clicker == 0" class="minus" (click)="decrement()">-</button>
+            </div>
+          } @else { 
+          <div>
+            <button (click)="toggleWidget('data')">показать кликер</button>
+            <p class="input-time">{{ dateText }}</p>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
