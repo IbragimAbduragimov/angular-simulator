@@ -26,10 +26,9 @@ export class AppComponent {
   selectedParticipant!: boolean; 
   selectedDate!: boolean;
   clicker: number = 0; 
-  zero: number = 0;
-  liveInput!: string | number; 
+  liveInput!: string; 
   isLoading: boolean = false;
-  currentWidget = 'data';
+  currentWidget: string = 'data';
   selectedUnderline!: number;
   message: typeof Message  = Message;
   dateText!: string;
@@ -132,6 +131,9 @@ export class AppComponent {
   ]
 
   constructor() { 
+    this.saveLastVisitDate(); 
+    this.saveVisitCount();
+
 
     setInterval(() => {
       this.dateText = new Date().toString();

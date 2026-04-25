@@ -28,7 +28,7 @@
                   <button (click)="toggleWidget('clicker')">показать дату</button>
                   <button class="plus" (click)="increment()">+</button>
                   <p>{{ clicker }}</p>
-                  <button [disabled]="clicker == zero" class="minus" (click)="decrement()">-</button>
+                  <button [disabled]="clicker == 0" class="minus" (click)="decrement()">-</button>
                 </div>
               } @else { 
               <div>
