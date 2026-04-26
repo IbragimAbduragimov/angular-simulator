@@ -9,9 +9,12 @@ import { NgTemplateOutlet } from '@angular/common';
 import { Message } from '../enums/Message.js'; 
 import { MessageService } from '../message.service.js';
 import { Widget } from './types/Widget.js';
+import { FooterComponent } from "../footer/footer.component";
+import { HeaderComponent } from "../header/header.component";
+import { RouterOutlet } from '@angular/router';
 @Component({ 
   selector: 'app-root',
-  imports: [FormsModule, NgTemplateOutlet],
+  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, NgTemplateOutlet],
   templateUrl: 'app.component.html', 
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]

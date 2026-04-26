@@ -1,0 +1,202 @@
+
+.photo-report {
+  padding: 85px 370px 300px 370px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  .subtitle-report {
+    color: var(--secondary-color);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 20px;
+  }
+
+  .title-report {
+    font-size: 32px;
+    line-height: 120%;
+    margin-bottom: 40px;
+  }
+
+  .photo-report-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: 520px;
+    width: 1180px;
+    margin-bottom: 50px;
+  }
+}
+
+.current {
+  padding: 40px 100px;
+  width: 1180px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 15px 0px rgba(24, 18, 30, 0.12);
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: -284px;
+  background-color: var(--white-color);
+  color: var(--primari-color);
+  display: flex;
+  margin-bottom: 80px;
+  height: 116px;
+
+  .subtitle-current {
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0%;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+  }
+
+  .title-current {
+    font-size: 26px;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+
+  .subtitle-email {
+    line-height: 20px;
+    letter-spacing: 0%;
+    margin-bottom: 8px;
+  }
+
+  .email-input {
+    width: 280px;
+    height: 44px;
+    opacity: 1;
+    gap: 10px;
+    padding-right: 16px;
+    padding-left: 16px;
+    border-radius: 4px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+  }
+
+  .subscribe-news {
+    width: 240;
+    height: 44;
+    opacity: 1;
+    gap: 10px;
+    padding-top: 12px;
+    padding-right: 24px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    border-radius: 4px;
+  }
+
+  .connection-news {
+    line-height: 18px;
+    letter-spacing: 0%;
+    text-decoration: none;
+    color: var(--primari-color);
+  }
+
+  .title-current-container {
+    height: 90px;
+    width: 380px;
+  }
+
+  .connection-news-container {
+    width: 536px;
+  }
+}
+
+.footer {
+  padding: 178px 370px 0px 370px;
+  background-color: var(--green-color);
+  color: var(--white-color);
+    a {
+    color: var(--white-color);
+  }
+  height: 409px;
+}
+
+.about-company {
+  width: 480px;
+  height: 263px;
+}
+
+.our-services {
+  width: 280px;
+  height: 232px;
+
+  &-title {
+    line-height: 24px;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
+  }
+}
+
+.important-information {
+  width: 280px;
+  height: 200px;
+}
+
+.description-company {
+  display: flex;
+  width: 1180px;
+  margin: 0 auto;
+}
+
+.company-name-title {
+  margin-bottom: 17px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.description-company-name {
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0%;
+  width: 456px;
+  margin-bottom: 80px;
+}
+
+.href-container {
+  display: flex;
+  width: 480px;
+  gap: 24px;
+}
+
+.images-container-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.services {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.description-service {
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0%;
+}
+
+.important-title {
+  line-height: 24px;
+  letter-spacing: 0%;
+  margin-bottom: 20px;
+}
+
+.politics-container {
+  width: 100%;
+  background-color: var(--primari-color);
+  margin-top: 88px;
+  height: 66px;
+  display: flex;
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 1180px;
+    align-items: center;
+  }
+}

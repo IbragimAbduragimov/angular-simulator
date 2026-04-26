@@ -1,0 +1,14 @@
+<header class="bg-header">
+  <div class="centering-device">
+    <div class="header">
+      <div class="company-icon column">
+        <img src="/images/logo-company.svg" alt="mountains" width="137">
+      </div>
+      <div class="main-crossings fs-18 semi-bold">
+        @for (navigation of navigations; track $index) {
+          <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="navigation.routerLink" routerLinkActive="active">{{ navigation.text }}</a>
+        }
+      </div>
+    </div>
+  </div>
+</header>
