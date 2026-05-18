@@ -20,16 +20,16 @@ export class UserService {
   users$ = this.userApi.getUsers();
   
   
-  setUsers(value: unknown) {
+  setUsers<T>(value: T) {
     this.userSubject.next(value);
   }
 
   getUser() {
-    this.user$.subscribe()
+    this.user$.subscribe();
   }
 
   loadUsers() {
-    return this.userApi.getUsers()
+    return this.userApi.getUsers();
       .pipe(
         tap(() => this.loader.showLouder()),
         catchError((err: any) => {
