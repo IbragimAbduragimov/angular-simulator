@@ -7,6 +7,7 @@ import { ILocation } from '../app/interfaces/ILocation';
 import { Widget } from '../Widget';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../message.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',

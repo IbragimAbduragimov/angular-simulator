@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from './app/interfaces/IMessage';
 import { Message } from './enums/Message';
+import { BehaviorSubject, filter, map, Subject } from 'rxjs';
+
 
 @Injectable()
 export class MessageService {
 
+  private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
+ 
+  messages$ = this.messagesSubject.asObservable();
 
-  messages: IMessage[] = [];
-
-   addMessage(type: Message, text: string): void {
+  addMessage(type: Message, text: string): void {
     const currentMessage: IMessage = { text: text, type: type };
-    this.messages = [currentMessage, ...this.messages];
-    
+    const messageList = this.messagesSubject.getValue();
+    this.messagesSubject.next([currentMessage, ...messageList]);
 
     setTimeout(() => {
       this.closeMessage(currentMessage);
@@ -25,7 +28,7 @@ export class MessageService {
   showError(): void {
     this.addMessage(Message.ERROR, 'Материалы недоступны');
   }
-
+ 
   showSuccess(): void {
     this.addMessage(Message.SUCCESS,'Стоимость отправлена на почту');
   }
@@ -33,9 +36,10 @@ export class MessageService {
   showInfo(): void {
     this.addMessage(Message.INFO, 'Стоимость отправлена на почту');
   }
-
+ 
   closeMessage(currentMessage: IMessage): void {
-    this.messages = this.messages.filter((messageToRemove: IMessage) => messageToRemove !== currentMessage);
+    const messages: IMessage[] = this.messagesSubject.value;
+    const message: IMessage[] = messages.filter((messageToRemove: IMessage) => messageToRemove !== currentMessage);
+    this.messagesSubject.next(message);
   }
-
 }
