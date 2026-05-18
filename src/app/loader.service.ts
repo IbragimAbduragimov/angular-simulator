@@ -11,11 +11,11 @@ export class LoaderService {
   loader$: Observable<boolean> = this.isLoadingSubject.asObservable();
 
 
-  showLouder() {
+  showLouder(): void {
     this.isLoadingSubject.next(true);
   }
 
-  hideLoader() {
+  hideLoader(): void {
     this.isLoadingSubject.next(false);
   }
 }

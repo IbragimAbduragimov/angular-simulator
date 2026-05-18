@@ -11,25 +11,25 @@ import { LoaderService } from './loader.service';
 })
 export class UserService {
 
-  private userSubject = new BehaviorSubject<unknown | undefined>(undefined);
+  private userSubject: BehaviorSubject<unknown> = new BehaviorSubject<unknown | undefined>(undefined);
 
   user$: Observable<unknown> = this.userSubject.asObservable();
 
   userApi: UserApiService = inject(UserApiService);
-  loader: LoaderService = inject(LoaderService)
-  users$ = this.userApi.getUsers();
+  loader: LoaderService = inject(LoaderService);
+  users$: Observable<any> = this.userApi.getUsers();
   
   
-  setUsers<T>(value: T) {
+  setUsers<T>(value: T): void {
     this.userSubject.next(value);
   }
 
-  getUser() {
+  getUser(): void {
     this.user$.subscribe();
   }
 
-  loadUsers() {
-    return this.userApi.getUsers();
+  loadUsers(): Observable<any> {
+    return this.userApi.getUsers()
       .pipe(
         tap(() => this.loader.showLouder()),
         catchError((err: any) => {
