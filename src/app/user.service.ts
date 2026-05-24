@@ -3,6 +3,7 @@ import { UserApiService } from './user-api.service';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, finalize, Observable, of, tap } from 'rxjs';
 import { LoaderService } from './loader.service';
+import { IUser } from './interfaces/IUser';
 
 
 
@@ -11,27 +12,27 @@ import { LoaderService } from './loader.service';
 })
 export class UserService {
 
-  private userSubject: BehaviorSubject<unknown> = new BehaviorSubject<unknown | undefined>(undefined);
+  private userSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
 
-  user$: Observable<unknown> = this.userSubject.asObservable();
+  user$: Observable<IUser[]> = this.userSubject.asObservable();
 
   userApi: UserApiService = inject(UserApiService);
   loader: LoaderService = inject(LoaderService);
-  users$: Observable<any> = this.userApi.getUsers();
+  users$: Observable<IUser[]> = this.userApi.getUsers();
   
   
-  setUsers<T>(value: T): void {
-    this.userSubject.next(value);
+  setUsers(user: IUser[]): void {
+    this.userSubject.next(user);
   }
 
-  getUser(): void {
-    this.user$.subscribe();
+  getUser(): IUser[] {
+    return this.userSubject.getValue()
   }
 
-  loadUsers(): Observable<any> {
+  loadUsers(): Observable<IUser[]> {
     return this.userApi.getUsers()
       .pipe(
-        tap(() => this.loader.showLouder()),
+        tap(() => this.loader.showLoader()),
         catchError((err: any) => {
           console.error('ошибка загрузки', err);
           return of([]);
