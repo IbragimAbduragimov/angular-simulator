@@ -12,34 +12,35 @@ import { IUser } from './interfaces/IUser';
 })
 export class UserService {
 
-  private userSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
-
-  user$: Observable<IUser[]> = this.userSubject.asObservable();
-
   userApi: UserApiService = inject(UserApiService);
+
+  private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
+
+  users$: Observable<IUser[]> = this.usersSubject.asObservable();
   loader: LoaderService = inject(LoaderService);
-  users$: Observable<IUser[]> = this.userApi.getUsers();
+  usersInfo$: Observable<IUser[]> = this.userApi.getUsers();
   
   
   setUsers(user: IUser[]): void {
-    this.userSubject.next(user);
+    this.usersSubject.next(user);
   }
 
   getUser(): IUser[] {
-    return this.userSubject.getValue()
+    return this.usersSubject.getValue();
   }
 
   loadUsers(): Observable<IUser[]> {
-    return this.userApi.getUsers()
+    of()
       .pipe(
         tap(() => this.loader.showLoader()),
-        catchError((err: any) => {
+        catchError((err: Error) => {
           console.error('ошибка загрузки', err);
           return of([]);
         }),
-        finalize(() => {
-          this.loader.hideLoader();
-        })
       )
+    return this.userApi.getUsers()
+    .pipe(
+      finalize(() => {this.loader.hideLoader();})
+    )
   }
 }

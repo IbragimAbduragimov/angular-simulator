@@ -16,6 +16,8 @@ import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+
+  messageService: MessageService = inject(MessageService);
   
   selectedAdvantagId?: number;
   selectedLocation!: boolean;
@@ -27,7 +29,6 @@ export class HomePageComponent {
   currentWidget: Widget = 'data';
   underline: boolean = false;
   selectedUnderline!: number;
-  messageService: MessageService = inject(MessageService);
 
     locations: ILocation[] = [
       {
@@ -147,4 +148,5 @@ export class HomePageComponent {
   toggleWidget(widget: Widget) {
     this.currentWidget = widget;
   }
+  
 }

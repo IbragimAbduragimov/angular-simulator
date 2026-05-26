@@ -13,9 +13,10 @@ import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from "./loader/loader.component";
+import { MessageComponent } from "./message/message.component";
 @Component({ 
   selector: 'app-root',
-  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, NgTemplateOutlet, AsyncPipe, LoaderComponent],
+  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, NgTemplateOutlet, AsyncPipe, LoaderComponent, MessageComponent],
   templateUrl: 'app.component.html', 
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]
