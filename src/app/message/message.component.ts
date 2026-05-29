@@ -2,6 +2,7 @@ import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../../message.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-message',
