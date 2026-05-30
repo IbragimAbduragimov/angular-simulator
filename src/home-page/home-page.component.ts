@@ -7,14 +7,17 @@ import { ILocation } from '../app/interfaces/ILocation';
 import { Widget } from '../Widget';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../message.service';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule],
+  imports: [FormsModule, AsyncPipe, NgTemplateOutlet],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+
+  messageService: MessageService = inject(MessageService);
   
   selectedAdvantagId?: number;
   selectedLocation!: boolean;
@@ -26,7 +29,6 @@ export class HomePageComponent {
   currentWidget: Widget = 'data';
   underline: boolean = false;
   selectedUnderline!: number;
-  messageService: MessageService = inject(MessageService);
 
     locations: ILocation[] = [
       {
@@ -146,4 +148,5 @@ export class HomePageComponent {
   toggleWidget(widget: Widget) {
     this.currentWidget = widget;
   }
+  
 }

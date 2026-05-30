@@ -1,34 +1,9 @@
-@if (isLoading == false) {
-  <div class="loading-container">
-    <img class="loading-icon" src="images/loading-icon.svg" alt="" >
-  </div>
-} @else { 
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-}
 
-<div class="messages-container">
-  @for (message of messageService.messages; track $index) {
-    <ng-container 
-      [ngTemplateOutlet]="messages" 
-      [ngTemplateOutletContext]="{ currentMessage: message }">
-    </ng-container>
-  }
-</div>
+  <div>
+    <app-message></app-message>
+    <app-loader></app-loader>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
 
-<ng-template #messages let-message="currentMessage">
-  <div class="message">
-    <img src="images/envelope-icon.svg" width="40px" height="40px">
-  <div class="bold condition-container">
-    <h2 class="condition fs-16">{{ message.type }}</h2>
-    <p class="message-content fs-14">{{ message.text }}</p>
-  </div>
-    <img
-      (click)="messageService.closeMessage(message)" 
-      class="close-X" src="images/close-X-icon.svg"
-      id="clossse-message" 
-      width="20px" 
-      height="20px">
-  </div>
-</ng-template>
