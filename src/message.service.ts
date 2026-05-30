@@ -13,7 +13,7 @@ export class MessageService {
 
   addMessage(type: Message, text: string): void {
     const currentMessage: IMessage = { text: text, type: type };
-    const messageList = this.messagesSubject.getValue();
+    const messageList: IMessage[] = this.messagesSubject.getValue();
     this.messagesSubject.next([currentMessage, ...messageList]);
 
     setTimeout(() => {

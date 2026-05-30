@@ -1,7 +1,7 @@
 <section class="users-section">
   <h1 class="title">Список Пользователей</h1>
     <div class="users-container">
-      @for (user of userService.usersInfo$ | async; track $index) {
+      @for (user of userService.users$ | async; track $index) {
         <div class="user-container">
           <div>
             <div class="header-orange"></div>
@@ -65,7 +65,7 @@
         </div>
       }
     </div>
-    @if (!userService.usersInfo$) {
+    @if (!userService.users$) {
       <div class="not-users-container">
         <p class="title">Нет пользователей для отображения</p>
        </div>
