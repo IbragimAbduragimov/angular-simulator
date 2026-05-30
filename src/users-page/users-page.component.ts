@@ -17,7 +17,7 @@ export class UsersPageComponent {
   userService: UserService = inject(UserService);
   userApiService: UserApiService = inject(UserApiService);
 
-  constructor () {
+  constructor() {
     this.userService.loadUsers()
       .pipe(
         tap((user: IUser[]) => this.userService.setUsers(user)),

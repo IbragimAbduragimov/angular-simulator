@@ -36,7 +36,7 @@ export class UserService {
           console.error('ошибка загрузки', err);
           return of([]);
         }),
-        finalize(() => { this.loader.hideLoader(); })
+        finalize(() => this.loader.hideLoader())
       )
     }
   }
