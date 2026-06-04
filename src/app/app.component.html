@@ -1,9 +1,14 @@
 
   <div>
+    <app-loader/>
     <app-message></app-message>
-    <app-loader></app-loader>
     <app-header></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
+    <app-user-card 
+      [user]="user" 
+      (userChange)="user = $event"
+      
+    />
   </div>
 

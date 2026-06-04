@@ -10,9 +10,11 @@ export class LocalStorageService {
     localStorage.setItem(key, newCountString); 
   }
 
-  getKey(key: string): string | null { 
-    return localStorage.getItem(key);
-  } 
+  getKey<T>(key: string): T | null {
+    const value: string | null = localStorage.getItem(key); 
+   
+    return value ? JSON.parse(value) : null;
+  }
 
   clearKey(key: string): void {
     localStorage.removeItem(key); 

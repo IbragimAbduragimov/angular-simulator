@@ -1,65 +1,150 @@
 <section class="users-section">
   <h1 class="title">Список Пользователей</h1>
+  <app-users-filter (filterUser)="onSubmitFilter($event)"/>
     <div class="users-container">
-      @for (user of userService.users$ | async; track $index) {
+      @for (user of filteredUsers$ | async; track user.id) {
         <div class="user-container">
           <div>
             <div class="header-orange"></div>
             <div class="header">
-              <h1 class="user-name">{{ user.name }}</h1>
-              <h2 class="user-surname">{{ user.username }}</h2>
+              <h1 class="user-name">
+                @if(user.name == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                    {{ user.name }}
+                }</h1>
+              <h2 class="user-surname">
+                @if(user.username == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.username }}
+                    }
+              </h2>
             </div>
           </div>
           <div class="description fs-14 bold">
             <h2 class="contacts extra-bold fs-12">Контакты</h2>
             <div class="space-between">
               <p class="email-text fs-14">Эл. почта:</p>
-              <p class="user-email bold fs-14">{{ user.email }}</p>
+              <p class="user-email bold fs-14">
+               @if(user.email == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.email }}
+                    }
+              </p>
             </div>
             <div class="space-between">
               <p class="tel-text gray">Телефон:</p>
-              <p class="user-tel">{{ user.phone }}</p>
+              <p class="user-tel">              
+                  @if(user.phone == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.phone }}
+                    }
+              </p>
             </div>
             <div class="space-between">
               <p class="website-text gray">Веб-сайт:</p>
-              <p class="user-website yellow">{{ user.website }}</p>
+              <p class="user-website yellow">       
+                         @if(user.website == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.website }}
+                    }
+              </p>
             </div>
             <h2 class="address extra-bold fs-12">Адрес Проживания</h2>
             <div class="space-between">
               <p class="city-text gray">Город:</p>
-              <p class="user-text">{{ user.address.city }}</p>
+              <p class="user-text">              
+                  @if(user.address.city == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.address.city }}
+                    }
+              </p>
             </div>
             <div class="space-between">
               <p class="street-text gray">Улица:</p>
-              <p class="user-street">{{ user.address.street }}</p>
+              <p class="user-street">               
+                 @if(user.address.street == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.address.street }}
+                    }
+              </p>
             </div>
             <div class="space-between">
               <p class="office gray">Офис:</p>
-              <p class="user-office">{{ user.address.suite }}</p>
+              <p class="user-office">               
+                 @if(user.address.suite == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.address.suite }}
+                    }
+              </p>
             </div>
             <div class="space-between">
               <p class="zipcode-text gray">Индекс:</p>
-              <p class="user-zipcode">{{ user.address.zipcode }}</p>
-            </div>
+              <p class="user-zipcode">              
+                  @if(user.address.zipcode == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.address.zipcode }}
+                    }
+              </p>
+            </div>a
             <div class="space-between">
               <p class="coordinates gray">Координаты:</p>
               <div class="address-container">
-                <p class="user-address">{{ user.address.geo.lat }}</p>
-                <p class="user-address">{{ user.address.geo.lng }}</p>
+                <p class="user-address">                
+                  @if(user.address.geo.lat == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.address.geo.lat }}
+                    }
+              </p>
+                <p class="user-address">                
+                  @if(user.address.geo.lng == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.address.geo.lng }}
+                
+                    }
+              </p>
               </div>
             </div>
             <h2 class="place-work extra-bold fs-12">Место работы</h2>
             <div class="space-between">
               <p class="company-text gray">Компания:</p>
-              <p class="user-company">{{ user.company.catchPhrase }}</p>
+              <p class="user-company">                
+                @if(user.company.catchPhrase == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.company.catchPhrase }}
+                    }
+              </p>
             </div>
             <div class="space-between mission-container">
               <p class="mission gray">Миссия:</p>
-              <p class="company-name gray">{{ user.company.name }}</p>
+              <p class="company-name gray">               
+                @if(user.company.name == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.company.name }}
+                    }
+              </p>
             </div>
             <div class="space-between">
               <p class="specialization gray">Специализация:</p>
-              <p class="user-specialization">{{ user.company.bs }}</p>
+              <p class="user-specialization">                
+                @if(user.company.bs == '') {
+                  НЕИЗВЕСТНО
+                  } @else {
+                      {{ user.company.bs }}
+                    }
+              </p>
             </div>
           </div>
         </div>
@@ -71,3 +156,4 @@
        </div>
     }
 </section> 
+<app-user-create (createUser)="onSubmitForm($event)" />
