@@ -11,8 +11,7 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 })
 export class UsersFilterComponent {
 
-
-  destroyRef = inject(DestroyRef);
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   formControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 

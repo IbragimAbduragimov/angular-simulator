@@ -40,12 +40,6 @@ export class UserCreateComponent {
     }),
   });
 
-  addUser(): void {
-    const user: IUser = { ...this.userForm.value, id: Date.now() };
-    this.userService.setUsers([...this.userService.getUser(), user]);
-  }
-
-
   onSubmitForm(): void {
     const user: IUser = { ...this.userForm.value, id: Date.now() };
     this.createUser.emit(user);

@@ -33,7 +33,6 @@ export class UserService {
     return this.usersSubject.getValue();
   }
   
-
   loadUsers(): Observable<IUser[]> {
     this.loader.showLoader();
     if (this.cacheUsers.length > 0) {
@@ -43,7 +42,6 @@ export class UserService {
       .pipe(
         catchError((err: Error) => {
           console.error('ошибка загрузки', err);
-          alert('error')
           return of([]);
         }),
         finalize(() => this.loader.hideLoader())
@@ -54,4 +52,5 @@ export class UserService {
   addUser(user: IUser): void {
     this.setUsers([...this.getUser(), user]);
   }
+
 }
