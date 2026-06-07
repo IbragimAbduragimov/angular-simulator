@@ -27,7 +27,6 @@ export class UsersPageComponent {
     .pipe(
       map(([users, filter]) => users.filter((user: IUser) => user.name.toLowerCase().includes(filter.toLowerCase()))),
     );
-  user?: IUser[] | undefined;
 
   ngOnInit() {
     this.userService.loadUsers()
@@ -44,7 +43,7 @@ export class UsersPageComponent {
     this.filterSubject.next(value);
   }
 
-  onDeleteUser(user: IUser) {
+  onDeleteUser(user: IUser): void {
     this.userService.deleteUser(user);
   }
 

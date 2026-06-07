@@ -6,7 +6,6 @@
   <div class="user-details">
     <div class="section-header">
       <span>Контакты</span>
-      <div></div>
     </div>
     <div class="detail-row">
       <span>Эл. почта:</span>
@@ -64,5 +63,5 @@
       <p>{{ user.company.bs || 'Неизвестно' }}</p>
     </div>
   </div>
-  <button (click)="deleteUsers(user.id)">Удалить пользователя</button>
+  <button (click)="eraseUser(user.id)">Удалить пользователя</button>
 </div>

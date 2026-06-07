@@ -14,10 +14,10 @@ export class UserCardComponent {
   userService: UserService = inject(UserService)
 
   @Input({ required: true }) user!: IUser;
-  @Output() DeleteUser: EventEmitter<number> = new EventEmitter<number>();
+  @Output() deleteUser: EventEmitter<number> = new EventEmitter<number>();
 
-  deleteUsers(id: number): void {
-    this.DeleteUser.emit(id);
+  eraseUser(id: number): void {
+    this.deleteUser.emit(id);
   }
 
 }
