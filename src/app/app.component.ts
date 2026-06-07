@@ -18,7 +18,7 @@ import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersPageComponent } from "../users-page/users-page.component";
 @Component({ 
   selector: 'app-root',
-  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent, UserCardComponent,],
+  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent, UserCardComponent, UsersPageComponent],
   templateUrl: 'app.component.html', 
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]
@@ -39,7 +39,6 @@ export class AppComponent {
   selectedUnderline!: number;
   message: typeof Message  = Message;
   dateText!: string;
-  user: string = 'user';
 
 
   locations: ILocation[] = [

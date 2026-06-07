@@ -7,10 +7,11 @@ import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
 import { IUser } from '../app/interfaces/IUser';
 import { UserCreateComponent } from '../app/user-create/user-create.component';
 import { UsersFilterComponent } from "../app/users-filter/users-filter.component";
+import { UserCardComponent } from "../app/user-card/user-card.component";
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, FormsModule, UserCreateComponent, UsersFilterComponent],
+  imports: [AsyncPipe, FormsModule, UserCreateComponent, UsersFilterComponent, UserCardComponent],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -22,10 +23,11 @@ export class UsersPageComponent {
   
   private filterSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-    filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterSubject])
-      .pipe(
-        map(([users, filter]) => users.filter((user: IUser) => user.name.toLowerCase().includes(filter.toLowerCase()))),
+  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterSubject])
+    .pipe(
+      map(([users, filter]) => users.filter((user: IUser) => user.name.toLowerCase().includes(filter.toLowerCase()))),
     );
+  user?: IUser[] | undefined;
 
   ngOnInit() {
     this.userService.loadUsers()
@@ -34,12 +36,16 @@ export class UsersPageComponent {
       ).subscribe();
   }
 
-  onSubmitForm(user: IUser): void {
+  addUser(user: IUser): void {
     this.userService.addUser(user);
   }
 
-  onSubmitFilter(value: string): void {
+  filterUsers(value: string): void {
     this.filterSubject.next(value);
+  }
+
+  onDeleteUser(user: IUser) {
+    this.userService.deleteUser(user);
   }
 
 }

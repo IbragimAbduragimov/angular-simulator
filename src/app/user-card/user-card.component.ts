@@ -1,20 +1,23 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
+import { UserService } from '../user.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-user-card',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent {
 
-  @Input({ required: true }) user!: string;
-  @Output() userChange: EventEmitter<string> = new EventEmitter<string>();
+  userService: UserService = inject(UserService)
 
-  deleteUser(): void {
-    this.userChange.emit();
-    this.user = '';
+  @Input({ required: true }) user!: IUser;
+  @Output() DeleteUser: EventEmitter<number> = new EventEmitter<number>();
+
+  deleteUsers(id: number): void {
+    this.DeleteUser.emit(id);
   }
 
 }
