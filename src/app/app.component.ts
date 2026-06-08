@@ -14,9 +14,11 @@ import { HeaderComponent } from "../header/header.component";
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from "./loader/loader.component";
 import { MessageComponent } from "./message/message.component";
+import { UserCardComponent } from "./user-card/user-card.component";
+import { UsersPageComponent } from "../users-page/users-page.component";
 @Component({ 
   selector: 'app-root',
-  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, NgTemplateOutlet, AsyncPipe, LoaderComponent, MessageComponent],
+  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent, UserCardComponent, UsersPageComponent],
   templateUrl: 'app.component.html', 
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]
