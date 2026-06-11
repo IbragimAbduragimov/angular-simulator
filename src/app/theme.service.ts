@@ -32,6 +32,7 @@ export class ThemeService {
   ]
 
 
+
   isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable();
 
@@ -68,7 +69,8 @@ export class ThemeService {
     }
   }
 
-    toggleTheme(value: string) {
+  
+  toggleTheme(value: string) {
     if (value === Theme.AURA) {
       usePreset(Aura);
       this.localStorageService.addKey('preset', Theme.AURA);

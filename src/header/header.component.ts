@@ -31,9 +31,9 @@ export class HeaderComponent {
   faMountainSun: IconDefinition = faMountainSun
 
   paymentOptions: any[] = [
-    {label: 'Nora', value: 'nora', name: 'Nora'},
-    {label: 'Aura', value: 'aura', name: 'Aura'},
-    {label: ' Lara', value: 'lara', name: 'Lara'},
+    {label: 'Nora', value: Theme.NORA, name: 'Nora'},
+    {label: 'Aura', value: Theme.AURA, name: 'Aura'},
+    {label: ' Lara', value: Theme.LARA, name: 'Lara'},
   ];
   
 
