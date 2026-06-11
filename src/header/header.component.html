@@ -1,8 +1,12 @@
+<html>
 <header class="bg-header">
+        <div class="card flex justify-center">
+            <p-selectbutton [options]="paymentOptions" [(ngModel)]="value" optionLabel="name" optionValue="value" (click)="toggleTheme()"/>
+        </div>
   <div class="centering-device">
     <div class="header">
       <div class="company-icon column">
-        <img src="/images/logo-company.svg" alt="mountains" width="137">
+        <fa-icon [icon]="faMountainSun" alt="mountains" width="500px"></fa-icon>
       </div>
       <div class="main-crossings fs-18 semi-bold">
         @for (navigation of navigations; track $index) {
@@ -11,4 +15,11 @@
       </div>
     </div>
   </div>
+  <div>
+    <div class="card flex justify-center">
+        <p-toggleswitch (click)="toggleDarkMode()"  [(ngModel)]="checked"/>
+    </div>
+  </div>
 </header>
+
+</html>

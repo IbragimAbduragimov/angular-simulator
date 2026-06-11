@@ -1,13 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faMountainSun, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { PrimeNG } from 'primeng/config';
+import { FormsModule } from '@angular/forms';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import Lara from '@primeuix/themes/lara'
+import Aura from '@primeuix/themes/aura'
+import Nora from '@primeuix/themes/nora'
+import { ThemeService } from '../app/theme.service';
+import { LocalStorageService } from '../local-storage.service';
+import { SelectButtonModule, SelectButtonOptionClickEvent } from 'primeng/selectbutton';
+import { updatePreset, usePreset } from '@primeuix/themes';
+import { Theme } from '../enums/Theme';
 
 @Component({
+  
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule,SelectButtonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+
+  themeService: ThemeService = inject(ThemeService);
+  localStorageService: LocalStorageService = inject(LocalStorageService);
+
+  value!: string;
+  checked: boolean | undefined = false;
+  faMountainSun: IconDefinition = faMountainSun
+
+  paymentOptions: any[] = [
+    {label: 'Nora', value: 'nora', name: 'Nora'},
+    {label: 'Aura', value: 'aura', name: 'Aura'},
+    {label: ' Lara', value: 'lara', name: 'Lara'},
+  ];
+  
+
+  constructor() {
+    if(this.localStorageService.getKey('dark')) {
+      this.checked = true;
+    }
+    this.value = this.localStorageService.getKey('preset') ?? 'aura';
+  }
+
 
   navigations = [
     {
@@ -19,4 +55,20 @@ export class HeaderComponent {
       text: 'Пользователи'
     }
   ]
-}
+
+  toggleDarkMode() {
+    const element = document.querySelector('html');
+    element?.classList.toggle('my-app-dark');
+    if (this.checked) {
+      this.localStorageService.addKey('dark', true);
+    } else {
+      this.localStorageService.clearKey('dark');
+    }
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme(this.value);
+  }
+
+  }
+

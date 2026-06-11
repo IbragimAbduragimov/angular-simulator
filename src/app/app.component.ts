@@ -16,9 +16,10 @@ import { LoaderComponent } from "./loader/loader.component";
 import { MessageComponent } from "./message/message.component";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersPageComponent } from "../users-page/users-page.component";
+import { ThemeService } from './theme.service.js';
 @Component({ 
   selector: 'app-root',
-  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent, UserCardComponent, UsersPageComponent],
+  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent,],
   templateUrl: 'app.component.html', 
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]
@@ -26,6 +27,8 @@ import { UsersPageComponent } from "../users-page/users-page.component";
 export class AppComponent { 
 
   messageService: MessageService = inject(MessageService);
+  themeService: ThemeService = inject(ThemeService);
+  
 
   companyName: string = 'Румтибет'; 
   selectedAdvantagId!: number;

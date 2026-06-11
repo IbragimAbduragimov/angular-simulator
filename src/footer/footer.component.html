@@ -24,17 +24,17 @@
         <a id="number-a" href="tel:+71234567890">+7 (123) 456-78-90</a>
       </div>
       <div class="images-container-icons">
-        <img src="images/telegram-icon.svg" alt="">
-        <img src="images/vk-icon.svg" alt="">
-        <img src="images/pinterest-icon.svg" alt="">
-        <img src="images/skype-icon.svg " alt="">
+        <fa-icon [icon]="faContactBook" alt=""></fa-icon>
+        <fa-icon [icon]="faContactBook" alt=""></fa-icon>
+        <fa-icon [icon]="faContactBook" alt=""></fa-icon>
+        <fa-icon [icon]="faContactBook" alt=""></fa-icon>
       </div>
     </div>
     <div class="our-services">
       <h2 class="our-services-title bold fs-20">Наши услуги</h2>
       @for (businessService of businessServices; track $index) {
         <div class="services">
-          <img src="images/arrow-icon.svg" alt="">
+          <fa-icon [icon]="faArrowsTurnRight" alt=""></fa-icon>
           <p class="description-service fs-14">{{ businessService.service }}</p>
         </div>
       }
@@ -43,7 +43,7 @@
       <h2 class="important-title bold fs-20">Важно для путешествий</h2>
       @for (article of articles; track $index) {
         <div class="services">
-          <img src="images/arrow-icon.svg" alt="">
+          <fa-icon [icon]="faArrowsTurnRight" alt=""></fa-icon>
           <p class="description-service">{{ article.important }}</p>
         </div>
       }
