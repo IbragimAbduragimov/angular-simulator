@@ -26,10 +26,6 @@ import { ThemeService } from './theme.service.js';
 })
 export class AppComponent { 
 
-  messageService: MessageService = inject(MessageService);
-  themeService: ThemeService = inject(ThemeService);
-  
-
   companyName: string = 'Румтибет'; 
   selectedAdvantagId!: number;
   selectedLocation!: boolean;

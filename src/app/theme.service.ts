@@ -1,5 +1,5 @@
 import { AfterViewInit, inject, Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, tap } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
 import { Theme } from '../enums/Theme';
 import { updatePreset, usePreset } from '@primeuix/styled';
@@ -16,17 +16,17 @@ export class ThemeService {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-    presetOption: IPresetOption[] = [
+    presetOptions: IPresetOption[] = [
     { 
-      name: "aura",  
+      name: "Aura",  
       value: Aura,
     },
     { 
-      name: "lara",  
+      name: "Lara",  
       value: Lara, 
     },
     { 
-      name: "nora",  
+      name: "Nora",  
       value: Nora,
     }
   ]
@@ -34,43 +34,27 @@ export class ThemeService {
 
 
   isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
-  isDark$: Observable<boolean> = this.isDarkSubject.asObservable();
+  isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
+    .pipe(
+      tap((isDark) => this.isDarkSubject ? document.documentElement.classList.toggle('my-app-dark', isDark) : '')
+    )
 
   private presetSubject: BehaviorSubject<Preset> = new BehaviorSubject<Preset>(this.localStorageService.getKey<Preset>('preset') ?? {});
   preset$: Observable<Preset> = this.presetSubject.asObservable();
 
   constructor() {
-    const isDark: boolean = this.getDarkMode();
-    document.documentElement.classList.toggle('my-app-dark', isDark);
-
-    this.setTheme();
+    this.isDark$.subscribe()
   }
 
   getDarkMode(): boolean {
     return this.isDarkSubject.getValue();
   }
 
-  getPreset() {
+  getPreset(): Preset {
     return this.presetSubject.getValue();
   }
-  
-  setTheme() {
-    const theme: string | null = this.localStorageService.getKey('preset');
 
-    if (theme) {
-      const fountTheme = this.presetOption.find((currentTheme: IPresetOption) => currentTheme.name == theme);
-
-      if (fountTheme) {
-        this.presetSubject.next(fountTheme.value);
-        usePreset(fountTheme.value);
-      }
-    } else {
-      usePreset(Aura);
-    }
-  }
-
-  
-  toggleTheme(value: string) {
+  toggleTheme(value: string): void {
     if (value === Theme.AURA) {
       usePreset(Aura);
       this.localStorageService.addKey('preset', Theme.AURA);

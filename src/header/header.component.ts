@@ -1,21 +1,15 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMountainSun, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { PrimeNG } from 'primeng/config';
 import { FormsModule } from '@angular/forms';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import Lara from '@primeuix/themes/lara'
-import Aura from '@primeuix/themes/aura'
-import Nora from '@primeuix/themes/nora'
 import { ThemeService } from '../app/theme.service';
 import { LocalStorageService } from '../local-storage.service';
 import { SelectButtonModule, SelectButtonOptionClickEvent } from 'primeng/selectbutton';
-import { updatePreset, usePreset } from '@primeuix/themes';
 import { Theme } from '../enums/Theme';
 
 @Component({
-  
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule,SelectButtonModule],
   templateUrl: './header.component.html',
@@ -56,7 +50,7 @@ export class HeaderComponent {
     }
   ]
 
-  toggleDarkMode() {
+  toggleDarkMode(): void {
     const element = document.querySelector('html');
     element?.classList.toggle('my-app-dark');
     if (this.checked) {
@@ -66,7 +60,7 @@ export class HeaderComponent {
     }
   }
 
-  toggleTheme() {
+  toggleTheme(): void {
     this.themeService.toggleTheme(this.value);
   }
 

@@ -1,26 +1,28 @@
-import { APP_INITIALIZER, ApplicationConfig, inject, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import Lara from '@primeuix/themes/lara'
 import Aura from '@primeuix/themes/aura'
 import Nora from '@primeuix/themes/nora'
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
-import { ThemeService } from './theme.service';
 import { Preset } from '@primeuix/themes/types';
-import { IPresetOption } from './interfaces/IPreset';
 import { Theme } from '../enums/Theme';
 
-    function putPreset () {
-      const preset: string | null = localStorage.getItem('preset');
-      const isTrue: string | null = preset ? JSON.parse(preset) : null;
-
-      const complianceCard: Preset<Preset> = {
-        [Theme.AURA]: Aura,
-        [Theme.LARA]: Lara,
-        [Theme.NORA]: Nora,
-      }
-      return (isTrue && (complianceCard as any)[isTrue] ) ? (complianceCard as any)[isTrue] : Aura;
-    }
+function getPreset(): string | number | object {
+  const preset: string | null = localStorage.getItem('preset');
+  const parsedPreset: string | null = preset ? JSON.parse(preset) : null;
+  
+  const complianceCard: Preset<Preset> = {
+    [Theme.AURA]: Aura,
+    [Theme.LARA]: Lara,
+    [Theme.NORA]: Nora,
+  }
+  if (parsedPreset && complianceCard[parsedPreset]) {
+    return complianceCard[parsedPreset];
+  } else {
+    return Aura;
+  }
+}
 
 export const appConfig: ApplicationConfig = {
   
@@ -30,7 +32,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection(),
     providePrimeNG({
       theme: {
-        preset: putPreset(),
+        preset: getPreset(),
         options: {
           darkModeSelector: '.my-app-dark',
         }
