@@ -36,6 +36,7 @@ export class HeaderComponent {
       this.checked = true;
     }
     this.value = this.localStorageService.getKey('preset') ?? 'aura';
+    this.themeService.isDark$.subscribe();
   }
 
 

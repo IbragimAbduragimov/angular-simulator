@@ -16,20 +16,20 @@ export class ThemeService {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-    presetOptions: IPresetOption[] = [
-    { 
-      name: "Aura",  
-      value: Aura,
-    },
-    { 
-      name: "Lara",  
-      value: Lara, 
-    },
-    { 
-      name: "Nora",  
-      value: Nora,
-    }
-  ]
+  presetOptions: IPresetOption[] = [
+  { 
+    name: "Aura",  
+    value: Aura,
+  },
+  { 
+    name: "Lara",  
+    value: Lara, 
+  },
+  { 
+    name: "Nora",  
+    value: Nora,
+  }
+  ];
 
 
 
@@ -41,10 +41,6 @@ export class ThemeService {
 
   private presetSubject: BehaviorSubject<Preset> = new BehaviorSubject<Preset>(this.localStorageService.getKey<Preset>('preset') ?? {});
   preset$: Observable<Preset> = this.presetSubject.asObservable();
-
-  constructor() {
-    this.isDark$.subscribe()
-  }
 
   getDarkMode(): boolean {
     return this.isDarkSubject.getValue();
