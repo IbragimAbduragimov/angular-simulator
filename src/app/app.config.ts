@@ -10,15 +10,13 @@ import { Theme } from '../enums/Theme';
 
 function getPreset(): string | number | object {
   const preset: string | null = localStorage.getItem('preset');
-  const parsedPreset: string | null = preset ? JSON.parse(preset) : null;
-  
   const complianceCard: Preset<Preset> = {
     [Theme.AURA]: Aura,
     [Theme.LARA]: Lara,
     [Theme.NORA]: Nora,
   }
-  if (parsedPreset && complianceCard[parsedPreset]) {
-    return complianceCard[parsedPreset];
+  if (preset && complianceCard[preset]) {
+    return complianceCard[preset];
   } else {
     return Aura;
   }
