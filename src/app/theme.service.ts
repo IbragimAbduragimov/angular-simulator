@@ -17,26 +17,28 @@ export class ThemeService {
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
   presetOptions: IPresetOption[] = [
-  { 
-    name: "Aura",  
-    value: Aura,
-  },
-  { 
-    name: "Lara",  
-    value: Lara, 
-  },
-  { 
-    name: "Nora",  
-    value: Nora,
-  }
+    { 
+      name: "Aura",  
+      value: Aura,
+    },
+    { 
+      name: "Lara",  
+      value: Lara, 
+    },
+    { 
+      name: "Nora",  
+      value: Nora,
+    }
   ];
 
 
 
-  isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
+  private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
     .pipe(
-      tap((isDark) => this.isDarkSubject ? document.documentElement.classList.toggle('my-app-dark', isDark) : '')
+      tap((isDark: boolean) => {if(this.isDarkSubject) {
+        document.documentElement.classList.toggle('my-app-dark', isDark);
+      }})
     )
 
   private presetSubject: BehaviorSubject<Preset> = new BehaviorSubject<Preset>(this.localStorageService.getKey<Preset>('preset') ?? {});
@@ -46,23 +48,19 @@ export class ThemeService {
     return this.isDarkSubject.getValue();
   }
 
+  toggleDarkMode() {
+    const darkMode = this.localStorageService.getKey('dark');
+    this.isDarkSubject.next(darkMode)
+  }
+
   getPreset(): Preset {
     return this.presetSubject.getValue();
   }
 
-  toggleTheme(value: string): void {
-    if (value === Theme.AURA) {
-      usePreset(Aura);
-      this.localStorageService.addKey('preset', Theme.AURA);
-    }
-    if (value === Theme.LARA) {
-      usePreset(Lara);
-      this.localStorageService.addKey('preset', Theme.LARA);
-    }
-    if (value === Theme.NORA) {
-      usePreset(Nora);
-      this.localStorageService.addKey('preset', Theme.NORA);
-    }
+  toggleTheme(value: Theme): void {
+    const fountTheme = this.presetOptions.find((currentTheme) => currentTheme.name == value);
+    usePreset(fountTheme?.value ?? Aura);
+    this.localStorageService.addKey('preset', fountTheme?.name);
   }
 
 }

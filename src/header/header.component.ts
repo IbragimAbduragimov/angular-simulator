@@ -8,6 +8,7 @@ import { ThemeService } from '../app/theme.service';
 import { LocalStorageService } from '../local-storage.service';
 import { SelectButtonModule, SelectButtonOptionClickEvent } from 'primeng/selectbutton';
 import { Theme } from '../enums/Theme';
+import { INavigation } from '../app/interfaces/INavigation';
 
 @Component({
   selector: 'app-header',
@@ -20,9 +21,9 @@ export class HeaderComponent {
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  value!: string;
-  checked: boolean | undefined = false;
-  faMountainSun: IconDefinition = faMountainSun
+  value: Theme = this.localStorageService.getKey('preset') ?? Theme.AURA;
+  checked: boolean = this.localStorageService.getKey('dark') ? true : false;
+  faMountainSun: IconDefinition = faMountainSun;
 
   paymentOptions: any[] = [
     {label: 'Nora', value: Theme.NORA, name: 'Nora'},
@@ -32,15 +33,11 @@ export class HeaderComponent {
   
 
   constructor() {
-    if(this.localStorageService.getKey('dark')) {
-      this.checked = true;
-    }
-    this.value = this.localStorageService.getKey('preset') ?? 'aura';
     this.themeService.isDark$.subscribe();
   }
 
 
-  navigations = [
+  navigations: INavigation[] = [
     {
       routerLink: '',
       text: 'Главная'
@@ -54,11 +51,7 @@ export class HeaderComponent {
   toggleDarkMode(): void {
     const element = document.querySelector('html');
     element?.classList.toggle('my-app-dark');
-    if (this.checked) {
-      this.localStorageService.addKey('dark', true);
-    } else {
-      this.localStorageService.clearKey('dark');
-    }
+    this.checked ? this.localStorageService.addKey('dark', true) : this.localStorageService.clearKey('dark');
   }
 
   toggleTheme(): void {

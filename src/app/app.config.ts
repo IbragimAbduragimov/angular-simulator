@@ -15,11 +15,7 @@ function getPreset(): string | number | object {
     [Theme.LARA]: Lara,
     [Theme.NORA]: Nora,
   }
-  if (preset && complianceCard[preset]) {
-    return complianceCard[preset];
-  } else {
-    return Aura;
-  }
+  return preset && complianceCard[preset] ? complianceCard[preset] : Aura;
 }
 
 export const appConfig: ApplicationConfig = {
