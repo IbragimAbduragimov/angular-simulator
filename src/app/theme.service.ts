@@ -36,10 +36,12 @@ export class ThemeService {
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
     .pipe(
-      tap((isDark: boolean) => {if(this.isDarkSubject) {
-        document.documentElement.classList.toggle('my-app-dark', isDark);
-      }})
-    )
+      tap((isDark: boolean) => { 
+        if(this.isDarkSubject) {
+          document.documentElement.classList.toggle('my-app-dark', isDark);
+        }
+      })
+    );
 
   private presetSubject: BehaviorSubject<Preset> = new BehaviorSubject<Preset>(this.localStorageService.getKey<Preset>('preset') ?? {});
   preset$: Observable<Preset> = this.presetSubject.asObservable();
@@ -48,7 +50,7 @@ export class ThemeService {
     return this.isDarkSubject.getValue();
   }
 
-  toggleDarkMode() {
+  toggleDarkMode(): void {
     const darkMode = this.localStorageService.getKey('dark');
     this.isDarkSubject.next(darkMode)
   }

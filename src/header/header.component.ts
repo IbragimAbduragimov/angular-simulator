@@ -6,13 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ThemeService } from '../app/theme.service';
 import { LocalStorageService } from '../local-storage.service';
-import { SelectButtonModule, SelectButtonOptionClickEvent } from 'primeng/selectbutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../enums/Theme';
 import { INavigation } from '../app/interfaces/INavigation';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule,SelectButtonModule],
+  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule, SelectButtonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -58,5 +58,5 @@ export class HeaderComponent {
     this.themeService.toggleTheme(this.value);
   }
 
-  }
+}
 
