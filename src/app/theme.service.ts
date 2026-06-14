@@ -37,7 +37,7 @@ export class ThemeService {
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
     .pipe(
       tap((isDark: boolean) => { 
-        if(this.isDarkSubject) {
+        if(this.isDarkSubject) { 
           document.documentElement.classList.toggle('my-app-dark', isDark);
         }
       })
@@ -60,7 +60,7 @@ export class ThemeService {
   }
 
   toggleTheme(value: Theme): void {
-    const fountTheme = this.presetOptions.find((currentTheme) => currentTheme.name == value);
+    const fountTheme: IPresetOption | undefined = this.presetOptions.find((currentTheme) => currentTheme.name == value);
     usePreset(fountTheme?.value ?? Aura);
     this.localStorageService.addKey('preset', fountTheme?.name);
   }

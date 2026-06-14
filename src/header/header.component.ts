@@ -9,10 +9,11 @@ import { LocalStorageService } from '../local-storage.service';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../enums/Theme';
 import { INavigation } from '../app/interfaces/INavigation';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule, SelectButtonModule],
+  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule, SelectButtonModule, CurrencyPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -49,7 +50,7 @@ export class HeaderComponent {
   ]
 
   toggleDarkMode(): void {
-    const element = document.querySelector('html');
+    const element: HTMLHtmlElement | null = document.querySelector('html');
     element?.classList.toggle('my-app-dark');
     this.checked ? this.localStorageService.addKey('dark', true) : this.localStorageService.clearKey('dark');
   }
