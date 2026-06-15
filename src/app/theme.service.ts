@@ -31,7 +31,7 @@ export class ThemeService {
     }
   ];
 
-  private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
+  private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey<boolean>('dark') ?? false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
     .pipe(
       tap((isDark: boolean) => { 
