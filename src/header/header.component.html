@@ -10,14 +10,14 @@
       </div>
       <div class="main-crossings fs-18 semi-bold">
         @for (navigation of navigations; track $index) {
-          <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="navigation.routerLink" routerLinkActive="active">{{ navigation.text }}</a>
+          <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="navigation.link" routerLinkActive="active">{{ navigation.navigation }}</a>
         }
       </div>
     </div>
   </div>
   <div>
     <div class="card flex justify-center">
-        <p-toggleswitch (click)="toggleDarkMode()" [(ngModel)]="checked"/>
+        <p-toggleswitch (onChange)="toggleMode($event)" [ngModel]="themeService.isDark$ | async"/>
     </div>
   </div>
 </header>

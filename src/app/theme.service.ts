@@ -31,15 +31,15 @@ export class ThemeService {
     }
   ];
 
-
-
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey('dark') ?? false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
     .pipe(
       tap((isDark: boolean) => { 
-        if(this.isDarkSubject) { 
-          document.documentElement.classList.toggle('my-app-dark', isDark);
-        }
+        if (isDark) { 
+          document.documentElement.classList.add('my-app-dark');
+        } else {
+            document.documentElement.classList.remove('my-app-dark');
+          }
       })
     );
 
@@ -50,9 +50,9 @@ export class ThemeService {
     return this.isDarkSubject.getValue();
   }
 
-  toggleDarkMode(): void {
-    const darkMode = this.localStorageService.getKey('dark');
-    this.isDarkSubject.next(darkMode)
+  toggleDarkMode(isDarkMode: boolean): void { 
+    this.isDarkSubject.next(isDarkMode);
+    !this.localStorageService.getKey('dark') ? this.localStorageService.addKey('dark', isDarkMode) : this.localStorageService.addKey('dark', false)
   }
 
   getPreset(): Preset {
@@ -60,9 +60,9 @@ export class ThemeService {
   }
 
   toggleTheme(value: Theme): void {
-    const fountTheme: IPresetOption | undefined = this.presetOptions.find((currentTheme) => currentTheme.name == value);
-    usePreset(fountTheme?.value ?? Aura);
-    this.localStorageService.addKey('preset', fountTheme?.name);
+    const fountTheme: IPresetOption = this.presetOptions.find((currentTheme) => currentTheme.name == value)!;
+    usePreset(fountTheme.value);
+    this.localStorageService.addKey('preset', fountTheme.name);
   }
 
 }

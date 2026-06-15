@@ -1,4 +1,4 @@
 export interface INavigation {
-  routerLink: string;
-  text: string;
+  link: string;
+  navigation: string;
 }
