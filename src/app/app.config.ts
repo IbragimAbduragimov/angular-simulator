@@ -9,14 +9,14 @@ import { Preset } from '@primeuix/themes/types';
 import { Theme } from '../enums/Theme';
 
 function getPreset(): string | number | object {
-  const preset: string | null = localStorage.getItem('preset') ?? 'Aura';
+  const preset: string | null = localStorage.getItem('preset') ?? "Aura";
   const parsedPreset = JSON.parse(preset)
   const complianceCard: Preset<Preset> = {
     [Theme.AURA]: Aura,
     [Theme.LARA]: Lara,
     [Theme.NORA]: Nora,
   }
-  return preset && complianceCard[parsedPreset] ? complianceCard[parsedPreset] : Aura;
+  return parsedPreset && complianceCard[parsedPreset] ? complianceCard[parsedPreset] : Aura;
 }
 
 export const appConfig: ApplicationConfig = {

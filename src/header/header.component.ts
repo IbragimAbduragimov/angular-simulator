@@ -9,8 +9,7 @@ import { LocalStorageService } from '../local-storage.service';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../enums/Theme';
 import { INavigation } from '../app/interfaces/INavigation';
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { takeLast } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 import { IPaymentOption } from '../app/interfaces/IPaymentOption';
 
 @Component({
@@ -33,15 +32,6 @@ export class HeaderComponent {
     { value: Theme.AURA, name: 'Aura' },
     { value: Theme.LARA, name: 'Lara' },
   ];
-  con = 'ddas'
-
-  constructor() {
-    console.log(this.con);
-    
-    const con = JSON.stringify(this.con)
-    console.log(con);
-    
-  }
 
   navigations: INavigation[] = [
     {
