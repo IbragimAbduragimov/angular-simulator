@@ -1,7 +1,14 @@
 <html>
 <header class="bg-header">
         <div class="card flex justify-center">
-            <p-selectbutton [options]="paymentOptions" [(ngModel)]="value" optionLabel="name" optionValue="value" (click)="toggleTheme()"/>
+            <p-selectbutton
+              id="switch-theme"
+              [options]="themeService.presetOptions"
+              [ngModel]="themeService.preset$ | async"
+              (onChange)="toggleTheme($event.value)"
+              optionLabel="name"
+              optionValue="value"
+            />
         </div>
   <div class="centering-device">
     <div class="header">

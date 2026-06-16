@@ -1,6 +1,6 @@
 import { Theme } from "../../enums/Theme";
 
-export interface IPaymentOption {
+export interface IpresetOption {
   value: Theme;
   name: string;
 }

@@ -10,7 +10,6 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../enums/Theme';
 import { INavigation } from '../app/interfaces/INavigation';
 import { AsyncPipe } from '@angular/common';
-import { IPaymentOption } from '../app/interfaces/IPaymentOption';
 
 @Component({
   selector: 'app-header',
@@ -23,15 +22,7 @@ export class HeaderComponent {
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  value: Theme = this.localStorageService.getKey('preset') ?? Theme.AURA;
-  checked: boolean = this.localStorageService.getKey('dark') ? true : false;
   faMountainSun: IconDefinition = faMountainSun;
-
-  paymentOptions: IPaymentOption[] = [
-    { value: Theme.NORA, name: 'Nora' },
-    { value: Theme.AURA, name: 'Aura' },
-    { value: Theme.LARA, name: 'Lara' },
-  ];
 
   navigations: INavigation[] = [
     {
@@ -44,16 +35,12 @@ export class HeaderComponent {
     }
   ]
 
-  toggleDarkMode(): void {
-    this.localStorageService.getKey('dark') ? this.localStorageService.addKey('dark', true) : this.localStorageService.clearKey('dark');
-  }
-
-  toggleTheme(): void {
-    this.themeService.toggleTheme(this.value);
-  }
-
   toggleMode(event: ToggleSwitchChangeEvent): void {
     this.themeService.toggleDarkMode(event.checked); 
+  }
+
+  toggleTheme(value: Theme): void {
+    this.themeService.switchTheme(value);
   }
 
 }

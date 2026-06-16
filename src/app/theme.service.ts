@@ -1,5 +1,5 @@
 import { AfterViewInit, inject, Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject, tap } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, Observable, ReplaySubject, Subject, tap } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
 import { Theme } from '../enums/Theme';
 import { updatePreset, usePreset } from '@primeuix/styled';
@@ -7,7 +7,7 @@ import Lara from '@primeuix/themes/lara'
 import Aura from '@primeuix/themes/aura'
 import Nora from '@primeuix/themes/nora'
 import { Preset } from '@primeuix/themes/types';
-import { IPresetOption } from './interfaces/IPreset';
+import { IpresetOption } from './interfaces/IPresetOption';
 
 @Injectable({
   providedIn: 'root',
@@ -16,20 +16,18 @@ export class ThemeService {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  presetOptions: IPresetOption[] = [
-    { 
-      name: "Aura",  
-      value: Aura,
-    },
-    { 
-      name: "Lara",  
-      value: Lara, 
-    },
-    { 
-      name: "Nora",  
-      value: Nora,
-    }
-  ];
+
+    presetOptions: IpresetOption[] = [
+      { value: Theme.NORA, name: 'Nora' },
+      { value: Theme.AURA, name: 'Aura' },
+      { value: Theme.LARA, name: 'Lara' },
+    ];
+
+  complianceCard: Record<Theme, Preset> = {
+    [Theme.AURA]: Aura,
+    [Theme.LARA]: Lara,
+    [Theme.NORA]: Nora,
+  }
 
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey<boolean>('dark') ?? false);
   isDark$: Observable<boolean> = this.isDarkSubject.asObservable()
@@ -43,32 +41,29 @@ export class ThemeService {
       })
     );
 
-  private presetSubject: BehaviorSubject<Preset> = new BehaviorSubject<Preset>(this.localStorageService.getKey<Preset>('preset') ?? {});
-  preset$: Observable<Preset> = this.presetSubject.asObservable();
-
-  getDarkMode(): boolean {
-    return this.isDarkSubject.getValue();
-  }
+  private presetSubject: BehaviorSubject<Theme> = new BehaviorSubject(this.localStorageService.getKey('preset') ?? {});
+  preset$: Observable<Theme> = this.presetSubject.asObservable().pipe(
+    distinctUntilChanged(),
+    tap((newTheme: Theme) => {
+      this.setTheme(newTheme);
+    })
+  );
 
   toggleDarkMode(isDarkMode: boolean): void { 
     this.isDarkSubject.next(isDarkMode);
     !this.localStorageService.getKey('dark') ? this.localStorageService.addKey('dark', isDarkMode) : this.localStorageService.addKey('dark', false)
   }
 
-  getPreset(): Preset {
-    return this.presetSubject.getValue();
+  switchTheme(newTheme: Theme): void {
+    this.presetSubject.next(newTheme);
   }
 
-  toggleTheme(value: Theme): void {
-    const fountTheme: IPresetOption = this.presetOptions.find((currentTheme) => currentTheme.name == value)!;
-    usePreset(fountTheme.value);
-    this.localStorageService.addKey('preset', fountTheme.name);
+  setTheme(newTheme: Theme): void {
+    const themes: Preset = this.complianceCard[newTheme];
+    if (themes) {
+      usePreset(themes);
+    };
+    this.localStorageService.addKey('preset', newTheme);
   }
 
 }
-
-
-
-
-
-
