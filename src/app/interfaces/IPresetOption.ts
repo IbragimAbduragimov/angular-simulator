@@ -3,6 +3,5 @@ import { Theme } from "../../enums/Theme";
 
 export interface IPresetOption {
   value: Theme;
-  name: string;
-  preset: Preset
+  preset: Preset;
 }

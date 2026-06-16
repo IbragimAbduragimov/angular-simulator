@@ -17,9 +17,9 @@ export class ThemeService {
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
   presetOptions: IPresetOption[] = [
-    { value: Theme.NORA, name: 'Nora', preset: Nora },
-    { value: Theme.AURA, name: 'Aura', preset: Aura },
-    { value: Theme.LARA, name: 'Lara', preset: Lara },
+    { value: Theme.NORA, preset: Nora },
+    { value: Theme.AURA, preset: Aura },
+    { value: Theme.LARA, preset: Lara },
   ];
 
   private isDarkSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.localStorageService.getKey<boolean>('dark') ?? false);
@@ -52,7 +52,7 @@ export class ThemeService {
   }
 
   setTheme(newTheme: Theme): void {
-    const themes: IPresetOption = this.presetOptions.find((preset: IPresetOption) => preset.name === newTheme)!;
+    const themes: IPresetOption = this.presetOptions.find((preset: IPresetOption) => preset.value === newTheme)!;
     if (themes) {
       usePreset(themes.preset);
     };
