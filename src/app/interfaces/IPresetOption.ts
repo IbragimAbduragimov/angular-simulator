@@ -1,6 +1,8 @@
+import { Preset } from "@primeuix/themes/types";
 import { Theme } from "../../enums/Theme";
 
-export interface IpresetOption {
+export interface IPresetOption {
   value: Theme;
   name: string;
+  preset: Preset
 }
