@@ -15,7 +15,7 @@
         </div>
         <div class="column">
           <input name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода" [(ngModel)]="selectedDate">
-          <img class="calendar-icon" src="/images/calendar-icon.svg" alt="calendar" width="18px">
+          <fa-icon class="calendar-icon" [icon]="faCalendarWeek" alt="calendar" width="18px"></fa-icon>
           <label class="white">укажите дату</label>
         </div>
         <div class="column"> 
@@ -41,7 +41,7 @@
         <img class="mountain" src="images/mountain.png" alt="mountain" width="350px" height="400px">
         <div class="forest-container">
           <img src="images/forest.png" alt="forest" width="350px" height="400px">
-          <img class="stop-icon" src="images/stop-icon.svg" alt="stop-icon" width="50px" height="50px">
+          <fa-icon class="stop-icon" [icon]="faStopCircle" alt="stop-icon" width="50px" height="50px"></fa-icon>
         </div>
       </div>
       <div>
@@ -69,13 +69,13 @@
         <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'" (click)="selectService(advantag.id)">
           <div class="icon-container">
             @if (advantag.id == 1) {
-              <img src="images/tourists-icon.svg" alt="" width="50px">
+              <fa-icon [icon]="faPeoplePulling" alt="" width="50px"></fa-icon>
             } 
             @else if (advantag.id == 2) {
-                <img src="images/shield-icon.svg" alt="" width="50px">
+                <fa-icon [icon]="faShield" alt="" width="50px"></fa-icon>
             } 
             @else {
-                <img src="images/yellow-clock-icon.svg" alt="" width="50px">
+                <fa-icon [icon]="faClock" alt="" width="50px"></fa-icon>
             }
           </div>
           <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
@@ -103,7 +103,7 @@
         <div class="direction">
           <div><img class="direction-bg" [src]="'/images/' + direction.image + '.png'" alt="" width= "380px" height="500px"></div>
           <div class="estimation">
-            <img src="images/star-icon.svg" alt="">
+            <fa-icon [icon]="faStar" alt=""></fa-icon>
             <p class="estimation-number fs-14 bold">{{ direction.estimation }}</p>
           </div>
           <div class="description-direction">

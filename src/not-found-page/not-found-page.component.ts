@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-not-found-page',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './not-found-page.component.scss',
 })
 export class NotFoundPageComponent {
+
 
 }

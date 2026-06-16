@@ -8,10 +8,12 @@ import { Widget } from '../Widget';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../message.service';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCalendarAlt, faCalendarCheck, faCalendarDays, faCalendarWeek, faClock, faPeoplePulling, faShield, faStar, faStop, faStopCircle, faStopwatch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, AsyncPipe, NgTemplateOutlet],
+  imports: [FormsModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -19,6 +21,12 @@ export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
   
+  faCalendarWeek: IconDefinition = faCalendarWeek;
+  faStar: IconDefinition = faStar;
+  faStopCircle: IconDefinition = faStopCircle;
+  faPeoplePulling: IconDefinition = faPeoplePulling;
+  faShield: IconDefinition = faShield;
+  faClock: IconDefinition = faClock;
   selectedAdvantagId?: number;
   selectedLocation!: boolean;
   selectedParticipant!: boolean;
