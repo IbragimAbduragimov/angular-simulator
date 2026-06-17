@@ -9,7 +9,7 @@ export class GradientHowerDirective {
   @Input() gradientConfig: IGradientConfig = {
     delay: 1000,
     colors: ['#ff4545', '#00ff99', '#006aff', '#ff0095'],
-    thickness: '5px'
+    thickness: '2px'
   }
 
   constructor(private el: ElementRef) { }
