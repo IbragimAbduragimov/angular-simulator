@@ -1,4 +1,5 @@
 @use './fonts';
+@import '_gradient.scss';
 
 * {
   font-family: 'Nunito Sans';
@@ -84,4 +85,3 @@
   --white-color: black;
   --green-color:  yellow;
 }
-

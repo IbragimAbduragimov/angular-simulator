@@ -5,10 +5,12 @@
   background-color: var(--lite-color);
   display: flex;
   justify-content: center;
-  background-color: rgba(243, 245, 244, 1);;
+  background-color: rgba(243, 245, 244, 1);
+
   
   .users-list {
-    width: 1460px;
+    z-index: 10;
+    width: 1470px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
