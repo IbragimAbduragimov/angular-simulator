@@ -2,12 +2,12 @@ import { Component, EventEmitter, inject, Output, output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { IUser } from '../interfaces/IUser';
 import { UserService } from '../user.service';
-import { BoldHowerDirective } from "../bold.directive";
 import { GradientHowerDirective } from "../gradient-hower.directive";
+import { BoldOnHoverDirective } from '../bold.directive';
 
 @Component({
   selector: 'app-user-create',
-  imports: [ReactiveFormsModule, BoldHowerDirective, GradientHowerDirective],
+  imports: [ReactiveFormsModule, BoldOnHoverDirective, GradientHowerDirective, BoldOnHoverDirective],
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.scss',
 })
