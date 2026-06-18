@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, inject, Input } from '@angular/core';
 import { IGradientConfig } from './interfaces/IGradientConfig';
 
 @Directive({
@@ -12,11 +12,13 @@ export class GradientHowerDirective {
     thickness: '2px'
   }
 
-  constructor(private el: ElementRef) { }
+  constructor() { }
 
   @HostBinding('class') gradientClass!: string;
   @HostBinding('style.background-image') gradientColors!: string;
   @HostBinding('style.padding') thickness!: string;
+
+  private el: ElementRef = inject(ElementRef);
 
   timer!: number;
   delay: number = this.gradientConfig.delay!;
@@ -24,7 +26,7 @@ export class GradientHowerDirective {
   @HostListener('mouseenter')
   onEnter(): void {
     this.timer = setTimeout(() => {
-      this.gradientColors = `conic-gradient(from var(--angle), ${this.gradientConfig.colors} )`!;
+      this.gradientColors = `conic-gradient(from var(--angle), ${ this.gradientConfig.colors } )`!;
       this.thickness = this.gradientConfig.thickness!;
       this.gradientClass = 'gradient';
     }, this.delay);

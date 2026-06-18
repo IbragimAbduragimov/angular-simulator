@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Phone } from '../enums/Phone';
+import { Phone } from '../enums/PhoneMode';
 
 @Pipe({
   name: 'formatContacts',

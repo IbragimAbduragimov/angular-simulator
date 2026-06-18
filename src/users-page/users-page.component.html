@@ -1,6 +1,6 @@
 <app-user-create (createUser)="addUser($event)"/>
 <app-users-filter (filterUser)="filterUsers($event)"/>
-<p>{{ (filteredUsers$ | async)!.length | currect }}</p>
+<p>{{ (filteredUsers$ | async)!.length | plural: 'пользователь' : 'пользователя' : 'пользователей' }}</p>
 <div class="container-users bg-color">
   <div class="users-list">
     @for (user of filteredUsers$ | async; track user.id) {

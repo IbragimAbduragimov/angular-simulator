@@ -1,6 +1,6 @@
 <div class="users-card">
   <div class="user-info">
-    <p>{{ user.name | uppercase}}</p>
+    <p>{{ user.name | uppercase }}</p>
     <p>{{ user.username }}</p>
   </div>
   <div class="user-details">
@@ -13,7 +13,7 @@
     </div>
     <div class="detail-row"> 
       <span>Телефон:</span>
-      <p>{{ user.phone | formatContacts: phone.COMPACT}}</p>
+      <p>{{ user.phone | formatContacts: phone.COMPACT }}</p>
     </div>
     <div class="detail-row"> 
       <span>Веб-сайт:</span>
@@ -63,5 +63,5 @@
       <p>{{ user.company.bs || 'Неизвестно' }}</p>
     </div>
   </div>
-  <button boldHower (click)="removeUser(user.id)">Удалить пользователя</button>
+  <button boldOnHover (click)="removeUser(user.id)">Удалить пользователя</button>
 </div>

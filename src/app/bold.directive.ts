@@ -1,11 +1,13 @@
-import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, inject } from '@angular/core';
 
 @Directive({
-  selector: '[boldHower]',
+  selector: '[boldOnHover]',
 })
-export class BoldHowerDirective {
+export class BoldOnHoverDirective {
 
-  constructor(private el: ElementRef) { }
+  constructor() { }
+
+  private el: ElementRef = inject(ElementRef)
 
   @HostBinding('style.font-weight') textWeight: number = 500;
 
