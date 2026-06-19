@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { PhoneMode } from '../enums/PhoneMode';
 
 @Pipe({
-  name: 'formatContacts',
+  name: 'phoneModePipe',
 })
-export class FormatContactsPipe implements PipeTransform {
+export class PhoneModePipe implements PipeTransform {
 
   transform(phone: string, phoneMode: PhoneMode): string {
     const clearedPhone: string = phone.replace(/[()-.xх]/g, '');

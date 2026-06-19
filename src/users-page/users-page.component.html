@@ -4,7 +4,7 @@
 <div class="container-users bg-color">
   <div class="users-list">
     @for (user of filteredUsers$ | async; track user.id) {
-        <div gradientHower>
+        <div gradientHover>
           <app-user-card
             [user]="user"
             (deleteUser)="onDeleteUser(user)"
@@ -13,3 +13,4 @@
     }
   </div>
 </div>
+

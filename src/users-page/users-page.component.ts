@@ -8,12 +8,12 @@ import { IUser } from '../app/interfaces/IUser';
 import { UserCreateComponent } from '../app/user-create/user-create.component';
 import { UsersFilterComponent } from "../app/users-filter/users-filter.component";
 import { UserCardComponent } from "../app/user-card/user-card.component";
-import { GradientHowerDirective } from "../app/gradient-hower.directive";
-import { prularPipe } from '../app/plural.pipe';
+import { GradientHoverDirective } from "../app/gradient-hover.directive";
+import { PrularPipe } from '../app/plural.pipe';
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, FormsModule, UserCreateComponent, UsersFilterComponent, UserCardComponent, prularPipe, GradientHowerDirective],
+  imports: [AsyncPipe, FormsModule, UserCreateComponent, UsersFilterComponent, UserCardComponent, PrularPipe, GradientHoverDirective],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -21,7 +21,6 @@ export class UsersPageComponent {
 
   userService: UserService = inject(UserService);
   userApiService: UserApiService = inject(UserApiService);
-
   
   private filterSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 

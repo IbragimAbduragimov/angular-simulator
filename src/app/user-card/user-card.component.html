@@ -13,7 +13,7 @@
     </div>
     <div class="detail-row"> 
       <span>Телефон:</span>
-      <p>{{ user.phone | formatContacts: phone.COMPACT }}</p>
+      <p>{{ user.phone | phoneModePipe: phone.COMPACT }}</p>
     </div>
     <div class="detail-row"> 
       <span>Веб-сайт:</span>

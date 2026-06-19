@@ -2,9 +2,9 @@ import { Directive, ElementRef, HostBinding, HostListener, inject, Input } from 
 import { IGradientConfig } from './interfaces/IGradientConfig';
 
 @Directive({
-  selector: '[gradientHower]',
+  selector: '[gradientHover]',
 })
-export class GradientHowerDirective {
+export class GradientHoverDirective {
 
   @Input() gradientConfig: IGradientConfig = {
     delay: 1000,

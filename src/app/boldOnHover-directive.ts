@@ -7,7 +7,7 @@ export class BoldOnHoverDirective {
 
   private el: ElementRef = inject(ElementRef)
 
-  @HostBinding('style.font-weight') textWeight: number = 500;
+  @HostBinding('style.font-weight') textWeight!: number | undefined;
 
   @HostListener('mouseenter')
   onEnter(): void {
@@ -16,8 +16,9 @@ export class BoldOnHoverDirective {
 
   @HostListener('mouseleave')
   onLeave(): void {
-    this.textWeight = 500;
+    this.textWeight = undefined;
   }
+  
 }
 
 
