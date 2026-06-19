@@ -3,15 +3,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'plural',
 })
-export class prularPipe implements PipeTransform {
+export class PrularPipe implements PipeTransform {
 
-  transform(numderOf: number, firstForm: string, secondForm: string, thirdForm: string): string {
-    if (numderOf === 1) {
-    return `${ numderOf } + ${ firstForm }`;
-    } else if(numderOf > 1 && numderOf <= 4 ) {
-    return `${ numderOf } + ${ secondForm }`;
+  transform(numberOf: number, firstForm: string, secondForm: string, thirdForm: string): string {
+    if (numberOf === 1) {
+    return `${ numberOf } + ${ firstForm }`;
+    } else if(numberOf > 1 && numberOf <= 4 ) {
+    return `${ numberOf } + ${ secondForm }`;
     } else {
-    return `${ numderOf } + ${ thirdForm }`;
+    return `${ numberOf } + ${ thirdForm }`;
     }
   }
 

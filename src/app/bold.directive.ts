@@ -5,8 +5,6 @@ import { Directive, ElementRef, HostBinding, HostListener, inject } from '@angul
 })
 export class BoldOnHoverDirective {
 
-  constructor() { }
-
   private el: ElementRef = inject(ElementRef)
 
   @HostBinding('style.font-weight') textWeight: number = 500;

@@ -12,8 +12,6 @@ export class GradientHowerDirective {
     thickness: '2px'
   }
 
-  constructor() { }
-
   @HostBinding('class') gradientClass!: string;
   @HostBinding('style.background-image') gradientColors!: string;
   @HostBinding('style.padding') thickness!: string;
