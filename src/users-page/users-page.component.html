@@ -1,12 +1,16 @@
 <app-user-create (createUser)="addUser($event)"/>
 <app-users-filter (filterUser)="filterUsers($event)"/>
-<div class="container-users">
+<p>{{ (filteredUsers$ | async)!.length | plural: 'пользователь' : 'пользователя' : 'пользователей' }}</p>
+<div class="container-users bg-color">
   <div class="users-list">
     @for (user of filteredUsers$ | async; track user.id) {
-        <app-user-card
-          [user]="user"
-          (deleteUser)="onDeleteUser(user)"
-        />
+        <div gradientHover>
+          <app-user-card
+            [user]="user"
+            (deleteUser)="onDeleteUser(user)"
+          />
+        </div>
     }
   </div>
 </div>
+
