@@ -4,11 +4,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMountainSun, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { ToggleSwitchChangeEvent, ToggleSwitchModule } from 'primeng/toggleswitch';
-import { ThemeService } from '../app/theme.service';
-import { LocalStorageService } from '../local-storage.service';
+import { ThemeService } from '../theme.service';
+import { LocalStorageService } from '../../local-storage.service';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { Theme } from '../enums/Theme';
-import { INavigation } from '../app/interfaces/INavigation';
+import { Theme } from '../../enums/Theme';
+import { INavigation } from '../interfaces/INavigation';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

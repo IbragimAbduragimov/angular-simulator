@@ -9,13 +9,13 @@ import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { Message } from '../enums/Message.js'; 
 import { MessageService } from '../message.service.js';
 import { Widget } from './types/Widget.js';
-import { FooterComponent } from "../footer/footer.component";
-import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "./footer/footer.component.js";
+import { HeaderComponent } from "./header/header.component.js";
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from "./loader/loader.component";
 import { MessageComponent } from "./message/message.component";
 import { UserCardComponent } from "./user-card/user-card.component";
-import { UsersPageComponent } from "../users-page/users-page.component";
+import { UsersPageComponent } from "./users-page/users-page.component.js";
 import { ThemeService } from './theme.service.js';
 @Component({ 
   selector: 'app-root',
