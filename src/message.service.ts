@@ -23,20 +23,20 @@ export class MessageService {
     }, 5000);
   }
 
-  showWarn(): void {
-    this.addMessage(Message.WARN,'Программа не доступна');
+  showWarn(content: string): void {
+    this.addMessage(Message.WARN, content);
   }
 
-  showError(): void {
-    this.addMessage(Message.ERROR, 'Материалы недоступны');
+  showError(content: string): void {
+    this.addMessage(Message.ERROR, content);
   }
  
-  showSuccess(): void {
-    this.addMessage(Message.SUCCESS,'Стоимость отправлена на почту');
+  showSuccess(content: string): void {
+    this.addMessage(Message.SUCCESS,content);
   }
 
-  showInfo(): void {
-    this.addMessage(Message.INFO, 'Стоимость отправлена на почту');
+  showInfo(content: string): void {
+    this.addMessage(Message.INFO, content);
   }
  
   closeMessage(currentMessage: IMessage): void {
