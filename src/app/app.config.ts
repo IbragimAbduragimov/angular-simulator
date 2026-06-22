@@ -7,6 +7,9 @@ import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import { Preset } from '@primeuix/themes/types';
 import { Theme } from '../enums/Theme';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { errorInterceptor } from './error.interceptor';
+import { httpLogInterceptor } from './http-log.interceptor';
 
 function getPreset(): string | number | object {
   const preset: string | null = localStorage.getItem('preset') ?? "Aura";
@@ -23,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
+    provideHttpClient(withInterceptors([errorInterceptor, httpLogInterceptor])),
     providePrimeNG({
       theme: {
         preset: getPreset(),
