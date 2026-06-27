@@ -1,16 +1,19 @@
 import { Component, Inject, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IPostResponce } from '../ipost-responce';
 import { PostApiService } from '../post-api.service';
 import { PostService } from '../post.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
+import { Badge } from "primeng/badge";
+import { Button } from "primeng/button";
+import { IPost } from '../ipost';
 
 
 @Component({
   selector: 'app-post-edit-dialog',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, Button],
   templateUrl: './post-edit-dialog.component.html',
   styleUrl: './post-edit-dialog.component.scss',
 })
@@ -25,19 +28,22 @@ export class PostEditDialogComponent {
 
 
   postEditForm: FormGroup = this.fb.nonNullable.group({
-    title: [''],
-    tags: [''],
-    views: ['']
+    title: ['', [Validators.required]],
+    tags: ['', [Validators.required]],
+    views: ['', [Validators.required]]
   });
 
   onSubmits() {
     this.formValue = this.postEditForm.value;
-    const convertedData = {
+    if (this.postEditForm.invalid) {
+      return;
+    }
+    const convertedData: IPost = {
       title: this.formValue.title,
       tags: this.formValue.tags,
       views: this.formValue.views
     };
-    const id = this.dynamicDialogConfig.data.id
+    const id: number = this.dynamicDialogConfig.data.id
     return this.postService.updatePost(id, convertedData).pipe(
       tap((post: IPostResponce) => {
         const posts: IPostResponce[] = this.postService.getPosts()
@@ -47,5 +53,9 @@ export class PostEditDialogComponent {
         this.ref.close()
       }),
     ).subscribe();
+  }
+
+  close(): void {
+    this.ref.close()
   }
 }

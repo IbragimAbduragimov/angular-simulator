@@ -6,4 +6,5 @@
   <label>изменить views</label>
   <input type="text" placeholder="изменение views" id="views" formControlName="views">
 </form>
-<button (click)="onSubmits()">подтвердитьss</button> 
+<p-button [disabled]="postEditForm.invalid" (onClick)="onSubmits()">подтвердить</p-button> 
+<p-button (onClick)="close()">отмена</p-button>

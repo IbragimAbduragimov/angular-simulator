@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { IPost } from './ipost';
 import { IPostResponce } from './ipost-responce';
+import { IPosts } from './IPosts';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +14,8 @@ export class PostApiService {
   private http: HttpClient = inject(HttpClient);
 
   getPosts(page: number, size: number): Observable<IPostResponce[]> { 
-    return this.http.get<IPost>(`https://dummyjson.com/posts?limit=${ page }&skip=${ size }`).pipe(
-      map((response: IPost) => response.posts)
+    return this.http.get<IPosts>(`https://dummyjson.com/posts?limit=${ page }&skip=${ size }`).pipe(
+      map((response: IPosts) => response.posts)
     );
   }
 

@@ -42,8 +42,7 @@ export class PostsComponent implements OnInit {
 
 
 
-  ngOnInit() {
-    
+  ngOnInit(): void {
     this.postService.loadPosts(5, 0)
       .pipe( 
         tap((post: IPostResponce[]) => {
