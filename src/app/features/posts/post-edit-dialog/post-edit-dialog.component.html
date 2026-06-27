@@ -1,0 +1,9 @@
+<form [formGroup]="postEditForm">
+  <label>изменить title</label>
+  <input type="text" placeholder="изменение title" id="title" formControlName="title">
+  <label>изменить tags</label>
+  <input type="text" placeholder="изменение tags" id="tags" formControlName="tags">
+  <label>изменить views</label>
+  <input type="text" placeholder="изменение views" id="views" formControlName="views">
+</form>
+<button (click)="onSubmits()">подтвердитьss</button> 

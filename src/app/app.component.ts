@@ -9,14 +9,14 @@ import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { Message } from '../enums/Message.js'; 
 import { MessageService } from '../message.service.js';
 import { Widget } from './types/Widget.js';
-import { FooterComponent } from "./footer/footer.component.js";
-import { HeaderComponent } from "./header/header.component.js";
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from "./loader/loader.component";
 import { MessageComponent } from "./message/message.component";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersPageComponent } from "./users-page/users-page.component.js";
 import { ThemeService } from './theme.service.js';
+import { HeaderComponent } from './header/header.component.js';
+import { FooterComponent } from './footer/footer.component.js';
 @Component({ 
   selector: 'app-root',
   imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent,],
@@ -140,15 +140,6 @@ export class AppComponent {
     this.saveLastVisitDate(); 
     this.saveVisitCount();
 
-
-    setInterval(() => {
-      this.dateText = new Date().toString();
-    }, 1000); 
-  
-   
-    setInterval(() => {
-      this.isLoading = true; 
-    }, 2000);
   }
   saveLastVisitDate(): void {
     const dateString: string = new Date().toString();

@@ -15,15 +15,15 @@ export class UserService {
 
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  userApi: UserApiService = inject(UserApiService);
-  loader: LoaderService = inject(LoaderService);
+  userApiService: UserApiService = inject(UserApiService);
+  loaderService: LoaderService = inject(LoaderService);
 
   private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
 
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
   cacheUsers: IUser[] = this.localStorageService.getKey<IUser[]>('users') ?? [];
   
-  
+
   setUsers(user: IUser[]): void {
     this.usersSubject.next(user);
     this.localStorageService.addKey('users', user);
@@ -32,19 +32,19 @@ export class UserService {
   getUser(): IUser[] {
     return this.usersSubject.getValue();
   }
-  
+
   loadUsers(): Observable<IUser[]> {
-    this.loader.showLoader();
+    this.loaderService.showLoader();
     if (this.cacheUsers.length > 0) {
       return of(this.cacheUsers);
-    } {
-    return this.userApi.getUsers()
+    } else {
+    return this.userApiService.getUsers()
       .pipe(
         catchError((err: Error) => {
           console.error('ошибка загрузки', err);
           return of([]);
-        }),
-        finalize(() => this.loader.hideLoader())
+        }), 
+        finalize(() => this.loaderService.hideLoader())
       )
     }
   }
