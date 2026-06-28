@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
-import { IPost } from './ipost';
+import { IPost } from './IPost';
 import { PostApiService } from './post-api.service';
-import { IPostResponce } from './ipost-responce';
+import { IPostResponce } from './IPost-responce';
 import { MessageService } from '../../../message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoaderService } from '../../loader.service';
@@ -88,7 +88,7 @@ export class PostService {
     );
   }
 
-  createPost(data: IPostResponce): Observable<IPostResponce[]> {
+  createPost(data: IPostResponce): Observable<IPostResponce> {
     this.loaderService.showLoader();
     return this.postApiService.createPost(data).pipe(
       catchError((error: HttpErrorResponse) => {

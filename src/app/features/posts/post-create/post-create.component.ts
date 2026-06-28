@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostApiService } from '../post-api.service';
-import { IPostResponce } from '../ipost-responce';
+import { IPostResponce } from '../IPost-responce';
 import { tap } from 'rxjs';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
@@ -21,22 +21,22 @@ export class PostCreateComponent {
   formValue!: IPostResponce;
 
   postForm: FormGroup = this.fb.nonNullable.group({
-    id: ['', []],
-    title: ['',],
-    body: ['',],
-    tags: ['',],
+    id: ['', [Validators.required]],
+    title: ['', [Validators.required]],
+    body: ['', [Validators.required]],
+    tags: ['', [Validators.required]],
     reactions: this.fb.nonNullable.group({
-      likes: [''],
-      dislikes: ['']
+      likes: ['', [Validators.required]],
+      dislikes: ['', [Validators.required]]
     }),
-    views: ['', ],
-    userId: ['', ],
+    views: ['', [Validators.required]],
+    userId: ['', [Validators.required]],
   });
 
   onSubmit(): void {
     this.formValue = this.postForm.value;
       this.postService.createPost(this.formValue).pipe(
-        tap((post: any) => {
+        tap((post: IPostResponce) => {
           this.postService.addpost(post);
         })
       ).subscribe();

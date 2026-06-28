@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
 import { PostService } from './post.service';
-import { IPostResponce } from './ipost-responce';
+import { IPostResponce } from './IPost-responce';
 
 export const postResolver: ResolveFn<IPostResponce> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 

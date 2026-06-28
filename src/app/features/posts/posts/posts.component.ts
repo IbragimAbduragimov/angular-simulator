@@ -3,17 +3,15 @@ import { PostApiService } from '../post-api.service';
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
 import { Observable, pipe, tap } from 'rxjs';
-import { IPostResponce } from '../ipost-responce';
+import { IPostResponce } from '../IPost-responce';
 import { Table, TableModule, TablePageEvent } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
-import { IPost } from '../ipost';
-import { IItems } from '../IItems';
 
 @Component({
   selector: 'app-posts',
@@ -33,14 +31,10 @@ export class PostsComponent implements OnInit {
   rows: number = 5;
   totalRecords: number = 30;
   first: number = 0;
-  items!: IItems[];
+  items!: MenuItem[];
   selectedProduct!: IPostResponce | null;
   ref!: DynamicDialogRef | null;
   loading: boolean = true;
-
-
-
-
 
   ngOnInit(): void {
     this.postService.loadPosts(5, 0)

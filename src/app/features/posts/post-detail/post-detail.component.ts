@@ -3,7 +3,7 @@ import { PostApiService } from '../post-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
 import { Observable, pipe, tap } from 'rxjs';
-import { IPostResponce } from '../ipost-responce';
+import { IPostResponce } from '../IPost-responce';
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
@@ -16,22 +16,16 @@ import { Router } from '@angular/router';
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.scss',
 })
-export class PostDetailComponent implements OnInit{
+export class PostDetailComponent implements OnInit {
 
   route: ActivatedRoute = inject(ActivatedRoute);
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
 
-  post$!: IPostResponce;
+  post!: IPostResponce;
 
   ngOnInit(): void {
-    const id: string = this.route.snapshot.paramMap.get('id')!;
-    this.postService.getPost(id).pipe(
-      tap((post: IPostResponce) => {
-        this.post$ = post; 
-      }),
-    ).subscribe();
-
+    this.post = this.route.snapshot.data['post'];
   }
 
 }

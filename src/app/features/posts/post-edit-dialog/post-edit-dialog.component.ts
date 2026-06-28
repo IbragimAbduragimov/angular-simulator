@@ -1,14 +1,15 @@
 import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IPostResponce } from '../ipost-responce';
+import { IPostResponce } from '../IPost-responce';
 import { PostApiService } from '../post-api.service';
 import { PostService } from '../post.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 import { Badge } from "primeng/badge";
 import { Button } from "primeng/button";
-import { IPost } from '../ipost';
+import { IPost } from '../IPost';
+import { IPostEdit } from '../IPostEdit';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class PostEditDialogComponent {
     if (this.postEditForm.invalid) {
       return;
     }
-    const convertedData: IPost = {
+    const convertedData: IPostEdit = {
       title: this.formValue.title,
       tags: this.formValue.tags,
       views: this.formValue.views
