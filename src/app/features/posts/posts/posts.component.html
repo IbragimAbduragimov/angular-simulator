@@ -1,6 +1,6 @@
-@if (loading === true) {
+@if (isLoading === true) {
 <div class="card">
-  <p-table [value]="skeleton" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="[1, 2, 3, 4, 5]" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template #header>
       <tr>
         <th>title</th>
@@ -44,7 +44,7 @@
         </tr>
       </ng-template>
       <ng-template #body let-product>
-        <tr [pContextMenuRow]="product" (dblclick)="onDblCkick(product.id)">
+        <tr [pContextMenuRow]="product" (dblclick)="showPostDetails(product.id)">
           <td>{{ product.title }}</td>
           <td>{{ product.tags }}</td>
             <td>{{ product.views }}</td>

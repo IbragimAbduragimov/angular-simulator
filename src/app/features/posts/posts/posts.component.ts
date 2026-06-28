@@ -25,59 +25,50 @@ export class PostsComponent implements OnInit {
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
   dialogService: DialogService = inject(DialogService);
-  route = inject(ActivatedRoute);
+  route: ActivatedRoute = inject(ActivatedRoute);
 
   posts$: Observable<IPostResponce[]> = this.postService.posts$;
   rows: number = 5;
   totalRecords: number = 30;
   first: number = 0;
-  items!: MenuItem[];
+
   selectedProduct!: IPostResponce | null;
   ref!: DynamicDialogRef | null;
-  loading: boolean = true;
+  isLoading: boolean = true;
 
   ngOnInit(): void {
     this.postService.loadPosts(5, 0)
       .pipe( 
-        tap((post: IPostResponce[]) => {
-          this.postService.setPost(post);
-          this.loading = false;
+        tap(() => {
+          this.isLoading = false;
         }),
       ).subscribe();
-
-    this.items = [
-      { label: 'View', command: () => this.viewPost() },
-      { label: 'Edit', command: () => this.show() },
-      { label: 'Delete', command: () => this.delete() },
-    ];
   }
 
-  skeleton: {}[] = [
-    {},
-    {},
-    {},
-    {},
-    {},
-  ];
-
   rowsPerPageOptions: number[] = [5, 10, 20];
+
+  items: MenuItem[] = [
+    { label: 'View', command: () => this.viewPost() },
+    { label: 'Edit', command: () => this.showEditModal() },
+    { label: 'Delete', command: () => this.deletePost() },
+  ];
 
   onPageChange(event: TablePageEvent) {
     this.rows = event.rows;
     this.first = event.first;
     this.postService.loadPosts(this.rows, this.first)
       .pipe(
-        tap((post: IPostResponce[]) => {
-          this.postService.setPost(post); 
-          this.loading = false;
+        tap(() => {
+          this.isLoading = false;
         }),
       ).subscribe();
   }
+
   viewPost(): void {
     this.router.navigate([`posts/${ this.selectedProduct?.id }`]);
   }
 
-  onDblCkick(id: number): void {
+  showPostDetails(id: number): void {
     this.router.navigate([`posts/${ id }`]);
   }
 
@@ -85,13 +76,11 @@ export class PostsComponent implements OnInit {
     this.router.navigate(['posts/post-edit']);
   }
 
-  delete(): void {
+  deletePost(): void {
     const id: number = this.selectedProduct?.id!;
     this.postService.deletePost(id).pipe(
       tap(() => {
-        const deletePost: IPostResponce[] = this.postService.filterPost(this.postService.getPosts(), id);
-        this.postService.setPost(deletePost);
-        this.loading = false;
+        this.isLoading = false;
       })
     ).subscribe();
   }
@@ -100,14 +89,17 @@ export class PostsComponent implements OnInit {
     this.router.navigate(['posts/create']);
   }
 
-  show(): void {
+  showEditModal(): void {
     this.ref = this.dialogService.open(PostEditDialogComponent, {
       header: 'Редактируйте пользователя',
       width: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
-      data: { id: this.selectedProduct?.id }
+      data: { 
+        selectedProduct: this.selectedProduct,
+        id: this.selectedProduct?.id
+      }
     });
   }
 

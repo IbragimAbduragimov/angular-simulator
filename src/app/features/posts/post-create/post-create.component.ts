@@ -2,9 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostApiService } from '../post-api.service';
 import { IPostResponce } from '../IPost-responce';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
+import { MessageService } from '../../../../message.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-create',
@@ -17,11 +19,9 @@ export class PostCreateComponent {
   private fb: FormBuilder = inject(FormBuilder);
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
-
-  formValue!: IPostResponce;
+  messageService: MessageService = inject(MessageService)
 
   postForm: FormGroup = this.fb.nonNullable.group({
-    id: ['', [Validators.required]],
     title: ['', [Validators.required]],
     body: ['', [Validators.required]],
     tags: ['', [Validators.required]],
@@ -34,13 +34,16 @@ export class PostCreateComponent {
   });
 
   onSubmit(): void {
-    this.formValue = this.postForm.value;
-      this.postService.createPost(this.formValue).pipe(
-        tap((post: IPostResponce) => {
-          this.postService.addpost(post);
-        })
+    const formValue = this.postForm.value;
+      this.postService.createPost(formValue).pipe(
+        tap(() => {
+          this.router.navigate(['posts']);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError('произошла ошибка')
+          return throwError(() => error);
+        }),
       ).subscribe();
-    this.router.navigate(['posts']);
   }
 
 }

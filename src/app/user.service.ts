@@ -43,7 +43,7 @@ export class UserService {
         catchError((err: Error) => {
           console.error('ошибка загрузки', err);
           return of([]);
-        }), 
+        }),
         finalize(() => this.loaderService.hideLoader())
       )
     }

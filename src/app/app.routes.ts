@@ -15,10 +15,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/posts/post-create/post-create.component').then((m) => m.PostCreateComponent),
   },
   {
-    path: 'posts/post-edit',
-    loadComponent: () => import('./features/posts/post-edit-dialog/post-edit-dialog.component').then((m) => m.PostEditDialogComponent),
-  },
-  {
     path: 'posts/:id',
     loadComponent: () => import('./features/posts/post-detail/post-detail.component').then((m) => m.PostDetailComponent),
     resolve: { post: postResolver}

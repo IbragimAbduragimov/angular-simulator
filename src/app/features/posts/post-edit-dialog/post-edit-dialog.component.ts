@@ -22,35 +22,31 @@ export class PostEditDialogComponent {
 
   private fb: FormBuilder = inject(FormBuilder);
   postService: PostService = inject(PostService);
-
   dynamicDialogConfig: DynamicDialogConfig = inject(DynamicDialogConfig);
-  formValue!: IPostResponce;
   ref: DynamicDialogRef = inject(DynamicDialogRef);
+
+  title: string = this.dynamicDialogConfig.data.selectedProduct.title;
+  tags: string = this.dynamicDialogConfig.data.selectedProduct.tags;
+  views: string = this.dynamicDialogConfig.data.selectedProduct.views;
 
 
   postEditForm: FormGroup = this.fb.nonNullable.group({
-    title: ['', [Validators.required]],
-    tags: ['', [Validators.required]],
-    views: ['', [Validators.required]]
+    title: [this.title, [Validators.required]],
+    tags: [this.tags, [Validators.required]],
+    views: [this.views, [Validators.required]]
   });
 
   onSubmits() {
-    this.formValue = this.postEditForm.value;
+    const formValue = this.postEditForm.value;
     if (this.postEditForm.invalid) {
       return;
     }
     const convertedData: IPostEdit = {
-      title: this.formValue.title,
-      tags: this.formValue.tags,
-      views: this.formValue.views
+      ...formValue,
     };
     const id: number = this.dynamicDialogConfig.data.id
     return this.postService.updatePost(id, convertedData).pipe(
-      tap((post: IPostResponce) => {
-        const posts: IPostResponce[] = this.postService.getPosts()
-        const filteredPosts: IPostResponce[] = this.postService.filterPost(posts, id)
-        const newPosts: IPostResponce[] = [...filteredPosts, post]
-        this.postService.setPost(newPosts)
+      tap(() => {
         this.ref.close()
       }),
     ).subscribe();
