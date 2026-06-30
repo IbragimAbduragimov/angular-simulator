@@ -23,10 +23,9 @@ import { IPostEdit } from '../IPostEdit';
 })
 export class PostsComponent implements OnInit {
 
-  postService: PostService = inject(PostService);
-  router: Router = inject(Router);
-  dialogService: DialogService = inject(DialogService);
-  route: ActivatedRoute = inject(ActivatedRoute);
+  private postService: PostService = inject(PostService);
+  private router: Router = inject(Router);
+  private dialogService: DialogService = inject(DialogService);
 
   posts$: Observable<IPost[]> = this.postService.posts$;
   rows: number = 5;

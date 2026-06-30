@@ -21,9 +21,8 @@ import { IPostEdit } from '../IPostEdit';
 export class PostEditDialogComponent implements OnInit {
 
   private fb: FormBuilder = inject(FormBuilder);
-  postService: PostService = inject(PostService);
-  dynamicDialogConfig: DynamicDialogConfig = inject(DynamicDialogConfig);
-  ref: DynamicDialogRef = inject(DynamicDialogRef);
+  private dynamicDialogConfig: DynamicDialogConfig = inject(DynamicDialogConfig);
+  private ref: DynamicDialogRef = inject(DynamicDialogRef);
 
   postEditForm: FormGroup = this.fb.nonNullable.group({
     title: ['', [Validators.required]],

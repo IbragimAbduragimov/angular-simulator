@@ -19,9 +19,7 @@ import { IPost } from '../IPost';
 })
 export class PostDetailComponent implements OnInit {
 
-  route: ActivatedRoute = inject(ActivatedRoute);
-  postService: PostService = inject(PostService);
-  router: Router = inject(Router);
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
   post!: IPost;
 
