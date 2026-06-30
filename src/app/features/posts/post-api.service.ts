@@ -12,28 +12,28 @@ export class PostApiService {
   
   private http: HttpClient = inject(HttpClient);
 
-  private postUrl = 'https://dummyjson.com/posts'
+  private postUrl: string = 'https://dummyjson.com/posts';
 
-  getPosts(page?: number, size?: number): Observable<IPostResponce[]> { 
-    return this.http.get<IPost>(`${ this.postUrl }?limit=${ page || 5 }&skip=${ size || 0 }`).pipe(
-      map((response: IPost) => response.posts)
+  getPosts(page?: number, size?: number): Observable<IPost[]> { 
+    return this.http.get<IPostResponce>(`${ this.postUrl }?limit=${ page || 0 }&skip=${ size || 0 }`).pipe(
+      map((response: IPostResponce) => response.posts)
     );
   }
 
-  getPost(id: number | string): Observable<IPostResponce> {
-    return this.http.get<IPostResponce>(`${ this.postUrl }/${ id }`);
+  getPost(id: number | string): Observable<IPost> {
+    return this.http.get<IPost>(`${ this.postUrl }/${ id }`);
   }
 
-  deletePost(id: number): Observable<IPostResponce> {
-    return this.http.delete<IPostResponce>(`${ this.postUrl }/${ id }`);
+  deletePost(id: number): Observable<IPost> {
+    return this.http.delete<IPost>(`${ this.postUrl }/${ id }`);
   }
 
-  updatePost(id: number, data: Partial<IPostResponce>): Observable<IPostResponce> {
-    return this.http.put<IPostResponce>(`${ this.postUrl }/${ id }`, data);
+  updatePost(id: number, data: Partial<IPost>): Observable<IPost> {
+    return this.http.put<IPost>(`${ this.postUrl }/${ id }`, data);
   }
 
-  createPost(data: IPostResponce): Observable<IPostResponce> {
-    return this.http.post<IPostResponce>(`${ this.postUrl }/add`, data);
+  createPost(data: IPost): Observable<IPost> {
+    return this.http.post<IPost>(`${ this.postUrl }/add`, data);
   }
 
 }

@@ -35,7 +35,7 @@ export class PostCreateComponent {
   });
 
   onSubmit(): void {
-    const formValue: IPostResponce = this.postForm.value;
+    const formValue: IPost = this.postForm.value;
       this.postService.createPost(formValue).pipe(
         tap(() => {
           this.router.navigate(['posts']);

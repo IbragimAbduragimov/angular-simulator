@@ -2,8 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PostApiService } from '../post-api.service';
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
-import { EMPTY, Observable, pipe, switchMap, take, tap } from 'rxjs';
-import { IPostResponce } from '../IPost-responce';
+import { EMPTY, MonoTypeOperatorFunction, Observable, pipe, switchMap, take, tap } from 'rxjs';
 import { Table, TableModule, TablePageEvent } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
@@ -29,20 +28,20 @@ export class PostsComponent implements OnInit {
   dialogService: DialogService = inject(DialogService);
   route: ActivatedRoute = inject(ActivatedRoute);
 
-  posts$: Observable<IPostResponce[]> = this.postService.posts$;
+  posts$: Observable<IPost[]> = this.postService.posts$;
   rows: number = 5;
   totalRecords: number = 30;
   first: number = 0;
 
-  selectedProduct!: IPostResponce | null;
+  selectedProduct!: IPost | null;
   ref!: DynamicDialogRef | null;
   isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.postService.loadPosts(5, 0)
+    this.postService.loadPosts(this.rows, this.first)
       .pipe( 
         tap(() => {
-          this.isLoading = false;
+          this.setLoadingFalse()
         }),
       ).subscribe();
   }
@@ -60,9 +59,7 @@ export class PostsComponent implements OnInit {
     this.first = event.first;
     this.postService.loadPosts(this.rows, this.first)
       .pipe(
-        tap(() => {
-          this.isLoading = false;
-        }),
+        this.setLoadingFalse(),
       ).subscribe();
   }
 
@@ -78,7 +75,7 @@ export class PostsComponent implements OnInit {
     const id: number = this.selectedProduct?.id!;
     this.postService.deletePost(id).pipe(
       tap(() => {
-        this.isLoading = false;
+        this.setLoadingFalse()
       })
     ).subscribe();
   }
@@ -91,21 +88,25 @@ export class PostsComponent implements OnInit {
     const id = this.selectedProduct!.id;
     this.postService.getPost(this.selectedProduct!.id)
       .pipe(
-        switchMap((fullPost: IPostResponce) => {
+        switchMap((fullPost: IPost) => {
           this.ref = this.dialogService.open(PostEditDialogComponent, { 
             header: 'Редактирование поста', 
-            data: { selectedProduct: fullPost } 
+            data: { post: fullPost } 
           });
           return this.ref?.onClose || EMPTY;
         }),
-        switchMap((post) => this.postService.updatePost(id, post)),
-        tap((updatedPost: IPostResponce) => {
-          if (updatedPost) {
-            this.postService.updatePost(id, updatedPost);
-          }
+        switchMap((post: IPost) => this.postService.updatePost(id, post)),
+        tap((updatedPost: IPost) => {
+          this.postService.updatePost(id, updatedPost);
         }),
         take(1),
       ).subscribe();
+  }
+
+  setLoadingFalse(): MonoTypeOperatorFunction<unknown> {
+    return tap(() => {
+      this.isLoading = false;
+    })
   }
 
 }

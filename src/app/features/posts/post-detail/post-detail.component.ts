@@ -9,6 +9,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ToastModule } from 'primeng/toast';
 import { Router } from '@angular/router';
+import { IPost } from '../IPost';
 
 @Component({
   selector: 'app-post-detail',
@@ -22,7 +23,7 @@ export class PostDetailComponent implements OnInit {
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
 
-  post!: IPostResponce;
+  post!: IPost;
 
   ngOnInit(): void {
     this.post = this.route.snapshot.data['post'];

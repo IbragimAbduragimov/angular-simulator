@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
 import { PostService } from './post.service';
-import { IPostResponce } from './IPost-responce';
+import { IPost } from './IPost';
 
-export const postResolver: ResolveFn<IPostResponce> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const postResolver: ResolveFn<IPost> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 
   const postService: PostService = inject(PostService);
   const post: string = route.paramMap.get('id')!;

@@ -32,7 +32,7 @@ export class PostEditDialogComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.postEditForm.patchValue(this.dynamicDialogConfig.data.selectedProduct);
+    this.postEditForm.patchValue(this.dynamicDialogConfig.data.post);
   }
 
   onSubmit(): void {

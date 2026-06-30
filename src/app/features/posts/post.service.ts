@@ -16,21 +16,21 @@ export class PostService {
   messageSevice: MessageService = inject(MessageService)
   loaderService: LoaderService = inject(LoaderService);
   
-  private postsSubject: BehaviorSubject<IPostResponce[]> = new BehaviorSubject<IPostResponce[]>([]);
-  posts$: Observable<IPostResponce[]> = this.postsSubject.asObservable();
+  private postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
+  posts$: Observable<IPost[]> = this.postsSubject.asObservable();
 
-  setPost(post: IPostResponce[]): void {
-    this.postsSubject.next(post);
+  setPosts(posts: IPost[]): void {
+    this.postsSubject.next(posts);
   }
 
-  getPosts(): IPostResponce[] {
+  getPosts(): IPost[] {
     return this.postsSubject.getValue();
   }
 
-  loadPosts(page?: number, size?: number): Observable<IPostResponce[]> {
+  loadPosts(page?: number, size?: number): Observable<IPost[]> {
     this.loaderService.showLoader();
     return this.postApiService.getPosts(page, size).pipe(
-      tap((posts: IPostResponce[]) => this.setPost(posts)),
+      tap((posts: IPost[]) => this.setPosts(posts)),
       catchError((error: HttpErrorResponse) => {
         this.messageSevice.showError('произошла ошибка')
         return throwError(() => error);
@@ -39,20 +39,20 @@ export class PostService {
     );
   }
 
-  filterPost(posts: IPostResponce[], id: number): IPostResponce[] {
-    const filteredPosts: IPostResponce[] = posts.filter((post: IPostResponce) => post.id !== id );
+  filterPost(posts: IPost[], id: number): IPost[] {
+    const filteredPosts: IPost[] = posts.filter((post: IPost) => post.id !== id );
     return filteredPosts;
   }
 
-  addPost(post: IPostResponce): void {
-    const newPost: IPostResponce[] = [...this.getPosts(), post];
+  addPost(post: IPost): void {
+    const newPost: IPost[] = [...this.getPosts(), post];
     this.postsSubject.next(newPost);
   }
 
-  getPost(id: number | string): Observable<IPostResponce> {
+  getPost(id: number | string): Observable<IPost> {
     this.loaderService.showLoader();
     return this.postApiService.getPost(id).pipe(
-      tap((posts: IPostResponce) => this.addPost(posts)),
+      tap((posts: IPost) => this.addPost(posts)),
       catchError((error: HttpErrorResponse) => {
         this.messageSevice.showError('произошла ошибка')
         return throwError(() => error);
@@ -61,12 +61,12 @@ export class PostService {
     );
   }
 
-  deletePost(id: number): Observable<IPostResponce> {
+  deletePost(id: number): Observable<IPost> {
     this.loaderService.showLoader();
     return this.postApiService.deletePost(id).pipe(
       tap(() => {
-        const deletePost: IPostResponce[] = this.filterPost(this.getPosts(), id);
-        this.setPost(deletePost);
+        const deletePost: IPost[] = this.filterPost(this.getPosts(), id);
+        this.setPosts(deletePost);
       }),
       catchError((error: HttpErrorResponse) => {
         this.messageSevice.showError('произошла ошибка')
@@ -76,13 +76,13 @@ export class PostService {
     );
   }
 
-  updatePost(id: number, data: Partial<IPostResponce>): Observable<IPostResponce> {
+  updatePost(id: number, data: Partial<IPost>): Observable<IPost> {
     this.loaderService.showLoader();
     return this.postApiService.updatePost(id, data).pipe(
-      tap((post: IPostResponce) => {
-        const posts: IPostResponce[] = this.getPosts();
+      tap((post: IPost) => {
+        const posts: IPost[] = this.getPosts();
         const updatedPosts = posts.map((posts) => posts.id === id ? post : posts);
-        this.setPost(updatedPosts);
+        this.setPosts(updatedPosts);
       }),
       catchError((error: HttpErrorResponse) => {
         this.messageSevice.showError('произошла ошибка')
@@ -92,10 +92,10 @@ export class PostService {
     );
   }
 
-  createPost(data: IPostResponce): Observable<IPostResponce> {
+  createPost(data: IPost): Observable<IPost> {
     this.loaderService.showLoader();
     return this.postApiService.createPost(data).pipe(
-      tap((post: IPostResponce) => this.addPost(post)),
+      tap((post: IPost) => this.addPost(post)),
       catchError((error: HttpErrorResponse) => {
         this.messageSevice.showError('произошла ошибка')
         return throwError(() => error);
