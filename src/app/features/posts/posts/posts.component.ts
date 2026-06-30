@@ -2,16 +2,18 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PostApiService } from '../post-api.service';
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
-import { Observable, pipe, tap } from 'rxjs';
+import { EMPTY, Observable, pipe, switchMap, take, tap } from 'rxjs';
 import { IPostResponce } from '../IPost-responce';
 import { Table, TableModule, TablePageEvent } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ToastModule } from 'primeng/toast';
 import { MenuItem, MessageService } from 'primeng/api';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, withDebugTracing } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
+import { IPost } from '../IPost';
+import { IPostEdit } from '../IPostEdit';
 
 @Component({
   selector: 'app-posts',
@@ -47,13 +49,13 @@ export class PostsComponent implements OnInit {
 
   rowsPerPageOptions: number[] = [5, 10, 20];
 
-  items: MenuItem[] = [
+  actions: MenuItem[] = [
     { label: 'View', command: () => this.viewPost() },
     { label: 'Edit', command: () => this.showEditModal() },
     { label: 'Delete', command: () => this.deletePost() },
   ];
 
-  onPageChange(event: TablePageEvent) {
+  onPageChange(event: TablePageEvent): void {
     this.rows = event.rows;
     this.first = event.first;
     this.postService.loadPosts(this.rows, this.first)
@@ -72,10 +74,6 @@ export class PostsComponent implements OnInit {
     this.router.navigate([`posts/${ id }`]);
   }
 
-  editPost(): void {
-    this.router.navigate(['posts/post-edit']);
-  }
-
   deletePost(): void {
     const id: number = this.selectedProduct?.id!;
     this.postService.deletePost(id).pipe(
@@ -90,17 +88,24 @@ export class PostsComponent implements OnInit {
   }
 
   showEditModal(): void {
-    this.ref = this.dialogService.open(PostEditDialogComponent, {
-      header: 'Редактируйте пользователя',
-      width: '70%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: true,
-      data: { 
-        selectedProduct: this.selectedProduct,
-        id: this.selectedProduct?.id
-      }
-    });
+    const id = this.selectedProduct!.id;
+    this.postService.getPost(this.selectedProduct!.id)
+      .pipe(
+        switchMap((fullPost: IPostResponce) => {
+          this.ref = this.dialogService.open(PostEditDialogComponent, { 
+            header: 'Редактирование поста', 
+            data: { selectedProduct: fullPost } 
+          });
+          return this.ref?.onClose || EMPTY;
+        }),
+        switchMap((post) => this.postService.updatePost(id, post)),
+        tap((updatedPost: IPostResponce) => {
+          if (updatedPost) {
+            this.postService.updatePost(id, updatedPost);
+          }
+        }),
+        take(1),
+      ).subscribe();
   }
 
 }

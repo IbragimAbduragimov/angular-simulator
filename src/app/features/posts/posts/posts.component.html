@@ -19,7 +19,7 @@
 </div>
 } @else {
 <div class="card">
-    <p-contextmenu #cm [model]="items" (onHide)="selectedProduct = null" />
+    <p-contextmenu #cm [model]="actions" (onHide)="selectedProduct = null" />
     <p-table [value]="(posts$ | async) ?? []"
       [paginator]="true"
       [rows]="rows"

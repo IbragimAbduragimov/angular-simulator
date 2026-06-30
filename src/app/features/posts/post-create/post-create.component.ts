@@ -7,6 +7,7 @@ import { PostService } from '../post.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../../message.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { IPost } from '../IPost';
 
 @Component({
   selector: 'app-post-create',
@@ -34,13 +35,13 @@ export class PostCreateComponent {
   });
 
   onSubmit(): void {
-    const formValue = this.postForm.value;
+    const formValue: IPostResponce = this.postForm.value;
       this.postService.createPost(formValue).pipe(
         tap(() => {
           this.router.navigate(['posts']);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.messageService.showError('произошла ошибка')
+          this.messageService.showError('ошибка при создании пользователя, попробуйте позже')
           return throwError(() => error);
         }),
       ).subscribe();
