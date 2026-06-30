@@ -18,9 +18,9 @@ import { IPost } from '../IPost';
 export class PostCreateComponent {
   
   private fb: FormBuilder = inject(FormBuilder);
-  postService: PostService = inject(PostService);
-  router: Router = inject(Router);
-  messageService: MessageService = inject(MessageService)
+  private postService: PostService = inject(PostService);
+  private router: Router = inject(Router);
+  private messageService: MessageService = inject(MessageService)
 
   postForm: FormGroup = this.fb.nonNullable.group({
     title: ['', [Validators.required]],

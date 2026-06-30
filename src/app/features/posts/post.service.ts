@@ -12,9 +12,9 @@ import { LoaderService } from '../../loader.service';
 })
 export class PostService {
 
-  postApiService: PostApiService = inject(PostApiService);
-  messageSevice: MessageService = inject(MessageService)
-  loaderService: LoaderService = inject(LoaderService);
+  private postApiService: PostApiService = inject(PostApiService);
+  private messageSevice: MessageService = inject(MessageService)
+  private loaderService: LoaderService = inject(LoaderService);
   
   private postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
