@@ -37,12 +37,7 @@ export class PostsComponent implements OnInit {
   isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.postService.loadPosts(this.rows, this.first)
-      .pipe( 
-        tap(() => {
-          this.setLoadingFalse()
-        }),
-      ).subscribe();
+    this.loadPosts()
   }
 
   rowsPerPageOptions: number[] = [5, 10, 20];
@@ -56,10 +51,7 @@ export class PostsComponent implements OnInit {
   onPageChange(event: TablePageEvent): void {
     this.rows = event.rows;
     this.first = event.first;
-    this.postService.loadPosts(this.rows, this.first)
-      .pipe(
-        this.setLoadingFalse(),
-      ).subscribe();
+    this.loadPosts()
   }
 
   viewPost(): void {
@@ -74,7 +66,7 @@ export class PostsComponent implements OnInit {
     const id: number = this.selectedProduct?.id!;
     this.postService.deletePost(id).pipe(
       tap(() => {
-        this.setLoadingFalse()
+        this.isLoading = false;
       })
     ).subscribe();
   }
@@ -106,6 +98,15 @@ export class PostsComponent implements OnInit {
     return tap(() => {
       this.isLoading = false;
     })
+  }
+
+  loadPosts(): void {
+    this.postService.loadPosts(this.rows, this.first)
+      .pipe( 
+        tap(() => {
+          this.setLoadingFalse()
+        }),
+      ).subscribe();
   }
 
 }

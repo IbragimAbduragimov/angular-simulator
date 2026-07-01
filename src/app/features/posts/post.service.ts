@@ -81,7 +81,7 @@ export class PostService {
     return this.postApiService.updatePost(id, data).pipe(
       tap((post: IPost) => {
         const posts: IPost[] = this.getPosts();
-        const updatedPosts = posts.map((posts) => posts.id === id ? post : posts);
+        const updatedPosts: IPost[] = posts.map((posts) => posts.id === id ? post : posts);
         this.setPosts(updatedPosts);
       }),
       catchError((error: HttpErrorResponse) => {
