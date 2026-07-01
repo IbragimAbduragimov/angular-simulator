@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit {
   isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.loadPosts()
+    this.loadPosts(this.rows, this.first)
   }
 
   rowsPerPageOptions: number[] = [5, 10, 20];
@@ -51,7 +51,7 @@ export class PostsComponent implements OnInit {
   onPageChange(event: TablePageEvent): void {
     this.rows = event.rows;
     this.first = event.first;
-    this.loadPosts()
+    this.loadPosts(this.rows, this.first)
   }
 
   viewPost(): void {
@@ -94,17 +94,12 @@ export class PostsComponent implements OnInit {
       ).subscribe();
   }
 
-  setLoadingFalse(): MonoTypeOperatorFunction<unknown> {
-    return tap(() => {
-      this.isLoading = false;
-    })
-  }
-
-  loadPosts(): void {
-    this.postService.loadPosts(this.rows, this.first)
+  loadPosts(page?: number, size?: number): void {
+    this.isLoading = true;
+    this.postService.loadPosts(page, size)
       .pipe( 
         tap(() => {
-          this.setLoadingFalse()
+          this.isLoading = false;
         }),
       ).subscribe();
   }
