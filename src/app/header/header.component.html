@@ -14,6 +14,8 @@
     <div class="header">
       <div class="company-icon column">
         <fa-icon [icon]="faMountainSun" alt="mountains" width="500px"></fa-icon>
+        <button (click)="logout()">выйти из аккаунта</button>
+        <p>{{ authService.isLogin ? 'пользователь авторизован' : 'пользователь не авторизован' }}</p>
       </div>
       <div class="main-crossings fs-18 semi-bold">
         @for (navigation of navigations; track $index) {
