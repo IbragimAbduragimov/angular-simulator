@@ -1,0 +1,53 @@
+<form [formGroup]="postForm">
+  <div>
+    <label>
+      id
+      <input id="id" type="number" formControlName="id">
+    </label>
+  </div>
+  <div>
+    <label>
+      title
+      <input id="title" type="text" formControlName="title">
+    </label>
+  </div>
+  <div>
+    <label>
+      body
+      <input id="body" type="text" formControlName="body">
+    </label>
+  </div>
+  <div>
+    <label>
+      tags
+      <input id="tags" type="text" formControlName="tags">
+    </label>
+  </div>
+  <div formGroupName="reactions">
+    <div>
+      <label>
+        likes
+        <input id="likes" type="number" formControlName="likes">
+      </label>
+    </div>
+    <div>
+      <label>
+        dislikes
+        <input id="dislikes" type="number" formControlName="dislikes">
+      </label>
+    </div>
+  </div>
+  <div>
+    <label>
+      views
+      <input id="views" type="number" formControlName="views">
+    </label>
+  </div>
+  <div>
+    <label>
+      userId
+      <input id="userId" type="number" formControlName="userId">
+    </label>
+  </div>
+</form>
+<button id="btn-form" type="button" (click)="onSubmit()">Зарегистрировать пользователя</button>
