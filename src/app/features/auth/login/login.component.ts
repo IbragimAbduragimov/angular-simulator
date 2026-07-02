@@ -6,7 +6,7 @@ import { LocalStorageService } from '../../../../local-storage.service';
 import { IToken } from '../IToken';
 import { Router } from '@angular/router';
 import { ILogin } from '../ILogin';
-import { IAuthResponse } from '../IAuth-response';
+import { IAuthResponse } from '../IAuthResponse';
 
 @Component({
   selector: 'app-login',
@@ -18,19 +18,16 @@ export class LoginComponent {
 
   private authService: AuthService = inject(AuthService);
   private fb: FormBuilder = inject(FormBuilder);
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
   private router: Router = inject(Router);
-
-  token: IToken = this.localStorageService.getKey('tokens');
 
   loginForm: FormGroup = this.fb.nonNullable.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required]]
   })
 
-  authUser(): Promise<boolean> {
+  login(): Promise<boolean> {
     const formValue: ILogin = this.loginForm.value;
-    const convertedData: ILogin = { ...formValue }
+    const convertedData: ILogin = { ...formValue };
     this.authService.login(convertedData).subscribe();
     return this.router.navigate(['']);
   }
