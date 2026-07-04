@@ -21,7 +21,7 @@ export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn):
     .pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          return authService.refresh()
+          return authService.refreshToken()
             .pipe(
               exhaustMap(() => {
                 const newToken: string | undefined = authService.getTokens()?.accessToken;

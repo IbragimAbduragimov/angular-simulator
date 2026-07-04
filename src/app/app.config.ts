@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import Lara from '@primeuix/themes/lara'
 import Aura from '@primeuix/themes/aura'
@@ -10,6 +10,8 @@ import { Theme } from '../enums/Theme';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './error.interceptor';
 import { httpLogInterceptor } from './http-log.interceptor';
+import { AuthService } from './features/auth/auth.service';
+import { authInterceptor } from './features/auth/auth.interceptor';
 
 function getPreset(): string | number | object {
   const preset: string | null = localStorage.getItem('preset') ?? "Aura";
@@ -34,7 +36,11 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.my-app-dark',
         }
       },
-    })
+    }),
+    provideAppInitializer(() => {
+      const authService: AuthService = inject(AuthService);
+      return authService.getCurrentUser();
+    }),
   ],
 
 };
