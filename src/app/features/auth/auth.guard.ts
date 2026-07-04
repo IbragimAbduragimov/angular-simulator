@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   const router: Router = inject(Router);
   const authService: AuthService = inject(AuthService)
 
-  const isLogin: IAuthResponse | null = authService.getUser();
+  const isLogin: boolean = authService.getUser() ? true : false;
 
   if (isLogin) {
     return true;

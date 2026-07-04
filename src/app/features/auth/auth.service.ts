@@ -17,7 +17,6 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<IAuthResponse | null> = new BehaviorSubject<IAuthResponse | null>(null);
   currentUser$: Observable<IAuthResponse | null> = this.currentUserSubject.asObservable();
-  isLogin: boolean = this.getUser() ? true : false;
 
   private apiUrl: string = 'https://dummyjson.com/auth';
 
@@ -53,7 +52,7 @@ export class AuthService {
     return this.http.get<IAuthUser>(`${ this.apiUrl }/me`);
   }
 
-  refresh(): Observable<IToken> {
+  refreshToken(): Observable<IToken> {
     const tokens: IToken | null = this.getTokens();
     return this.http.post<IToken>(`${ this.apiUrl }/refresh`, { refreshToken: tokens?.refreshToken }).pipe(
       tap((tokens: IToken) => this.setTokens(tokens)),
