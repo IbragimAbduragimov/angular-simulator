@@ -22,8 +22,10 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
-  authService: AuthService = inject(AuthService)
+  authService: AuthService = inject(AuthService);
 
+
+  isLogin: boolean = !!this.authService.getUser();
   faMountainSun: IconDefinition = faMountainSun;
 
   navigations: INavigation[] = [
