@@ -6,6 +6,7 @@ import { catchError, exhaustMap, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { IAuthResponse } from './IAuthResponse';
+import { IAuthUser } from './IAuthUser';
 
 export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
 
@@ -25,7 +26,7 @@ export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn):
             .pipe(
               exhaustMap(() => {
                 const newToken: string | undefined = authService.getTokens()?.accessToken;
-                const user: IAuthResponse | null = authService.getUser()
+                const user: IAuthResponse  | IAuthUser | null = authService.getUser()
 
                 if (!user) {
                   authService.logout();

@@ -47,6 +47,12 @@ export class HeaderComponent {
     }
   ]
 
+  ngOnInit() {
+    setInterval(() => {
+      console.log(this.authService.getUser())
+    }, 1000);
+  }
+
   toggleMode(event: ToggleSwitchChangeEvent): void {
     this.themeService.toggleDarkMode(event.checked); 
   }
