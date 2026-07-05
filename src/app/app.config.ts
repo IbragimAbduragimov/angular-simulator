@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
-    provideHttpClient(withInterceptors([errorInterceptor, httpLogInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor, httpLogInterceptor])),
     providePrimeNG({
       theme: {
         preset: getPreset(),

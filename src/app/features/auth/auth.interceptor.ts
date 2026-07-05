@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { IAuthResponse } from './IAuthResponse';
 
-export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> | Promise<boolean> => {
+export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
 
   const localStorageService: LocalStorageService = inject(LocalStorageService);
   const authService: AuthService = inject(AuthService);
