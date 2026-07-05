@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IBlog } from '../interfaces/IBlog';
 import { IDirection } from '../interfaces/IDirection';
 import { IAdvantage } from '../interfaces/IAdvantag';
@@ -10,6 +10,8 @@ import { MessageService } from '../../message.service';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalendarAlt, faCalendarCheck, faCalendarDays, faCalendarWeek, faClock, faPeoplePulling, faShield, faStar, faStop, faStopCircle, faStopwatch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { LocalStorageService } from '../../local-storage.service';
+import { Router, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -20,6 +22,7 @@ import { faCalendarAlt, faCalendarCheck, faCalendarDays, faCalendarWeek, faClock
 export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
+  localStorageService: LocalStorageService = inject(LocalStorageService);
   
   faCalendarWeek: IconDefinition = faCalendarWeek;
   faStar: IconDefinition = faStar;

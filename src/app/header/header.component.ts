@@ -10,6 +10,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { Theme } from '../../enums/Theme';
 import { INavigation } from '../interfaces/INavigation';
 import { AsyncPipe } from '@angular/common';
+import { AuthService } from '../features/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,10 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
+  authService: AuthService = inject(AuthService);
 
+
+  isLogin: boolean = !!this.authService.getUser();
   faMountainSun: IconDefinition = faMountainSun;
 
   navigations: INavigation[] = [
@@ -32,6 +36,14 @@ export class HeaderComponent {
     {
       link: 'users',
       navigation: 'Пользователи'
+    },
+    {
+      link: 'posts',
+      navigation: 'пользователи'
+    },
+    {
+      link: 'login',
+      navigation: 'аунтификация'
     }
   ]
 
@@ -41,6 +53,13 @@ export class HeaderComponent {
 
   toggleTheme(value: Theme): void {
     this.themeService.switchTheme(value);
+  }
+
+  logout(): void {
+    const isReady: boolean = confirm("Вы уверены, что хотите выйти из аккаунта?");
+    if (isReady) {
+      this.authService.logout();
+    }
   }
 
 }
