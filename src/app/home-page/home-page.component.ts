@@ -20,7 +20,7 @@ import { AuthService } from '../features/auth/auth.service';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
@@ -42,10 +42,6 @@ export class HomePageComponent implements OnInit {
   currentWidget: Widget = 'data';
   underline: boolean = false;
   selectedUnderline!: number;
-
-  ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe();
-  }
 
     locations: ILocation[] = [
       {

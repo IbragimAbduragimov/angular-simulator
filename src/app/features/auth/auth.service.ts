@@ -15,16 +15,16 @@ export class AuthService {
   private http: HttpClient = inject(HttpClient);
   private localStorageService = inject(LocalStorageService);
 
-  private currentUserSubject: BehaviorSubject<IAuthResponse | IAuthUser | null> = new BehaviorSubject<IAuthResponse | IAuthUser | null>(null);
-  currentUser$: Observable<IAuthResponse | IAuthUser | null> = this.currentUserSubject.asObservable();
+  private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthResponse | IAuthUser | null>(null);
+  currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
 
   private apiUrl: string = 'https://dummyjson.com/auth';
 
-  setUser(user: IAuthResponse | IAuthUser): void {
+  setUser(user: IAuthUser): void {
     this.currentUserSubject.next(user);
   }
 
-  getUser(): IAuthResponse | IAuthUser | null {
+  getUser(): IAuthUser | null {
     return this.currentUserSubject.getValue();
   }
 
@@ -39,7 +39,6 @@ export class AuthService {
   login(login: ILogin): Observable<IAuthResponse> {
     return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, login).pipe(
       tap((response: IAuthResponse) => {
-        this.setUser(response);
         this.setTokens({
           accessToken: response.accessToken,
           refreshToken: response.refreshToken,

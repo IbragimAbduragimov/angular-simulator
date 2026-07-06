@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AuthService } from '../auth.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, finalize, Observable } from 'rxjs';
 import { LocalStorageService } from '../../../../local-storage.service';
 import { IToken } from '../IToken';
 import { Router } from '@angular/router';
@@ -25,11 +25,12 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   })
 
-  login(): Promise<boolean> {
+  login(): void {
     const formValue: ILogin = this.loginForm.value;
     const convertedData: ILogin = { ...formValue };
-    this.authService.login(convertedData).subscribe();
-    return this.router.navigate(['']);
+    this.authService.login(convertedData).pipe(
+      finalize(() => { return this.router.navigate(['']) })
+    ).subscribe();
   }
 
 }
