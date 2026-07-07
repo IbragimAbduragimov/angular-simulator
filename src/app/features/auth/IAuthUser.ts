@@ -1,4 +1,4 @@
-import { Admin } from "./admin";
+import { Role } from "./Role.enum";
 
 export interface IAuthUser {
   id: number;
@@ -8,5 +8,5 @@ export interface IAuthUser {
   lastName: string;
   gender: string;
   image: string;
-  role: Admin;
+  role: Role;
 }

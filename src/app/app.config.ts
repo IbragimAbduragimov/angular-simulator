@@ -39,11 +39,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
-      const tokens: string | null = localStorage.getItem('tokens');
-      if (tokens) {
-        return authService.getCurrentUser();
-      }
-      return;
+      return authService.initialize();
     }),
   ],
 

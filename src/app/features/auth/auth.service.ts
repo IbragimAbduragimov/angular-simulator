@@ -65,4 +65,11 @@ export class AuthService {
     this.localStorageService.clearKey('tokens');
   }
 
+  initialize(): Observable<IAuthUser> | undefined {
+    if (this.getTokens()) {
+      return this.getCurrentUser();
+    }
+    return;
+  }
+
 }
