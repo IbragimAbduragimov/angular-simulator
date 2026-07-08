@@ -39,7 +39,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
-      return authService.getCurrentUser();
+      return authService.initialize();
     }),
   ],
 

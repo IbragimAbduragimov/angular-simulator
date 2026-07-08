@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalendarAlt, faCalendarCheck, faCalendarDays, faCalendarWeek, faClock, faPeoplePulling, faShield, faStar, faStop, faStopCircle, faStopwatch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from '../../local-storage.service';
 import { Router, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../features/auth/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -23,6 +24,7 @@ export class HomePageComponent {
 
   messageService: MessageService = inject(MessageService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
+  authService: AuthService = inject(AuthService);
   
   faCalendarWeek: IconDefinition = faCalendarWeek;
   faStar: IconDefinition = faStar;
@@ -138,9 +140,9 @@ export class HomePageComponent {
     ]
 
 
-      selectService(advantagId: number): void {
-      this.selectedAdvantagId = advantagId;
-    }
+  selectService(advantagId: number): void {
+    this.selectedAdvantagId = advantagId;
+  }
 
   plus() {
     this.clicker += 1;

@@ -6,8 +6,9 @@ import { catchError, exhaustMap, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { IAuthResponse } from './IAuthResponse';
+import { IAuthUser } from './IAuthUser';
 
-export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
+export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
 
   const localStorageService: LocalStorageService = inject(LocalStorageService);
   const authService: AuthService = inject(AuthService);
@@ -15,31 +16,36 @@ export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn):
 
   const token: IToken = localStorageService.getKey('tokens');
 
-  const authReq: HttpRequest<unknown> = addToken(req, token.accessToken);
-  
-  return next(authReq)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          return authService.refreshToken()
-            .pipe(
-              exhaustMap(() => {
-                const newToken: string | undefined = authService.getTokens()?.accessToken;
-                const user: IAuthResponse | null = authService.getUser()
+  if (token) {
+    const authReq: HttpRequest<unknown> = addToken(req, token.accessToken);
 
-                if (!user) {
-                  authService.logout();
-                  router.navigate(['login']);
-                  return throwError(() => error);
-                }
-                  const retryReq: HttpRequest<unknown> = addToken(req, newToken);
-                  return next(retryReq);
-              }),
-            )
-        }
-        return throwError(() => error);
-      })
-    );
+    return next(authReq)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            return authService.refreshToken()
+              .pipe(
+                exhaustMap(() => {
+                  const newToken: string | undefined = authService.getTokens()?.accessToken;
+                  const user: IAuthResponse  | IAuthUser | null = authService.getUser()
+
+                  if (!user) {
+                    authService.logout();
+                    router.navigate(['login']);
+                    return throwError(() => error);
+                  }
+                    const retryReq: HttpRequest<unknown> = addToken(req, newToken);
+                    return next(retryReq);
+                }),
+              )
+          }
+          return throwError(() => error);
+        })
+      );
+  } 
+  else {
+    return next(req);
+  }
 };
 
 const addToken = (req: HttpRequest<unknown>, token: string | undefined): HttpRequest<unknown> => req.clone({
