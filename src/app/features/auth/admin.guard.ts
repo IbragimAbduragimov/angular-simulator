@@ -8,9 +8,8 @@ export const adminGuard: CanActivateFn = () => {
   const router: Router = inject(Router);
   const authService: AuthService = inject(AuthService);
   const userRole: string | undefined = authService.getUser()?.role;
-  const role: typeof Role = Role;
 
-  if (userRole === role.ADMIN) {
+  if (userRole === Role.ADMIN) {
     return true;
   }
 

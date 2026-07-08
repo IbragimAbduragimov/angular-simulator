@@ -28,11 +28,11 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   })
 
-  login(): Promise<boolean> | void {
+  login(): void {
     const formValue: ILogin = this.loginForm.value;
     const convertedData: ILogin = { ...formValue };
     this.authService.login(convertedData).pipe(
-      tap(() => { return this.router.navigate(['']) }),
+      tap(() => this.router.navigate([''])),
       catchError((error: HttpErrorResponse) => {
         this.messageSevice.showError('произошла ошибка')
         return throwError(() => error);
