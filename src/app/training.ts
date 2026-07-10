@@ -1,8 +1,8 @@
-function sumNumbers(a:number, b:number): number {
+function sumNumbers(a: number, b: number): number {
   return a + b;
 }
 
-let uploadStatus: "loading" | "success" | "error";
+let uploadStatus: 'loading' | 'success' | 'error';
 
 let textFormat: 'uppercase' | 'capitalize' | 'lowercase';
 
@@ -19,20 +19,18 @@ interface IStudent extends IUser {
 function formatText(text: string, option: string): string {
   if (textFormat == 'uppercase') {
     return text.toUpperCase();
-  }
-  else if (textFormat == 'capitalize') {
+  } else if (textFormat == 'capitalize') {
     return text.charAt(0).toUpperCase() + text.charAt(1).toLowerCase();
-  }
-  else {
+  } else {
     return text.toLowerCase();
   }
 }
 
 function removeChar(text: string, char: string): string[] {
-    return text.split(char);
+  return text.split(char);
 }
 
-let users: IUser[] = [
+const users: IUser[] = [
   {
     name: 'ibragim',
     age: 15,
@@ -44,7 +42,7 @@ let users: IUser[] = [
   {
     name: 'alex',
     age: 38,
-  }
-]
+  },
+];
 
-let youngUsers: IUser[] = users.filter((user: IUser) => user.age < 30);
+const youngUsers: IUser[] = users.filter((user: IUser) => user.age < 30);

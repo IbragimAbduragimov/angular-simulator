@@ -22,22 +22,21 @@ import { IPostEdit } from '../IPostEdit';
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
-
   private postService: PostService = inject(PostService);
   private router: Router = inject(Router);
   private dialogService: DialogService = inject(DialogService);
 
   posts$: Observable<IPost[]> = this.postService.posts$;
-  rows: number = 5;
-  totalRecords: number = 30;
-  first: number = 0;
+  rows = 5;
+  totalRecords = 30;
+  first = 0;
 
   selectedProduct!: IPost | null;
   ref!: DynamicDialogRef | null;
-  isLoading: boolean = true;
+  isLoading = true;
 
   ngOnInit(): void {
-    this.loadPosts(this.rows, this.first)
+    this.loadPosts(this.rows, this.first);
   }
 
   rowsPerPageOptions: number[] = [5, 10, 20];
@@ -51,24 +50,27 @@ export class PostsComponent implements OnInit {
   onPageChange(event: TablePageEvent): void {
     this.rows = event.rows;
     this.first = event.first;
-    this.loadPosts(this.rows, this.first)
+    this.loadPosts(this.rows, this.first);
   }
 
   viewPost(): void {
-    this.router.navigate([`posts/${ this.selectedProduct?.id }`]);
+    this.router.navigate([`posts/${this.selectedProduct?.id}`]);
   }
 
   showPostDetails(id: number): void {
-    this.router.navigate([`posts/${ id }`]);
+    this.router.navigate([`posts/${id}`]);
   }
 
   deletePost(): void {
     const id: number = this.selectedProduct?.id!;
-    this.postService.deletePost(id).pipe(
-      tap(() => {
-        this.isLoading = false;
-      })
-    ).subscribe();
+    this.postService
+      .deletePost(id)
+      .pipe(
+        tap(() => {
+          this.isLoading = false;
+        }),
+      )
+      .subscribe();
   }
 
   redirectToCreate(): void {
@@ -77,12 +79,13 @@ export class PostsComponent implements OnInit {
 
   showEditModal(): void {
     const id = this.selectedProduct!.id;
-    this.postService.getPost(this.selectedProduct!.id)
+    this.postService
+      .getPost(this.selectedProduct!.id)
       .pipe(
         switchMap((fullPost: IPost) => {
-          this.ref = this.dialogService.open(PostEditDialogComponent, { 
-            header: 'Редактирование поста', 
-            data: { post: fullPost } 
+          this.ref = this.dialogService.open(PostEditDialogComponent, {
+            header: 'Редактирование поста',
+            data: { post: fullPost },
           });
           return this.ref?.onClose || EMPTY;
         }),
@@ -91,17 +94,19 @@ export class PostsComponent implements OnInit {
           this.postService.updatePost(id, updatedPost);
         }),
         take(1),
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   loadPosts(page?: number, size?: number): void {
     this.isLoading = true;
-    this.postService.loadPosts(page, size)
-      .pipe( 
+    this.postService
+      .loadPosts(page, size)
+      .pipe(
         tap(() => {
           this.isLoading = false;
         }),
-      ).subscribe();
+      )
+      .subscribe();
   }
-
 }

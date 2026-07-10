@@ -18,7 +18,6 @@ import { IPost } from '../IPost';
   styleUrl: './post-detail.component.scss',
 })
 export class PostDetailComponent implements OnInit {
-
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   post!: IPost;
@@ -26,5 +25,4 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     this.post = this.route.snapshot.data['post'];
   }
-
 }

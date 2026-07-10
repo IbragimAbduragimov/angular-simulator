@@ -1,1 +1,1 @@
-export type Widget = 'data' | 'clicker'; 
+export type Widget = 'data' | 'clicker';

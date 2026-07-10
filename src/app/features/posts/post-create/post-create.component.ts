@@ -16,11 +16,10 @@ import { IPost } from '../IPost';
   styleUrl: './post-create.component.scss',
 })
 export class PostCreateComponent {
-  
   private fb: FormBuilder = inject(FormBuilder);
   private postService: PostService = inject(PostService);
   private router: Router = inject(Router);
-  private messageService: MessageService = inject(MessageService)
+  private messageService: MessageService = inject(MessageService);
 
   postForm: FormGroup = this.fb.nonNullable.group({
     title: ['', [Validators.required]],
@@ -28,7 +27,7 @@ export class PostCreateComponent {
     tags: ['', [Validators.required]],
     reactions: this.fb.nonNullable.group({
       likes: ['', [Validators.required]],
-      dislikes: ['', [Validators.required]]
+      dislikes: ['', [Validators.required]],
     }),
     views: ['', [Validators.required]],
     userId: ['', [Validators.required]],
@@ -36,15 +35,17 @@ export class PostCreateComponent {
 
   onSubmit(): void {
     const formValue: IPost = this.postForm.value;
-      this.postService.createPost(formValue).pipe(
+    this.postService
+      .createPost(formValue)
+      .pipe(
         tap(() => {
           this.router.navigate(['posts']);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.messageService.showError('ошибка при создании пользователя, попробуйте позже')
+          this.messageService.showError('ошибка при создании пользователя, попробуйте позже');
           return throwError(() => error);
         }),
-      ).subscribe();
+      )
+      .subscribe();
   }
-
 }

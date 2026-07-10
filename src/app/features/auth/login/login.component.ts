@@ -1,5 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../../local-storage.service';
@@ -17,7 +23,6 @@ import { MessageService } from '../../../../message.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   private authService: AuthService = inject(AuthService);
   private fb: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
@@ -25,19 +30,21 @@ export class LoginComponent {
 
   loginForm: FormGroup = this.fb.nonNullable.group({
     username: ['', [Validators.required]],
-    password: ['', [Validators.required]]
-  })
+    password: ['', [Validators.required]],
+  });
 
   login(): void {
     const formValue: ILogin = this.loginForm.value;
     const convertedData: ILogin = { ...formValue };
-    this.authService.login(convertedData).pipe(
-      tap(() => this.router.navigate([''])),
-      catchError((error: HttpErrorResponse) => {
-        this.messageSevice.showError('произошла ошибка')
-        return throwError(() => error);
-      }),
-    ).subscribe();
+    this.authService
+      .login(convertedData)
+      .pipe(
+        tap(() => this.router.navigate([''])),
+        catchError((error: HttpErrorResponse) => {
+          this.messageSevice.showError('произошла ошибка');
+          return throwError(() => error);
+        }),
+      )
+      .subscribe();
   }
-
 }

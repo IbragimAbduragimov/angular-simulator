@@ -11,7 +11,5 @@ import { UserService } from '../user.service';
   styleUrl: './message.component.scss',
 })
 export class MessageComponent {
-
   messageService: MessageService = inject(MessageService);
-  
 }

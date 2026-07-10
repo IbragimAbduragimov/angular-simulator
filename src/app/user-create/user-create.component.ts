@@ -1,19 +1,30 @@
 import { Component, EventEmitter, inject, Output, output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
 import { UserService } from '../user.service';
-import { GradientHoverDirective } from "../gradient-hover.directive";
+import { GradientHoverDirective } from '../gradient-hover.directive';
 import { BoldOnHoverDirective } from '../boldOnHover-directive';
 
 @Component({
   selector: 'app-user-create',
-  imports: [ReactiveFormsModule, BoldOnHoverDirective, GradientHoverDirective, BoldOnHoverDirective],
+  imports: [
+    ReactiveFormsModule,
+    BoldOnHoverDirective,
+    GradientHoverDirective,
+    BoldOnHoverDirective,
+  ],
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.scss',
 })
 export class UserCreateComponent {
-
-  @Output() createUser : EventEmitter<IUser> = new EventEmitter<IUser>();
+  @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
 
   private fb: FormBuilder = inject(FormBuilder);
 
@@ -46,5 +57,4 @@ export class UserCreateComponent {
     const user: IUser = { ...this.userForm.value, id: Date.now() };
     this.createUser.emit(user);
   }
-
 }

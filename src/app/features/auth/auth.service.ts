@@ -11,14 +11,16 @@ import { LocalStorageService } from '../../../local-storage.service';
   providedIn: 'root',
 })
 export class AuthService {
-  
   private http: HttpClient = inject(HttpClient);
   private localStorageService = inject(LocalStorageService);
 
-  private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthResponse | IAuthUser | null>(null);
+  private currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<
+    IAuthResponse | IAuthUser | null
+  >(null);
+
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
 
-  private apiUrl: string = 'https://dummyjson.com/auth';
+  private apiUrl = 'https://dummyjson.com/auth';
 
   setUser(user: IAuthUser): void {
     this.currentUserSubject.next(user);
@@ -37,27 +39,27 @@ export class AuthService {
   }
 
   login(login: ILogin): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, login).pipe(
+    return this.http.post<IAuthResponse>(`${this.apiUrl}/login`, login).pipe(
       tap((response: IAuthResponse) => {
         this.setTokens({
           accessToken: response.accessToken,
           refreshToken: response.refreshToken,
-        })
-      })
+        });
+      }),
     );
   }
 
   getCurrentUser(): Observable<IAuthUser> {
-    return this.http.get<IAuthUser>(`${ this.apiUrl }/me`).pipe(
-      tap((user: IAuthUser) => this.setUser(user))
-    );
+    return this.http
+      .get<IAuthUser>(`${this.apiUrl}/me`)
+      .pipe(tap((user: IAuthUser) => this.setUser(user)));
   }
 
   refreshToken(): Observable<IToken> {
     const tokens: IToken | null = this.getTokens();
-    return this.http.post<IToken>(`${ this.apiUrl }/refresh`, { refreshToken: tokens?.refreshToken }).pipe(
-      tap((tokens: IToken) => this.setTokens(tokens)),
-    );
+    return this.http
+      .post<IToken>(`${this.apiUrl}/refresh`, { refreshToken: tokens?.refreshToken })
+      .pipe(tap((tokens: IToken) => this.setTokens(tokens)));
   }
 
   logout(): void {
@@ -71,5 +73,4 @@ export class AuthService {
     }
     return;
   }
-
 }

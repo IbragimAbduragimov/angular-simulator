@@ -11,11 +11,11 @@
       <span>Эл. почта:</span>
       <p appBold>{{ user.email }}</p>
     </div>
-    <div class="detail-row"> 
+    <div class="detail-row">
       <span>Телефон:</span>
       <p>{{ user.phone | phoneModePipe: phone.COMPACT }}</p>
     </div>
-    <div class="detail-row"> 
+    <div class="detail-row">
       <span>Веб-сайт:</span>
       <p>{{ user.website || 'Неизвестно' }}</p>
     </div>
@@ -23,12 +23,12 @@
       <p>Адрес Проживания</p>
       <div></div>
     </div>
-    <div class="detail-row"> 
-      <span>Город:</span>   
+    <div class="detail-row">
+      <span>Город:</span>
       <p>{{ user.address.city }}</p>
     </div>
-    <div class="detail-row">   
-      <span>Улица:</span> 
+    <div class="detail-row">
+      <span>Улица:</span>
       <p>{{ user.address.street }}</p>
     </div>
     <div class="detail-row">

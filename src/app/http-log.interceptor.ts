@@ -1,13 +1,24 @@
-import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
 
-export const httpLogInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const httpLogInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
+  const startTime: number = Date.now();
 
-  const startTime: number = Date.now()
-
-  const logRequest = (message: string) =>  {
-    console.log(`ИНФОРМАЦИЯ ЗАПРОСА: ${ req.method } ${ req.url } ${ message }${ Date.now() - startTime }ms`);
-  }
+  const logRequest = (message: string) => {
+    console.log(
+      `ИНФОРМАЦИЯ ЗАПРОСА: ${req.method} ${req.url} ${message}${Date.now() - startTime}ms`,
+    );
+  };
 
   return next(req).pipe(
     tap((event: HttpEvent<unknown>) => {
@@ -20,5 +31,4 @@ export const httpLogInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
       return throwError(() => error);
     }),
   );
-
 };

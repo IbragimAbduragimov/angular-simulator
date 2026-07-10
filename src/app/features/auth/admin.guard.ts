@@ -4,7 +4,6 @@ import { inject } from '@angular/core';
 import { Role } from './Role.enum';
 
 export const adminGuard: CanActivateFn = () => {
-  
   const router: Router = inject(Router);
   const authService: AuthService = inject(AuthService);
   const userRole: string | undefined = authService.getUser()?.role;
@@ -14,5 +13,4 @@ export const adminGuard: CanActivateFn = () => {
   }
 
   return router.navigate(['']);
-
 };

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMountainSun, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
@@ -14,41 +14,47 @@ import { AuthService } from '../features/auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, ToggleSwitchModule, FormsModule, SelectButtonModule, AsyncPipe],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    FontAwesomeModule,
+    ToggleSwitchModule,
+    FormsModule,
+    SelectButtonModule,
+    AsyncPipe,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   themeService: ThemeService = inject(ThemeService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   authService: AuthService = inject(AuthService);
 
-
-  isLogin: boolean = !!this.authService.getUser();
+  isLogin = !!this.authService.getUser();
   faMountainSun: IconDefinition = faMountainSun;
 
   navigations: INavigation[] = [
     {
       link: '',
-      navigation: 'Главная'
+      navigation: 'Главная',
     },
     {
       link: 'users',
-      navigation: 'Пользователи'
+      navigation: 'Пользователи',
     },
     {
       link: 'posts',
-      navigation: 'пользователи'
+      navigation: 'пользователи',
     },
     {
       link: 'login',
-      navigation: 'аунтификация'
-    }
-  ]
+      navigation: 'аунтификация',
+    },
+  ];
 
   toggleMode(event: ToggleSwitchChangeEvent): void {
-    this.themeService.toggleDarkMode(event.checked); 
+    this.themeService.toggleDarkMode(event.checked);
   }
 
   toggleTheme(value: Theme): void {
@@ -56,11 +62,9 @@ export class HeaderComponent {
   }
 
   logout(): void {
-    const isReady: boolean = confirm("Вы уверены, что хотите выйти из аккаунта?");
+    const isReady: boolean = confirm('Вы уверены, что хотите выйти из аккаунта?');
     if (isReady) {
       this.authService.logout();
     }
   }
-
 }
-
