@@ -4,8 +4,7 @@ import { Directive, ElementRef, HostBinding, HostListener, inject } from '@angul
   selector: '[boldOnHover]',
 })
 export class BoldOnHoverDirective {
-
-  private el: ElementRef = inject(ElementRef)
+  private el: ElementRef = inject(ElementRef);
 
   @HostBinding('style.font-weight') textWeight!: number | undefined;
 
@@ -18,7 +17,4 @@ export class BoldOnHoverDirective {
   onLeave(): void {
     this.textWeight = undefined;
   }
-  
 }
-
-

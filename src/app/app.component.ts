@@ -1,60 +1,61 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { IAdvantage } from './interfaces/IAdvantag.js';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { ILocation } from './interfaces/ILocation.js';
 import { IParticipant } from './interfaces/IParticipant.js';
-import { IDirection } from './interfaces/IDirection.js'; 
+import { IDirection } from './interfaces/IDirection.js';
 import { IBlog } from './interfaces/IBlog.js';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { Message } from '../enums/Message.js'; 
+import { Message } from '../enums/Message.js';
 import { MessageService } from '../message.service.js';
 import { Widget } from './types/Widget.js';
 import { RouterOutlet } from '@angular/router';
-import { LoaderComponent } from "./loader/loader.component";
-import { MessageComponent } from "./message/message.component";
-import { UserCardComponent } from "./user-card/user-card.component";
-import { UsersPageComponent } from "./users-page/users-page.component.js";
-import { ThemeService } from './theme.service.js';
+import { LoaderComponent } from './loader/loader.component';
+import { MessageComponent } from './message/message.component';
 import { HeaderComponent } from './header/header.component.js';
 import { FooterComponent } from './footer/footer.component.js';
-@Component({ 
+@Component({
   selector: 'app-root',
-  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, LoaderComponent, MessageComponent,],
-  templateUrl: 'app.component.html', 
+  imports: [
+    FormsModule,
+    FooterComponent,
+    HeaderComponent,
+    RouterOutlet,
+    LoaderComponent,
+    MessageComponent,
+  ],
+  templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
-export class AppComponent { 
-
-  companyName: string = 'Румтибет'; 
+export class AppComponent {
+  companyName = 'Румтибет';
   selectedAdvantagId!: number;
   selectedLocation!: boolean;
-  selectedParticipant!: boolean; 
+  selectedParticipant!: boolean;
   selectedDate!: boolean;
-  clicker: number = 0; 
-  liveInput!: string; 
-  isLoading: boolean = false;
-  currentWidget: string = 'data';
+  clicker = 0;
+  liveInput!: string;
+  isLoading = false;
+  currentWidget = 'data';
   selectedUnderline!: number;
-  message: typeof Message  = Message;
+  message: typeof Message = Message;
   dateText!: string;
-
 
   locations: ILocation[] = [
     {
       id: 1,
-      name: 'dagestan'
-    }, 
+      name: 'dagestan',
+    },
     {
       id: 2,
-      name: 'moscow'
-    }
-  ]
+      name: 'moscow',
+    },
+  ];
 
   participants: IParticipant[] = [
     {
       id: 1,
-      quantity: 'участники', 
+      quantity: 'участники',
     },
     {
       id: 2,
@@ -63,119 +64,120 @@ export class AppComponent {
     {
       id: 3,
       quantity: 'участник 2',
-    }
-  ]
-
+    },
+  ];
 
   advantages: IAdvantage[] = [
     {
       id: 1,
       title: 'Опытный гид',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
     },
     {
       id: 2,
       title: 'Безопасный поход',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
     },
     {
-      id: 3, 
+      id: 3,
       title: 'Лояльные цены',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
-    }
-  ]
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+    },
+  ];
 
-  directions: IDirection [] = [ 
+  directions: IDirection[] = [
     {
       image: 'lake-bg',
       title: 'Озеро возле гор',
       description: 'романтическое приключение',
-      price: 480, 
-      estimation: 4.9
+      price: 480,
+      estimation: 4.9,
     },
     {
       image: 'night-mountains-bg',
       title: 'Ночь в горах',
-      description: 'в компании друзей', 
+      description: 'в компании друзей',
       price: 500,
-      estimation: 4.5
+      estimation: 4.5,
     },
     {
       image: 'stretching-bg',
       title: 'Растяжка в горах',
       description: 'для тех, кто забоится о себе',
-      price: 230, 
-      estimation: 5.0
+      price: 230,
+      estimation: 5.0,
     },
-  ]
+  ];
 
-  blogs: IBlog[] = [ 
+  blogs: IBlog[] = [
     {
       id: 1,
       image: 'italia',
       title: 'Красивая Италя, какая она в реальности?',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации  соответствующих условий активизации.'
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации  соответствующих условий активизации.',
     },
     {
       id: 2,
-      image: 'plane', 
+      image: 'plane',
       title: 'Долой сомнения! Весь мир открыт для вас!',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...'
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
     },
     {
-      id: 3, 
-      image: 'street', 
-      title: 'Как подготовиться к путешествию в одиночку? ',
-      description: 'Для современного мира базовый вектор развития предполагает.' 
+      id: 3,
+      image: 'street',
+      title: 'Как подготовиться к путешествию в одиночку?',
+      description: 'Для современного мира базовый вектор развития предполагает.',
     },
     {
       id: 4,
-      image: 'India', 
+      image: 'India',
       title: 'Индия ... летим?',
-      description: 'Для современного мира базовый.' 
+      description: 'Для современного мира базовый.',
     },
-  ]
+  ];
 
-  constructor() { 
-    this.saveLastVisitDate(); 
+  constructor() {
+    this.saveLastVisitDate();
     this.saveVisitCount();
-
   }
+
   saveLastVisitDate(): void {
     const dateString: string = new Date().toString();
     localStorage.setItem('date', dateString);
   }
- 
+
   saveVisitCount(): void {
     const currentCount: string | null = localStorage.getItem('visit-count');
-      
-    let newCount: number; 
 
-    currentCount? newCount = Number(currentCount) + 1 : newCount = 1;
+    const newCount: number = currentCount ? Number(currentCount + 1) : 1;
 
     localStorage.setItem('visit-count', newCount.toString());
   }
 
-  selectService(advantagId: number): void { 
+  selectService(advantagId: number): void {
     this.selectedAdvantagId = advantagId;
   }
- 
+
   increment(): void {
-    this.clicker + 1;
+    this.clicker += 1;
   }
 
   decrement(): void {
-    if (this.clicker > 0) {  
-      this.clicker - 1;
+    if (this.clicker > 0) {
+      this.clicker -= 1;
     }
   }
 
   isValidForm(): boolean {
-    return this.selectedLocation && this.selectedParticipant && this.selectedDate; 
+    return this.selectedLocation && this.selectedParticipant && this.selectedDate;
   }
 
   toggleWidget(widget: Widget) {
     this.currentWidget = widget;
-  } 
-
+  }
 }

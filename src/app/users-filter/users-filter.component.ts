@@ -1,6 +1,6 @@
-import { Component, DestroyRef, EventEmitter, inject, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Output, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 @Component({
@@ -9,8 +9,7 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
   templateUrl: './users-filter.component.html',
   styleUrl: './users-filter.component.scss',
 })
-export class UsersFilterComponent {
-
+export class UsersFilterComponent implements OnInit {
   destroyRef: DestroyRef = inject(DestroyRef);
 
   formControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
@@ -18,12 +17,13 @@ export class UsersFilterComponent {
   @Output() filterUser: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.formControl.valueChanges.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      tap((value: string) => this.filterUser.emit(value)),
-      takeUntilDestroyed(this.destroyRef),
-    ).subscribe();
+    this.formControl.valueChanges
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap((value: string) => this.filterUser.emit(value)),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
-
 }

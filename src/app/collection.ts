@@ -1,5 +1,4 @@
 export class Collecton<T> {
-
   collection: T[];
 
   constructor(collection: T[]) {
@@ -14,7 +13,7 @@ export class Collecton<T> {
     return collection[index];
   }
 
-  clearCollection<T>(): void {
+  clearCollection(): void {
     this.collection = [];
   }
 
@@ -25,5 +24,4 @@ export class Collecton<T> {
   deleteElement<T>(index: number, collection: T[], none: T): void {
     collection[index] = none;
   }
-  
 }

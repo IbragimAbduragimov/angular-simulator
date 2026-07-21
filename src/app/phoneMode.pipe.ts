@@ -5,7 +5,6 @@ import { PhoneMode } from '../enums/PhoneMode';
   name: 'phoneModePipe',
 })
 export class PhoneModePipe implements PipeTransform {
-
   transform(phone: string, phoneMode: PhoneMode): string {
     const clearedPhone: string = phone.replace(/[()-.xх]/g, '');
     const countryCode: string = clearedPhone.slice(0, 2);
@@ -14,8 +13,8 @@ export class PhoneModePipe implements PipeTransform {
     const secondPart: string = clearedPhone.slice(8, 10);
     const thirdPart: string = clearedPhone.slice(10, 12);
     switch (phoneMode) {
-      case PhoneMode.COMPACT :
-        return `+ ${ clearedPhone }`
+      case PhoneMode.COMPACT:
+        return `+ ${ clearedPhone }`;
       case PhoneMode.INTERNATIONAL:
         return `+ ${ countryCode } ${ operatorCode } ${ firstPart } ${ secondPart } ${ thirdPart }`;
       case PhoneMode.NATIONAL:
@@ -24,5 +23,4 @@ export class PhoneModePipe implements PipeTransform {
         return `+ ${ countryCode } ${ operatorCode } *** ** ${ thirdPart }`;
     }
   }
-
 }

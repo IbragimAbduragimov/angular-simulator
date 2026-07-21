@@ -1,59 +1,68 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <div class="bg-main"></div>
-  <div class="main-information">
-    <div>
-      <h1 class="title">Насладись прогулкой в горах с командой единомышленников</h1>
-    </div>
-    <div>
-      <form class="tour-filter">
-        <div class="column">
-          <select name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
-            @for (location of locations; track $index) {
-              <option>{{ location.name }}</option>
-            }
-          </select>
-          <p class="white">выберите из списка</p>
-        </div>
-        <div class="column">
-          <input name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода" [(ngModel)]="selectedDate">
-          <fa-icon class="calendar-icon" [icon]="faCalendarWeek" alt="calendar" width="18px"></fa-icon>
-          <label class="white">укажите дату</label>
-        </div>
-        <div class="column"> 
-          <select name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
-            @for (participant of participants; track $index) {
-              <option>{{ participant.quantity }}</option>
-            }
-          </select>
-          <p class="white">выберите из списка</p>
-        </div>
-        <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">Найти программу</button>
-      </form>
-      <div class="live-input">
-        <input class="live-input-i" [(ngModel)]="liveInput" type="text">
-        <p>{{ liveInput }}</p>
+<div class="main-information">
+  <div>
+    <h1 class="title">Насладись прогулкой в горах с командой единомышленников</h1>
+  </div>
+  <div>
+    <form class="tour-filter">
+      <div class="column">
+        <select name="location" class="wi-270 he-52 select-location" [(ngModel)]="selectedLocation">
+          @for (location of locations; track $index) {
+          <option>{{ location.name }}</option>
+          }
+        </select>
+        <p class="white">выберите из списка</p>
       </div>
+      <div class="column">
+        <input name="date" type="text" class="wi-270 he-52 select-main" placeholder="Дата похода"
+          [(ngModel)]="selectedDate" />
+        <fa-icon class="calendar-icon" [icon]="faCalendarWeek" alt="calendar" width="18px"></fa-icon>
+        <label class="white">укажите дату</label>
+      </div>
+      <div class="column">
+        <select name="participant" class="wi-270 he-52 select-main" [(ngModel)]="selectedParticipant">
+          @for (participant of participants; track $index) {
+          <option>{{ participant.quantity }}</option>
+          }
+        </select>
+        <p class="white">выберите из списка</p>
+      </div>
+      <button class="search-btn he-52 bold fs-16" [disabled]="!isValidForm()">
+        Найти программу
+      </button>
+    </form>
+    <div class="live-input">
+      <input class="live-input-i" [(ngModel)]="liveInput" type="text" />
+      <p>{{ liveInput }}</p>
     </div>
   </div>
+</div>
 <section class="hike-description-section">
   <div class="hike-description">
     <div class="container hike-description-container">
       <div class="images-container">
-        <img class="mountain" src="images/mountain.png" alt="mountain" width="350px" height="400px">
+        <img class="mountain" src="images/mountain.png" alt="mountain" width="350px" height="400px" />
         <div class="forest-container">
-          <img src="images/forest.png" alt="forest" width="350px" height="400px">
+          <img src="images/forest.png" alt="forest" width="350px" height="400px" />
           <fa-icon class="stop-icon" [icon]="faStopCircle" alt="stop-icon" width="50px" height="50px"></fa-icon>
         </div>
       </div>
-      <div>
-      </div>
+      <div></div>
       <div class="description">
         <p class="subtitle">о нашем походе</p>
-        <h2 class="very-bold advice ">Исследуйте все горные массивы мира вместе с нами</h2>
-        <p class="fs-18 description-p">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более
-          двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял
-          одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
-          литературе.</p>
-        <button class="primeri-btn" (click)="messageService.showError('ошибка, повторите попытку позже')">программа тура</button>
+        <h2 class="very-bold advice">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="fs-18 description-p">
+          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
+          тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
+          Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
+          поисками в классической латинской литературе.
+        </p>
+        <button class="primeri-btn" (click)="messageService.showError('ошибка, повторите попытку позже')">
+          программа тура
+        </button>
       </div>
     </div>
   </div>
@@ -61,35 +70,39 @@
 
 <section class="about-us">
   <div class="description-container">
-    <p class="proposal fs-24 ">наше предложение</p>
+    <p class="proposal fs-24">наше предложение</p>
     <h2 class="recommendations very-bold">Лучшие программы для тебя</h2>
-    <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+    <p class="description fs-18">
+      Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более
+      двухтысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+    </p>
     <div class="advantage-list">
       @for (advantag of advantages; track advantag.id) {
-        <div [class]="advantag.id === selectedAdvantagId? 'advantag-active' : 'advantag'" (click)="selectService(advantag.id)">
-          <div class="icon-container">
-            @if (advantag.id == 1) {
-              <fa-icon [icon]="faPeoplePulling" alt="" width="50px"></fa-icon>
-            } 
-            @else if (advantag.id == 2) {
-                <fa-icon [icon]="faShield" alt="" width="50px"></fa-icon>
-            } 
-            @else {
-                <fa-icon [icon]="faClock" alt="" width="50px"></fa-icon>
-            }
-          </div>
-          <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
-          <p class="advantag-description fs-14 ">{{ advantag.description }}</p>
+      <div [class]="advantag.id === selectedAdvantagId ? 'advantag-active' : 'advantag'"
+        (click)="selectService(advantag.id)">
+        <div class="icon-container">
+          @if (advantag.id === 1) {
+          <fa-icon [icon]="faPeoplePulling" alt="" width="50px"></fa-icon>
+          } @else if (advantag.id === 2) {
+          <fa-icon [icon]="faShield" alt="" width="50px"></fa-icon>
+          } @else {
+          <fa-icon [icon]="faClock" alt="" width="50px"></fa-icon>
+          }
         </div>
+        <h3 class="advantag-title bold fs-18">{{ advantag.title }}</h3>
+        <p class="advantag-description fs-14">{{ advantag.description }}</p>
+      </div>
       }
     </div>
-    <button class=" primeri-btn prise-programm-btn" (click)="messageService.showInfo('вот информация')">Стоимость программ</button>
+    <button class="primeri-btn prise-programm-btn" (click)="messageService.showInfo('вот информация')">
+      Стоимость программ
+    </button>
   </div>
   <div class="images-container-four">
-    <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px">
-    <img src="images/gorge.png" alt="gorge" width="250px" height="250px">
-    <img src="images/snowmobile.png" alt="snowmobile" width="250px" height="250px">
-    <img src="images/river.png" alt="river" width="250px" height="250px">
+    <img src="/images/coffee-by-sea.png" alt="coffee-by-sea" width="250px" height="250px" />
+    <img src="images/gorge.png" alt="gorge" width="250px" height="250px" />
+    <img src="images/snowmobile.png" alt="snowmobile" width="250px" height="250px" />
+    <img src="images/river.png" alt="river" width="250px" height="250px" />
   </div>
 </section>
 <section class="popular-destinations">
@@ -100,26 +113,30 @@
     </div>
     <div class="container directions">
       @for (direction of directions; track $index) {
-        <div class="direction">
-          <div><img class="direction-bg" [src]="'/images/' + direction.image + '.png'" alt="" width= "380px" height="500px"></div>
-          <div class="estimation">
-            <fa-icon [icon]="faStar" alt=""></fa-icon>
-            <p class="estimation-number fs-14 bold">{{ direction.estimation }}</p>
+      <div class="direction">
+        <div>
+          <img class="direction-bg" [src]="'/images/' + direction.image + '.png'" alt="" width="380px" height="500px" />
+        </div>
+        <div class="estimation">
+          <fa-icon [icon]="faStar" alt=""></fa-icon>
+          <p class="estimation-number fs-14 bold">{{ direction.estimation }}</p>
+        </div>
+        <div class="description-direction">
+          <div class="bg-overlay"></div>
+          <div class="footerr">
+            <p class="title-direction bold">{{ direction.title }}</p>
+            <p class="description-text fs-14">{{ direction.description }}</p>
           </div>
-          <div class="description-direction">
-            <div class="bg-overlay"></div>
-            <div class="footerr">
-              <p class="title-direction bold">{{ direction.title }}</p>
-              <p class="description-text fs-14">{{ direction.description }}</p>
-            </div>
-            <div class="price-container fs-20 bold">
-              <p>{{ direction.price }} $</p>
-            </div>
+          <div class="price-container fs-20 bold">
+            <p>{{ direction.price }} $</p>
           </div>
         </div>
+      </div>
       }
     </div>
-    <button class="primeri-btn rating" (click)="messageService.showSuccess('успешно, отправили данные')">Рейтинг направнений</button>
+    <button class="primeri-btn rating" (click)="messageService.showSuccess('успешно, отправили данные')">
+      Рейтинг направнений
+    </button>
   </div>
 </section>
 <section class="about-blogs">
@@ -130,43 +147,48 @@
     </div>
     <div class="blogs container">
       @for (blog of blogs; track $index) {
-        <div class="blog">
-          <div>
-            <img [src]="'images/' + blog.image + '.png'" alt="">
-          </div> <footer></footer>
-          <div class="description-blog-container">
-            <div class="titles">
-              <h2 [class]="blog.id == selectedUnderline? 'main-title bold underline' : 'main-title bold'" (mousemove)="selectedUnderline = blog.id" class="main-title bold">{{ blog.title }}</h2>
-              <p class="description-blog fs-14">{{ blog.description }}</p>
-            </div>
-            <div class="bold fs-14 links">
-              <p class="data-blog">01/04/2023</p>
-              <p>читать статью</p>
-            </div>
+      <div class="blog">
+        <div>
+          <img [src]="'images/' + blog.image + '.png'" alt="" />
+        </div>
+        <footer></footer>
+        <div class="description-blog-container">
+          <div class="titles">
+            <h2 [class]="
+                  blog.id === selectedUnderline ? 'main-title bold underline' : 'main-title bold'
+                " (mousemove)="selectedUnderline = blog.id" class="main-title bold">
+              {{ blog.title }}
+            </h2>
+            <p class="description-blog fs-14">{{ blog.description }}</p>
+          </div>
+          <div class="bold fs-14 links">
+            <p class="data-blog">01/04/2023</p>
+            <p>читать статью</p>
           </div>
         </div>
+      </div>
       }
     </div>
-    <button class="primeri-btn materials-btn" (click)="messageService.showError('ошибка, повторите попытку')">Другие материалы</button>
+    <button class="primeri-btn materials-btn" (click)="messageService.showError('ошибка, повторите попытку')">
+      Другие материалы
+    </button>
   </div>
 </section>
 
-
-
 <section class="photo-report">
- <div>
-   <div>
-    <p class="subtitle-report">фото-отчет</p>
-    <h2 class="title-report very-bold">Делимся впечатлениями</h2>
-   </div>
-   <div class="photo-report-container">
-    <img src="images/balloons-in-the-forest.png" alt="balloons-in-the-forest">
-    <img src="images/tools.png" alt="tools">
-    <img src="images/building-by-the-sea.png" alt="building-by-the-sea">
-    <img src="images/boats.png" alt="boats">
-    <img src="images/canyon.png" alt="canyon">
-    <img src="images/map-is-ancient.png" alt="map-is-ancient">
-   </div>
-   <button class="primeri-btn">Наш pinterest</button>
- </div>
+  <div>
+    <div>
+      <p class="subtitle-report">фото-отчет</p>
+      <h2 class="title-report very-bold">Делимся впечатлениями</h2>
+    </div>
+    <div class="photo-report-container">
+      <img src="images/balloons-in-the-forest.png" alt="balloons-in-the-forest" />
+      <img src="images/tools.png" alt="tools" />
+      <img src="images/building-by-the-sea.png" alt="building-by-the-sea" />
+      <img src="images/boats.png" alt="boats" />
+      <img src="images/canyon.png" alt="canyon" />
+      <img src="images/map-is-ancient.png" alt="map-is-ancient" />
+    </div>
+    <button class="primeri-btn">Наш pinterest</button>
+  </div>
 </section>

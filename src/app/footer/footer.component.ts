@@ -1,6 +1,10 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowAltCircleRight, faArrowLeftLong, faArrowRightFromFile, faArrowRightRotate, faArrowsTurnRight, faContactBook, faContactCard, faFileContract, faMountain, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowsTurnRight,
+  faContactBook,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -9,44 +13,42 @@ import { faArrowAltCircleRight, faArrowLeftLong, faArrowRightFromFile, faArrowRi
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-
   faArrowsTurnRight: IconDefinition = faArrowsTurnRight;
   faContactBook: IconDefinition = faContactBook;
-   
-    businessServices: { service: string }[] = [
-      {
-        service: 'Прогулки в горы летом'
-      },
-      {
-        service: 'Зимние походы в горы'
-      },
-      {
-        service: 'Посещение мест в горах'
-      },
-      {
-        service: 'Экстремальные виды туризма'
-      },
-      {
-        service: 'Походы в джунглях Амазонии'
-      },
-      {
-        service: 'Поездка в Африку'
-      },
-    ]
-  
-    articles: { important: string }[] = [
-      {
-        important: 'Как собрать в долгий поход?'
-      },
-      {
-        important: 'Жизненно важные предметы для похода'
-      },
-      {
-        important: 'Медицинская страховка, гарантии безопасности'
-      },
-      {
-        important: 'Если вы врач - загляните сюда'
-      }
-    ]
-    
-  }
+
+  businessServices: { service: string }[] = [
+    {
+      service: 'Прогулки в горы летом',
+    },
+    {
+      service: 'Зимние походы в горы',
+    },
+    {
+      service: 'Посещение мест в горах',
+    },
+    {
+      service: 'Экстремальные виды туризма',
+    },
+    {
+      service: 'Походы в джунглях Амазонии',
+    },
+    {
+      service: 'Поездка в Африку',
+    },
+  ];
+
+  articles: { important: string }[] = [
+    {
+      important: 'Как собрать в долгий поход?',
+    },
+    {
+      important: 'Жизненно важные предметы для похода',
+    },
+    {
+      important: 'Медицинская страховка, гарантии безопасности',
+    },
+    {
+      important: 'Если вы врач - загляните сюда',
+    },
+  ];
+}

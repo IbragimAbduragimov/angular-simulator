@@ -1,14 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoaderService {
-  
   private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  
+
   isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
 
   showLoader(): void {
@@ -18,5 +16,4 @@ export class LoaderService {
   hideLoader(): void {
     this.isLoadingSubject.next(false);
   }
-  
 }

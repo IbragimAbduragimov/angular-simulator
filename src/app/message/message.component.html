@@ -1,25 +1,21 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/alt-text -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="messages-container">
   @for (message of messageService.messages$ | async; track $index) {
-    <ng-container 
-      [ngTemplateOutlet]="messages"
-      [ngTemplateOutletContext]="{ currentMessage: message }">
-    </ng-container>
+  <ng-container [ngTemplateOutlet]="messages" [ngTemplateOutletContext]="{ currentMessage: message }">
+  </ng-container>
   }
 </div>
 
 <ng-template #messages let-message="currentMessage">
   <div class="message">
-    <img src="images/envelope-icon.svg" width="40px" height="40px">
-  <div class="bold condition-container">
-    <h2 class="condition fs-16">{{ message.type }}</h2>
-    <p class="message-content fs-14">{{ message.text }}</p>
-  </div>
-    <img
-      (click)="messageService.closeMessage(message)"
-      class="close-X" src="images/close-X-icon.svg"
-      id="clossse-message" 
-      width="20px" 
-      height="20px">
-      
+    <img src="images/envelope-icon.svg" width="40px" height="40px" />
+    <div class="bold condition-container">
+      <h2 class="condition fs-16">{{ message.type }}</h2>
+      <p class="message-content fs-14">{{ message.text }}</p>
+    </div>
+    <img (click)="messageService.closeMessage(message)" class="close-X" src="images/close-X-icon.svg"
+      id="clossse-message" width="20px" height="20px" />
   </div>
 </ng-template>

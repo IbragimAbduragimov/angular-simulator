@@ -1,34 +1,38 @@
 <html>
-<header class="bg-header">
-        <div class="card flex justify-center">
-            <p-selectbutton
-              id="switch-theme"
-              [options]="themeService.presetOptions"
-              [ngModel]="themeService.preset$ | async"
-              (onChange)="toggleTheme($event.value)"
-              optionLabel="value"
-              optionValue="value"
-            />
-        </div>
-  <div class="centering-device">
-    <div class="header">
-      <div class="company-icon column">
-        <fa-icon [icon]="faMountainSun" alt="mountains" width="500px"></fa-icon>
-        <button (click)="logout()">выйти из аккаунта</button>
-        <p>{{ isLogin ? 'пользователь авторизован' : 'пользователь не авторизован' }}</p>
-      </div>
-      <div class="main-crossings fs-18 semi-bold">
-        @for (navigation of navigations; track $index) {
-          <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="navigation.link" routerLinkActive="active">{{ navigation.navigation }}</a>
-        }
-      </div>
-    </div>
-  </div>
-  <div>
+  <header class="bg-header">
     <div class="card flex justify-center">
-        <p-toggleswitch (onChange)="toggleMode($event)" [ngModel]="themeService.isDark$ | async"/>
+      <p-selectbutton
+        id="switch-theme"
+        [options]="themeService.presetOptions"
+        [ngModel]="themeService.preset$ | async"
+        (onChange)="toggleTheme($event.value)"
+        optionLabel="value"
+        optionValue="value"
+      />
     </div>
-  </div>
-</header>
-
+    <div class="centering-device">
+      <div class="header">
+        <div class="company-icon column">
+          <fa-icon [icon]="faMountainSun" alt="mountains" width="500px"></fa-icon>
+          <button (click)="logout()">выйти из аккаунта</button>
+          <p>{{ isLogin ? 'пользователь авторизован' : 'пользователь не авторизован' }}</p>
+        </div>
+        <div class="main-crossings fs-18 semi-bold">
+          @for (navigation of navigations; track $index) {
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="navigation.link"
+              routerLinkActive="active"
+              >{{ navigation.navigation }}</a
+            >
+          }
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card flex justify-center">
+        <p-toggleswitch (onChange)="toggleMode($event)" [ngModel]="themeService.isDark$ | async" />
+      </div>
+    </div>
+  </header>
 </html>

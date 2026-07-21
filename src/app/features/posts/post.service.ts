@@ -1,21 +1,19 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
-import { IPost } from './IPost';
 import { PostApiService } from './post-api.service';
-import { IPostResponce } from './IPost-responce';
 import { MessageService } from '../../../message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoaderService } from '../../loader.service';
+import { IPost } from './IPost';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-
   private postApiService: PostApiService = inject(PostApiService);
-  private messageSevice: MessageService = inject(MessageService)
+  private messageSevice: MessageService = inject(MessageService);
   private loaderService: LoaderService = inject(LoaderService);
-  
+
   private postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
 
@@ -32,7 +30,7 @@ export class PostService {
     return this.postApiService.getPosts(page, size).pipe(
       tap((posts: IPost[]) => this.setPosts(posts)),
       catchError((error: HttpErrorResponse) => {
-        this.messageSevice.showError('произошла ошибка')
+        this.messageSevice.showError('произошла ошибка');
         return throwError(() => error);
       }),
       finalize(() => this.loaderService.hideLoader()),
@@ -40,7 +38,7 @@ export class PostService {
   }
 
   filterPost(posts: IPost[], id: number): IPost[] {
-    const filteredPosts: IPost[] = posts.filter((post: IPost) => post.id !== id );
+    const filteredPosts: IPost[] = posts.filter((post: IPost) => post.id !== id);
     return filteredPosts;
   }
 
@@ -54,7 +52,7 @@ export class PostService {
     return this.postApiService.getPost(id).pipe(
       tap((posts: IPost) => this.addPost(posts)),
       catchError((error: HttpErrorResponse) => {
-        this.messageSevice.showError('произошла ошибка')
+        this.messageSevice.showError('произошла ошибка');
         return throwError(() => error);
       }),
       finalize(() => this.loaderService.hideLoader()),
@@ -69,7 +67,7 @@ export class PostService {
         this.setPosts(deletePost);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageSevice.showError('произошла ошибка')
+        this.messageSevice.showError('произошла ошибка');
         return throwError(() => error);
       }),
       finalize(() => this.loaderService.hideLoader()),
@@ -81,11 +79,11 @@ export class PostService {
     return this.postApiService.updatePost(id, data).pipe(
       tap((post: IPost) => {
         const posts: IPost[] = this.getPosts();
-        const updatedPosts: IPost[] = posts.map((posts) => posts.id === id ? post : posts);
+        const updatedPosts: IPost[] = posts.map((posts) => (posts.id === id ? post : posts));
         this.setPosts(updatedPosts);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageSevice.showError('произошла ошибка')
+        this.messageSevice.showError('произошла ошибка');
         return throwError(() => error);
       }),
       finalize(() => this.loaderService.hideLoader()),
@@ -97,11 +95,10 @@ export class PostService {
     return this.postApiService.createPost(data).pipe(
       tap((post: IPost) => this.addPost(post)),
       catchError((error: HttpErrorResponse) => {
-        this.messageSevice.showError('произошла ошибка')
+        this.messageSevice.showError('произошла ошибка');
         return throwError(() => error);
       }),
       finalize(() => this.loaderService.hideLoader()),
     );
   }
-
 }

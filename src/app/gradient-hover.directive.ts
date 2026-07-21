@@ -5,12 +5,11 @@ import { IGradientConfig } from './interfaces/IGradientConfig';
   selector: '[gradientHover]',
 })
 export class GradientHoverDirective {
-
   @Input() gradientConfig: IGradientConfig = {
     delay: 1000,
     colors: ['#ff4545', '#00ff99', '#006aff', '#ff0095'],
-    thickness: '2px'
-  }
+    thickness: '2px',
+  };
 
   @HostBinding('class') gradientClass!: string;
   @HostBinding('style.background-image') gradientColors!: string;
@@ -20,7 +19,7 @@ export class GradientHoverDirective {
 
   timer!: number;
   delay: number = this.gradientConfig.delay!;
-  
+
   @HostListener('mouseenter')
   onEnter(): void {
     this.timer = setTimeout(() => {
@@ -37,5 +36,4 @@ export class GradientHoverDirective {
     this.thickness = '0px';
     clearTimeout(this.timer);
   }
-
 }
