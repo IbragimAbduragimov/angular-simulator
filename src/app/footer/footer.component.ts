@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faArrowAltCircleRight,
-  faArrowLeftLong,
-  faArrowRightFromFile,
-  faArrowRightRotate,
   faArrowsTurnRight,
   faContactBook,
-  faContactCard,
-  faFileContract,
-  faMountain,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 

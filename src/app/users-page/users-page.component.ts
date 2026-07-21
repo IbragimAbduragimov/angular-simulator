@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { AsyncPipe, CurrencyPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserApiService } from '../user-api.service';
 import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';

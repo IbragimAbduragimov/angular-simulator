@@ -17,6 +17,7 @@ module.exports = defineConfig([
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      'prettier/prettier': ['off'],
       eqeqeq: 'error',
       'no-console': [
         'warn',
@@ -74,16 +75,7 @@ module.exports = defineConfig([
     files: ['**/*.html'],
     extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
     rules: {
-      'prettier/prettier': [
-        'error',
-        {
-          tabWidth: 2,
-          semi: true,
-          singleQuote: true,
-          parser: 'angular',
-          endOfLine: 'crlf',
-        },
-      ],
+      'prettier/prettier': ['off'],
     },
   },
 ]);

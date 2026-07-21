@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
-import { UsersPageComponent } from './users-page/users-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { postResolver } from './features/posts/post.resolver';
 import { authGuard } from './features/auth/auth.guard';

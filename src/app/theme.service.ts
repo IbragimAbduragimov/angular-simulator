@@ -1,19 +1,11 @@
-import { AfterViewInit, inject, Injectable, OnInit } from '@angular/core';
-import {
-  BehaviorSubject,
-  distinctUntilChanged,
-  Observable,
-  ReplaySubject,
-  Subject,
-  tap,
-} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, distinctUntilChanged, Observable, tap } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
 import { Theme } from '../enums/Theme';
-import { updatePreset, usePreset } from '@primeuix/styled';
+import { usePreset } from '@primeuix/styled';
 import Lara from '@primeuix/themes/lara';
 import Aura from '@primeuix/themes/aura';
 import Nora from '@primeuix/themes/nora';
-import { Preset } from '@primeuix/themes/types';
 import { IPresetOption } from './interfaces/IPresetOption';
 
 @Injectable({
@@ -55,9 +47,11 @@ export class ThemeService {
 
   toggleDarkMode(isDarkMode: boolean): void {
     this.isDarkSubject.next(isDarkMode);
-    !this.localStorageService.getKey('dark')
-      ? this.localStorageService.addKey('dark', isDarkMode)
-      : this.localStorageService.addKey('dark', false);
+    if (this.localStorageService.getKey('dark')) {
+      this.localStorageService.addKey('dark', isDarkMode);
+    } else {
+      this.localStorageService.addKey('dark', false);
+    }
   }
 
   switchTheme(newTheme: Theme): void {

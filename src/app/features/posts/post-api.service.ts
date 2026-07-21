@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IPostResponce } from './IPost-responce';
 import { IPost } from './IPost';
 
@@ -14,23 +14,23 @@ export class PostApiService {
 
   getPosts(page?: number, size?: number): Observable<IPost[]> {
     return this.http
-      .get<IPostResponce>(`${this.postUrl}?limit=${page || 0}&skip=${size || 0}`)
+      .get<IPostResponce>(`${ this.postUrl }?limit=${ page || 0 }&skip=${ size || 0 }`)
       .pipe(map((response: IPostResponce) => response.posts));
   }
 
   getPost(id: number | string): Observable<IPost> {
-    return this.http.get<IPost>(`${this.postUrl}/${id}`);
+    return this.http.get<IPost>(`${ this.postUrl }/${ id }`);
   }
 
   deletePost(id: number): Observable<IPost> {
-    return this.http.delete<IPost>(`${this.postUrl}/${id}`);
+    return this.http.delete<IPost>(`${ this.postUrl }/${ id }`);
   }
 
   updatePost(id: number, data: Partial<IPost>): Observable<IPost> {
-    return this.http.put<IPost>(`${this.postUrl}/${id}`, data);
+    return this.http.put<IPost>(`${ this.postUrl }/${ id }`, data);
   }
 
   createPost(data: IPost): Observable<IPost> {
-    return this.http.post<IPost>(`${this.postUrl}/add`, data);
+    return this.http.post<IPost>(`${ this.postUrl }/add`, data);
   }
 }

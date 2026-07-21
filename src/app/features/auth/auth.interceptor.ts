@@ -1,14 +1,8 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandlerFn,
-  HttpInterceptorFn,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { LocalStorageService } from '../../../local-storage.service';
 import { IToken } from './IToken';
-import { catchError, exhaustMap, Observable, throwError } from 'rxjs';
+import { catchError, exhaustMap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { IAuthResponse } from './IAuthResponse';
@@ -52,5 +46,5 @@ export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) 
 
 const addToken = (req: HttpRequest<unknown>, token: string | undefined): HttpRequest<unknown> =>
   req.clone({
-    headers: req.headers.set('Authorization', `Bearer ${token}`),
+    headers: req.headers.set('Authorization', `Bearer ${ token }`),
   });

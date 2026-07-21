@@ -1,18 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PostApiService } from '../post-api.service';
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
-import { EMPTY, MonoTypeOperatorFunction, Observable, pipe, switchMap, take, tap } from 'rxjs';
-import { Table, TableModule, TablePageEvent } from 'primeng/table';
+import { EMPTY, Observable, switchMap, take, tap } from 'rxjs';
+import { TableModule, TablePageEvent } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ToastModule } from 'primeng/toast';
 import { MenuItem, MessageService } from 'primeng/api';
-import { ActivatedRoute, Router, withDebugTracing } from '@angular/router';
+import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { IPost } from '../IPost';
-import { IPostEdit } from '../IPostEdit';
 
 @Component({
   selector: 'app-posts',
@@ -54,15 +52,15 @@ export class PostsComponent implements OnInit {
   }
 
   viewPost(): void {
-    this.router.navigate([`posts/${this.selectedProduct?.id}`]);
+    this.router.navigate([`posts/${ this.selectedProduct?.id }`]);
   }
 
   showPostDetails(id: number): void {
-    this.router.navigate([`posts/${id}`]);
+    this.router.navigate([`posts/${ id }`]);
   }
 
   deletePost(): void {
-    const id: number = this.selectedProduct?.id!;
+    const id: number = this.selectedProduct!.id;
     this.postService
       .deletePost(id)
       .pipe(

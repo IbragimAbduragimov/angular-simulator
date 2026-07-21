@@ -1,6 +1,6 @@
 import { Component, DestroyRef, EventEmitter, inject, Output, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 @Component({

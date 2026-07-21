@@ -1,4 +1,4 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,16 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IPostResponce } from '../IPost-responce';
-import { PostApiService } from '../post-api.service';
-import { PostService } from '../post.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Subscription, tap } from 'rxjs';
-import { Badge } from 'primeng/badge';
 import { Button } from 'primeng/button';
-import { IPost } from '../IPost';
-import { IPostEdit } from '../IPostEdit';
 
 @Component({
   selector: 'app-post-edit-dialog',

@@ -13,7 +13,7 @@ export class Collecton<T> {
     return collection[index];
   }
 
-  clearCollection<T>(): void {
+  clearCollection(): void {
     this.collection = [];
   }
 

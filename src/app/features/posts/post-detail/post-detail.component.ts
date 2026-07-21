@@ -1,14 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PostApiService } from '../post-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { PostService } from '../post.service';
-import { Observable, pipe, tap } from 'rxjs';
-import { IPostResponce } from '../IPost-responce';
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { ToastModule } from 'primeng/toast';
-import { Router } from '@angular/router';
 import { IPost } from '../IPost';
 
 @Component({

@@ -14,11 +14,11 @@ export class PrularPipe implements PipeTransform {
       ['2', '3', '4'].includes(lastDitig) && !exceptionsSecondForm.includes(lastTwoDitig);
 
     if (isFirsForm) {
-      return `${numberOf} ${firstForm}`;
+      return `${ numberOf } ${ firstForm }`;
     } else if (isSecondForm) {
-      return `${numberOf} ${secondForm}`;
+      return `${ numberOf } ${ secondForm }`;
     } else {
-      return `${numberOf} ${thirdForm}`;
+      return `${ numberOf } ${ thirdForm }`;
     }
   }
 }

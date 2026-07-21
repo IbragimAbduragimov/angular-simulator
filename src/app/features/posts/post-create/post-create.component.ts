@@ -1,7 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PostApiService } from '../post-api.service';
-import { IPostResponce } from '../IPost-responce';
 import { catchError, tap, throwError } from 'rxjs';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';

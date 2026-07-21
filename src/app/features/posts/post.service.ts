@@ -1,11 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
-import { IPost } from './IPost';
 import { PostApiService } from './post-api.service';
-import { IPostResponce } from './IPost-responce';
 import { MessageService } from '../../../message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoaderService } from '../../loader.service';
+import { IPost } from './IPost';
 
 @Injectable({
   providedIn: 'root',

@@ -23,7 +23,7 @@ export class GradientHoverDirective {
   @HostListener('mouseenter')
   onEnter(): void {
     this.timer = setTimeout(() => {
-      this.gradientColors = `conic-gradient(from var(--angle), ${this.gradientConfig.colors} )`!;
+      this.gradientColors = `conic-gradient(from var(--angle), ${ this.gradientConfig.colors } )`!;
       this.thickness = this.gradientConfig.thickness!;
       this.gradientClass = 'gradient';
     }, this.delay);

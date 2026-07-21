@@ -1,12 +1,5 @@
-import { Component, EventEmitter, inject, Output, output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
 import { UserService } from '../user.service';
 import { GradientHoverDirective } from '../gradient-hover.directive';

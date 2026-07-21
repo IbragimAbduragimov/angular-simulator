@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IAuthUser } from './IAuthUser';
 import { ILogin } from './ILogin';
 import { IAuthResponse } from './IAuthResponse';
@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   login(login: ILogin): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(`${this.apiUrl}/login`, login).pipe(
+    return this.http.post<IAuthResponse>(`${ this.apiUrl }/login`, login).pipe(
       tap((response: IAuthResponse) => {
         this.setTokens({
           accessToken: response.accessToken,
@@ -51,14 +51,14 @@ export class AuthService {
 
   getCurrentUser(): Observable<IAuthUser> {
     return this.http
-      .get<IAuthUser>(`${this.apiUrl}/me`)
+      .get<IAuthUser>(`${ this.apiUrl }/me`)
       .pipe(tap((user: IAuthUser) => this.setUser(user)));
   }
 
   refreshToken(): Observable<IToken> {
     const tokens: IToken | null = this.getTokens();
     return this.http
-      .post<IToken>(`${this.apiUrl}/refresh`, { refreshToken: tokens?.refreshToken })
+      .post<IToken>(`${ this.apiUrl }/refresh`, { refreshToken: tokens?.refreshToken })
       .pipe(tap((tokens: IToken) => this.setTokens(tokens)));
   }
 

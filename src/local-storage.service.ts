@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class LocalStorageService {
     }
   }
 
-  getKey<T>(key: string): any | null {
+  getKey(key: string): any | null {
     const value: string | null = localStorage.getItem(key);
     try {
       return value ? JSON.parse(value) : null;

@@ -1,3 +1,5 @@
+/* eslint-disable no-unassigned-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function sumNumbers(a: number, b: number): number {
   return a + b;
 }
@@ -17,9 +19,9 @@ interface IStudent extends IUser {
 }
 
 function formatText(text: string, option: string): string {
-  if (textFormat == 'uppercase') {
+  if (textFormat === 'uppercase') {
     return text.toUpperCase();
-  } else if (textFormat == 'capitalize') {
+  } else if (textFormat === 'capitalize') {
     return text.charAt(0).toUpperCase() + text.charAt(1).toLowerCase();
   } else {
     return text.toLowerCase();

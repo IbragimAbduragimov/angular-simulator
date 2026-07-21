@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,12 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { BehaviorSubject, catchError, finalize, Observable, tap, throwError } from 'rxjs';
-import { LocalStorageService } from '../../../../local-storage.service';
-import { IToken } from '../IToken';
+import { catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { ILogin } from '../ILogin';
-import { IAuthResponse } from '../IAuthResponse';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from '../../../../message.service';
 

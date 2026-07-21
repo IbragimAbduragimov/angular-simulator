@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IBlog } from '../interfaces/IBlog';
 import { IDirection } from '../interfaces/IDirection';
 import { IAdvantage } from '../interfaces/IAdvantag';
@@ -7,24 +7,17 @@ import { ILocation } from '../interfaces/ILocation';
 import { Widget } from '../../Widget';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../../message.service';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faCalendarAlt,
-  faCalendarCheck,
-  faCalendarDays,
   faCalendarWeek,
   faClock,
   faPeoplePulling,
   faShield,
   faStar,
-  faStop,
   faStopCircle,
-  faStopwatch,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from '../../local-storage.service';
-import { Router, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../features/auth/auth.service';
 
 @Component({

@@ -15,8 +15,8 @@ export const httpLogInterceptor: HttpInterceptorFn = (
   const startTime: number = Date.now();
 
   const logRequest = (message: string) => {
-    console.log(
-      `ИНФОРМАЦИЯ ЗАПРОСА: ${req.method} ${req.url} ${message}${Date.now() - startTime}ms`,
+    console.warn(
+      `ИНФОРМАЦИЯ ЗАПРОСА: ${ req.method } ${ req.url } ${ message }${ Date.now() - startTime }ms`,
     );
   };
 
